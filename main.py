@@ -14,7 +14,6 @@ import cogs.commandes_ammusantes as commandes_ammusantes
 import cogs.info_commandes as info_commandes
 import cogs.easter_egg as easter_egg
 
-from discord_components import DiscordComponents, SelectOption, Select
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
 from discord_slash.utils.manage_components import create_select, create_select_option, create_actionrow
@@ -36,7 +35,6 @@ intents.messages = True
 intents.guilds = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
-DiscordComponents(bot)
 bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
 
@@ -103,11 +101,11 @@ async def ping(ctx):
 # Commande qui affiche la banière de l'utilisateur choisit
 
 
-@slash.slash(name="bannerr", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.", options=[
+@slash.slash(name="banner", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.", options=[
     create_option(name="user",
                   description="L'utilisateur dont tu veux voir la bannière.", option_type=6, required=True),
 ])
-async def bannerr(ctx, user: discord.Member):
+async def banner(ctx, user: discord.Member):
     """"Récupère la banière de 'user' et l'envoie"""
     if user == None:
         user = ctx.author
@@ -141,35 +139,21 @@ async def help(ctx):
     embed1.set_author(name="Bee'Bot",
                       icon_url=user.avatar_url)
 
-    await ctx.send(embed=embed1, components=[
-        Select(
-            placeholder="Choisis une catégorie !",
-            options=[
-                SelectOption(label="Menu principal",
-                             value="Accueil", emoji="🏠"),
-                SelectOption(label="Information / Serveur",
-                             value="Bot", emoji="🤖"),
-                SelectOption(label="Modération",
-                             value="Modération", emoji="🔨"),
-                SelectOption(label="Fun", value="Fun", emoji="😄"),
-            ]
-        )
-    ])
+    select = create_select(
+        options=[
+            create_select_option("Menu principal", value="Accueil", emoji="🏠"),
+            create_select_option("Information / Serveur",
+                                 value="Bot", emoji="🤖"),
+            create_select_option("Modération", value="Modération", emoji="🔨"),
+            create_select_option("Fun", value="Fun", emoji="😄")
+        ],
+        placeholder="Choisis une catégorie !",
+        min_values=1,  # the minimum number of options a user must select
+        max_values=1  # the maximum number of options a user can select
+    )
+    action_row = create_actionrow(select)
 
-    # select = create_select(
-    #    options=[
-    #        create_select_option("Menu principal", value="Accueil", emoji="🏠"),
-    #        create_select_option("Information / Serveur", value="Bot", emoji="🤖"),
-    #        create_select_option("Modération", value="Modération", emoji="🔨"),
-    #        create_select_option("Fun", value="Fun", emoji="😄")
-    #    ],
-    #    placeholder="Choisis une catégorie !",
-    #    min_values=1, # the minimum number of options a user must select
-    #    max_values=1 # the maximum number of options a user can select
-    # )
-    #action_row = create_actionrow(select)
-
-    # await ctx.send(embed=embed1, components=[action_row])
+    await ctx.send(embed=embed1, components=[action_row])
 
     # Embed des commandes concernant le Bot
     embedBot = discord.Embed(title="🤖 - Information générales et du Serveur",

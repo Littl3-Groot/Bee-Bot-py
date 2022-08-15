@@ -7,7 +7,7 @@ autopep8==1.6.0
 chardet==4.0.0
 colorama==0.4.4
 discord==1.7.3
-discord-components==2.1.2
+discord-components==2.0.0
 discord-py-interactions==4.1.0
 discord-py-slash-command==3.0.3
 discord.py==1.7.3

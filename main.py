@@ -6,6 +6,7 @@ import random
 
 from config import *
 
+# imports des cogs
 import cogs.logs as logs
 import cogs.arrive as arrive
 import cogs.admin as admin
@@ -15,9 +16,10 @@ import cogs.easter_egg as easter_egg
 
 from discord_components import DiscordComponents, SelectOption, Select
 from discord_slash import SlashCommand
-from discord_slash.utils.manage_commands import create_option, create_choice, create_permission
-from discord_slash.model import SlashCommandPermissionType
-from discord.ext.commands import MissingPermissions
+from discord_slash.utils.manage_commands import create_option
+from discord_slash.utils.manage_components import create_select, create_select_option, create_actionrow
+# from discord_slash.model import SlashCommandPermissionType
+# from discord.ext.commands import MissingPermissions
 
 
 import asyncio
@@ -101,11 +103,11 @@ async def ping(ctx):
 # Commande qui affiche la banière de l'utilisateur choisit
 
 
-@slash.slash(name="banner", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.", options=[
+@slash.slash(name="bannerr", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.", options=[
     create_option(name="user",
                   description="L'utilisateur dont tu veux voir la bannière.", option_type=6, required=True),
 ])
-async def banner(ctx, user: discord.Member):
+async def bannerr(ctx, user: discord.Member):
     """"Récupère la banière de 'user' et l'envoie"""
     if user == None:
         user = ctx.author
@@ -136,7 +138,7 @@ async def help(ctx):
                      inline=False
                      )
 
-    embed1.set_author(name="D'Bot",
+    embed1.set_author(name="Bee'Bot",
                       icon_url=user.avatar_url)
 
     await ctx.send(embed=embed1, components=[
@@ -153,6 +155,22 @@ async def help(ctx):
             ]
         )
     ])
+
+    # select = create_select(
+    #    options=[
+    #        create_select_option("Menu principal", value="Accueil", emoji="🏠"),
+    #        create_select_option("Information / Serveur", value="Bot", emoji="🤖"),
+    #        create_select_option("Modération", value="Modération", emoji="🔨"),
+    #        create_select_option("Fun", value="Fun", emoji="😄")
+    #    ],
+    #    placeholder="Choisis une catégorie !",
+    #    min_values=1, # the minimum number of options a user must select
+    #    max_values=1 # the maximum number of options a user can select
+    # )
+    #action_row = create_actionrow(select)
+
+    # await ctx.send(embed=embed1, components=[action_row])
+
     # Embed des commandes concernant le Bot
     embedBot = discord.Embed(title="🤖 - Information générales et du Serveur",
                              description="- Utilisez ``/infocommande`` pour voir les détails d'une commande.\n\n> ``!help``: Permet de voir la liste de toutes les commandes dispognible sur le serveur.\n> ``/serveur``: Affiche les information du serveur.",
@@ -200,6 +218,25 @@ async def on_command_error(ctx, error):
         await asyncio.sleep(15)
         await ctx.message.delete()
         await embed.delete()
+
+
+@slash.slash(name="test", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.")
+async def test(ctx):
+
+    select = create_select(
+        options=[
+            create_select_option("Lab Coat", value="coat", emoji="🥼"),
+            create_select_option("Test Tube", value="tube", emoji="🧪"),
+            create_select_option("Petri Dish", value="dish", emoji="🧫")
+        ],
+        placeholder="Choose your option",
+        min_values=1,  # the minimum number of options a user must select
+        max_values=2  # the maximum number of options a user can select
+    )
+    action_row = create_actionrow(select)
+
+    await ctx.send(components=[action_row])
+
 
 # Ajout de tous les cogs (autre fichers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

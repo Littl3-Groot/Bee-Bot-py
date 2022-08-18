@@ -5,6 +5,8 @@ from discord.utils import get
 import datetime
 import random
 
+from Data.database_handler import DatabaseHandler
+
 from config import *
 
 # imports des cogs
@@ -33,6 +35,8 @@ intents.messages = True
 intents.guilds = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+database_handler = DatabaseHandler("database.db")
+
 bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
 
@@ -52,6 +56,7 @@ async def changestatus():
 
 @bot.event
 async def on_ready():
+    check_for_unmute.start()
     print("je suis en ligne !")
     chanel = bot.get_channel(979821289365704704)
     await chanel.send("je suis en ligne !")
@@ -82,6 +87,37 @@ async def reload(ctx, name=None):
             bot.reload_extension(name)
         except:
             bot.load_extension(name)
+
+
+async def get_muted_role(guild: discord.Guild) -> discord.Role:
+    role = get(guild.roles, name="Muted")
+    if role is not None:
+        return role
+    else:
+        permissions = discord.Permissions(send_messages=False)
+        role = await guild.create_role(name="Muted", permissions=permissions)
+        return role
+
+
+@bot.command()
+async def mute(ctx, member: discord.Member, seconds: int):
+    muted_role = await get_muted_role(ctx.guild)
+    database_handler.add_tempmute(member.id, ctx.guild.id, datetime.datetime.utcnow(
+    ) + datetime.timedelta(seconds=seconds))
+    await member.add_roles(muted_role)
+    await ctx.send(f"{member.mention} a été muté ! 🎙")
+
+
+@tasks.loop(minutes=1)
+async def check_for_unmute():
+    for guild in bot.guilds:
+        active_tempmute = database_handler.active_tempmute_to_revoke(guild.id)
+        if len(active_tempmute) > 0:
+            muted_role = await get_muted_role(guild)
+            for row in active_tempmute:
+                member = guild.get_member(row["user_id"])
+                database_handler.revoke_tempmute(row["id"])
+                await member.remove_roles(muted_role)
 
 
 # Commande qui affiche le temps de réponse du bot (ping)

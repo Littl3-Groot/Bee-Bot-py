@@ -1,5 +1,4 @@
 # Imports de tous les modules nécésaires au bon fonctionnement du bot
-from ast import Delete
 import discord
 from discord.ext import commands, tasks
 
@@ -195,7 +194,6 @@ async def help(ctx):
 
         except:
             return
-
 
 # Gère l'erreure où il ne trouve pas la commande demandé par l'utilisateur.
 

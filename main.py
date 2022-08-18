@@ -162,38 +162,31 @@ async def help(ctx):
                              description="- Utilisez ``/infocommande`` pour voir les détails d'une commande.\n\n> ``!help``: Permet de voir la liste de toutes les commandes dispognible sur le serveur.\n> ``/serveur``: Affiche les information du serveur.",
                              color=0x5865F2,
                              )
-    embedBot.set_footer(
-        text="ce message sera supprimé dans 60 secondes.")
     # Embed des commandes concernant la Modération
     embedMod = discord.Embed(title="🔨 Modération - Commandes de modération",
                              description="- Utilisez ``/infocommande`` pour voir les détails d'une commande.\n\n> ``!say`` : Permet de parler en utilisant le bot.\n> ``!clear`` : Suprimme le nombre de message demandé.\n> ``!kick`` : Permet de renvoyer une personne du serveur.\n> ``!ban`` : Permet de banir définitivement une personne du serveur.\n> ``!unban`` : Permet de débanir une personne du serveur.\n> ``!warn`` : Permet de sanctionner une personne du serveur.",
                              color=0x5865F2,
                              )
-    embedMod.set_footer(
-        text="ce message sera supprimé dans 60 secondes.")
     # Embed des commandes Funs
     embedFun = discord.Embed(title="😄 Fun - Commandes pour s'ammuser",
                              description="- Utilisez ``/infocommande`` pour voir les détails d'une commande.\n\n> ``/seuil``: Permet de savoir en quel année le prix de votre objet aura chutter de moitié.\n> ``/francs``: Permet de convertir des Euros en Francs.\n> ``/bisextille`` : Vous permet de savoir si un année est bisextille ou non.\n> ``/dico`` : Permet de savoir quel mot est avant l'autre dans le dictionnaire.\n> ``/decimal`` : Converti un nombre Binaire en nombre décimal.\n> ``/binaire :`` Converti un nombre decimal en binaire.\n> ``/hexa`` : Converti un nombre décimal en hexadecimal.\n> ``!roulette`` : Lance une roulette russe.\n> ``/mdp`` : Vous envoie un message contenant un mot de passe du nombre de caractères que vous souhaiter (lim = 4000) et aléatoire.\n> ``/pdp`` : Renvoie la photo de profil du membre que vous voulez.\n> ``/userinfo`` : Renvoie les information sur l'utilisateur que vous souhaiter",
                              color=0x5865F2,
                              )
-    embedFun.set_footer(
-        text="ce message sera supprimé dans 60 secondes.")
 
-    while True:
-        try:
-            choice_ctx = await wait_for_component(bot, components=select, check=check)
+    try:
+        choice_ctx = await wait_for_component(bot, components=select, check=check)
 
-            if choice_ctx.values[0] == "Accueil":
-                await choice_ctx.edit_origin(content=" ", embed=embed1)
-            elif choice_ctx.values[0] == "Bot":
-                await choice_ctx.edit_origin(content=" ", embed=embedBot)
-            elif choice_ctx.values[0] == "Modération":
-                await choice_ctx.edit_origin(content=" ", embed=embedMod)
-            elif choice_ctx.values[0] == "Fun":
-                await choice_ctx.edit_origin(content=" ", embed=embedFun)
+        if choice_ctx.values[0] == "Accueil":
+            await choice_ctx.edit_origin(content=" ", embed=embed1)
+        elif choice_ctx.values[0] == "Bot":
+            await choice_ctx.edit_origin(content=" ", embed=embedBot)
+        elif choice_ctx.values[0] == "Modération":
+            await choice_ctx.edit_origin(content=" ", embed=embedMod)
+        elif choice_ctx.values[0] == "Fun":
+            await choice_ctx.edit_origin(content=" ", embed=embedFun)
 
-        except:
-            return
+    except:
+        return
 
 # Gère l'erreure où il ne trouve pas la commande demandé par l'utilisateur.
 

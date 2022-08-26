@@ -25,7 +25,16 @@ class ErrorCog(commands.Cog):
                 await ctx.message.delete()
                 await msg.delete()
             elif isinstance(error, commands.MissingPermissions):
-                await ctx.send("ERREUR")
+                embed = discord.Embed(
+                    description='⚠️ ┃ Tu n\'as pas les permissions nécessaires pour effectuer '
+                                'cette commande.', color=0xd00000
+                )
+                embed.set_footer(
+                    text="ce message sera supprimé dans 15 secondes.")
+                msg = await ctx.reply(embed=embed)
+                await asyncio.sleep(15)
+                await ctx.message.delete()
+                await msg.delete()
             else:
                 await ctx.send(f"{error}")
         except Exception as error:

@@ -148,7 +148,7 @@ class Admin(commands.Cog):
                             'cette commande.', color=0xd00000)
             embed.set_footer(
                 text="ce message sera supprimé dans 15 secondes.")
-            embed = await ctx.reply(embed=embed)
+            msg = await ctx.reply(embed=embed)
             await asyncio.sleep(15)
             await ctx.message.delete()
-            await embed.delete()
+            await msg.delete()

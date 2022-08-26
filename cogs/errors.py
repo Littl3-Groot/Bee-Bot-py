@@ -20,10 +20,10 @@ class ErrorCog(commands.Cog):
                     title=f"<:x_:985826783159021628> Erreur !", description=f"La commande ``{ctx.message.content}`` n'existe pas. Veuillez réitérer votre demande.", color=0xD00000)
                 embed_erreur.set_footer(
                     text="ce message sera supprimé dans 15 secondes.")
-                embed = await ctx.reply(embed=embed_erreur)
+                msg = await ctx.reply(embed=embed_erreur)
                 await asyncio.sleep(15)
                 await ctx.message.delete()
-                await embed.delete()
+                await msg.delete()
             elif isinstance(error, commands.MissingPermissions):
                 await ctx.send("ERREUR")
             else:

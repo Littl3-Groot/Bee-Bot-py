@@ -97,25 +97,9 @@ async def ping(ctx):
 
 # Commande qui affiche la banière de l'utilisateur choisit
 
-
-@slash.slash(name="banner", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.", options=[
-    create_option(name="user",
-                  description="L'utilisateur dont tu veux voir la bannière.", option_type=6, required=True),
-])
-async def banner(ctx, user: discord.Member):
-    """"Récupère la banière de 'user' et l'envoie"""
-    if user == None:
-        user = ctx.author
-    req = await bot.http.request(discord.http.Route("GET", "/users/{uid}", uid=user.id))
-    banner_id = req["banner"]
-    banner_url = "Cet utilisateur n'a pas de banière."
-    # If statement because the user may not have a banner
-    if banner_id:
-        banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
-    await ctx.send(f"{banner_url}")
-
-
 # Commande d'aide du Bot
+
+
 @slash.slash(name="help", guild_ids=[970708155610837024], description="Envoie la commande d'aide.")
 async def help(ctx):
     """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""

@@ -186,22 +186,6 @@ async def help(ctx):
     except:
         return
 
-# Gère l'erreure où il ne trouve pas la commande demandé par l'utilisateur.
-
-
-@bot.event
-async def on_command_error(ctx, error):
-    """Quand une commande n'est pas trouvée, cela renvoie un message d'erreur et supprime le message de l'utilisateur et du bot dans les 15 secondes après l'envoie du message d'erreur."""
-    if isinstance(error, commands.CommandNotFound):
-        embed_erreur = discord.Embed(
-            title=f"<:x_:985826783159021628> Erreur !", description=f"La commande ``{ctx.message.content}`` n'existe pas. Veuillez réitérer votre demande.", color=0xD00000)
-        embed_erreur.set_footer(
-            text="ce message sera supprimé dans 15 secondes.")
-        embed = await ctx.reply(embed=embed_erreur)
-        await asyncio.sleep(15)
-        await ctx.message.delete()
-        await embed.delete()
-
 
 # Ajout de tous les cogs (autre fichers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

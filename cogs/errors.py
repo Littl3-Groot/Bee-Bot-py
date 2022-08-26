@@ -24,10 +24,9 @@ class ErrorCog(commands.Cog):
                 await asyncio.sleep(15)
                 await ctx.message.delete()
                 await embed.delete()
-
             elif isinstance(error, commands.MissingPermissions):
                 await ctx.send("ERREUR")
             else:
                 await ctx.send(f"{error}")
         except Exception as error:
-            print(f"{error}")
+            await ctx.send(f"{error}")

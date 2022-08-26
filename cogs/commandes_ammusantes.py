@@ -540,16 +540,3 @@ class Divers(commands.Cog):
     async def amour(self, ctx, user):
         """Envoie de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
-
-    @cog_ext.cog_command_error
-    async def mdp_error(self, ctx, error):
-        """Quand une commande n'est pas trouvée, cela renvoie un message d'erreur et supprime le message de l'utilisateur et du bot dans les 15 secondes après l'envoie du message d'erreur."""
-        if isinstance(error, commands.NoPrivateMessage):
-            embed_erreur = discord.Embed(
-                title=f"<:x_:985826783159021628> Erreur !", description=f"Vos messages privés sont fermé je ne peux pas vous envoyer de message. \nErreur : {error}", color=0xD00000)
-            embed_erreur.set_footer(
-                text="ce message sera supprimé dans 15 secondes.")
-            embed = await ctx.reply(embed=embed_erreur)
-            await asyncio.sleep(15)
-            await ctx.message.delete()
-            await embed.delete()

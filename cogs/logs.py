@@ -39,6 +39,9 @@ class Plop(commands.Cog):
         if before.author == self.bot.user:
             return
 
+        if before.channel.type == discord.ChannelType.private:
+            return
+
         serveur = before.guild
         channel = self.bot.get_channel(972922901781164102)
         embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel.mention}**',

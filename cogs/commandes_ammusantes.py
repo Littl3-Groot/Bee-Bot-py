@@ -234,7 +234,7 @@ class Divers(commands.Cog):
         """Récupère une valeur en euro, appelle la fonction qui convertis en Francs et l'envoie dans un salon sous forme d'Embed."""
         valeurFrancs = euroToFrancs(valeureuro)
         embed = discord.Embed(
-            description=f'{valeureuro} € c\'est ' + f'{valeurFrancs} Francs français ! ', color=0x5865f2)
+            description=f'**{valeureuro}** € c\'est ' + f'**{valeurFrancs}** Francs français ! ', color=0x5865f2)
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
@@ -280,7 +280,7 @@ class Divers(commands.Cog):
         """Récupère une valeur binaire saisie par l'utilisateur, la convertie en decimal et envoie la valeur sous forme d'Embed dans un salon."""
         valeurdecimal = binversdec(valeurbinaire)
         embed = discord.Embed(title=" Conversion en decimal :",
-                              description=f'{valeurbinaire} <a:fleche:967330234137473075> ' +
+                              description=f'{valeurbinaire} <:fleche:1012636976874278952> ' +
                               f'{valeurdecimal}',
                               color=0x5865F2)
 
@@ -296,7 +296,7 @@ class Divers(commands.Cog):
         """Récupère une valeur decimal saisie par l'utilisateur, la convertie en binaire et envoie la valeur sous forme d'Embed dans un salon."""
         valeurbinaire = decversbin(valeurdecimal)
         embed = discord.Embed(title=" Conversion en binaire",
-                              description=f'{valeurdecimal} <a:fleche:967330234137473075> ' +
+                              description=f'{valeurdecimal} <:fleche:1012636976874278952> ' +
                               f'{valeurbinaire}',
                               color=0x5865F2)
 
@@ -312,7 +312,7 @@ class Divers(commands.Cog):
         """Récupère une valeur decimal saisie par l'utilisateur, la convertie en hexadecimal et envoie la valeur sous forme d'Embed dans un salon."""
         valeurhexadecimal = decimalToHexadecimal(valeurdecimal)
         embed = discord.Embed(title=" Decimal → Hexadecimal ",
-                              description=f'{valeurdecimal} <a:fleche:967330234137473075> #' +
+                              description=f'{valeurdecimal} <:fleche:1012636976874278952> #' +
                               f'{valeurhexadecimal}',
                               color=0x5865F2)
 

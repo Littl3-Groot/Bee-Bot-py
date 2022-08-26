@@ -540,19 +540,3 @@ class Divers(commands.Cog):
     async def amour(self, ctx, user):
         """Envoie de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
-
-    @cog_ext.cog_slash(name="banner", guild_ids=[970708155610837024], description="Affiche la bannière de l'utilisateur choisit.", options=[
-        create_option(name="user",
-                      description="L'utilisateur dont tu veux voir la bannière.", option_type=6, required=True),
-    ])
-    async def banner(self, ctx, user: discord.Member):
-        """"Récupère la banière de 'user' et l'envoie"""
-        if user == None:
-            user = ctx.author
-        req = await bot.http.request(discord.http.Route("GET", "/users/{uid}", uid=user.id))
-        banner_id = req["banner"]
-        banner_url = "Cet utilisateur n'a pas de banière."
-        # If statement because the user may not have a banner
-        if banner_id:
-            banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
-        await ctx.send(f"{banner_url}")

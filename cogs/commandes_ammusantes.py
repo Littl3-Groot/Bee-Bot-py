@@ -542,7 +542,7 @@ class Divers(commands.Cog):
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
 
     @commands.Cog.cog_command_error
-    async def mdp_error(ctx, error):
+    async def mdp_error(self, ctx, error):
         """Quand une commande n'est pas trouvée, cela renvoie un message d'erreur et supprime le message de l'utilisateur et du bot dans les 15 secondes après l'envoie du message d'erreur."""
         if isinstance(error, commands.NoPrivateMessage):
             embed_erreur = discord.Embed(

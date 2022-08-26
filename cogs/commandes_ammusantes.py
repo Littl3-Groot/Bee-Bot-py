@@ -545,7 +545,7 @@ class Divers(commands.Cog):
         create_option(name="user",
                       description="L'utilisateur dont tu veux voir la bannière.", option_type=6, required=True),
     ])
-    async def banner(ctx, user: discord.Member):
+    async def banner(self, ctx, user: discord.Member):
         """"Récupère la banière de 'user' et l'envoie"""
         if user == None:
             user = ctx.author

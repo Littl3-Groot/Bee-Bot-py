@@ -14,6 +14,7 @@ import cogs.admin as admin
 import cogs.commandes_ammusantes as commandes_ammusantes
 import cogs.info_commandes as info_commandes
 import cogs.easter_egg as easter_egg
+import cogs.errors as errors
 
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
@@ -209,4 +210,5 @@ bot.add_cog(commandes_ammusantes.Divers(bot))
 bot.add_cog(admin.Admin(bot))
 bot.add_cog(info_commandes.Info(bot))
 bot.add_cog(easter_egg.Easter(bot))
+bot.add_cog(errors.ErrorCog(bot))
 bot.run(TOKEN)

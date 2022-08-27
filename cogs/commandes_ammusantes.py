@@ -366,8 +366,11 @@ class Divers(commands.Cog):
 
         embed.set_footer(text="demandé par : " +
                          f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
-        await ctx.member.send(embed=embed)
-        await ctx.send("Votre mot de passe vous à été envoyé par message privé.")
+        try:
+            await ctx.member.send(embed=embed)
+            await ctx.send("Votre mot de passe vous à été envoyé par message privé.")
+        except:
+            ctx.send("je ne peux pas vous envoyer de message", hidden=True)
 
     @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024], description="Affiche les informations d'un utilisateur choisit.", options=[
         create_option(name="member",

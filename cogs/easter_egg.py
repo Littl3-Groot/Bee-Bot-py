@@ -14,31 +14,16 @@ class Easter(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def denver(self, ctx):
+    async def beerus(self, ctx):
         await ctx.message.delete()
-        await ctx.send("https://media.discordapp.net/attachments/819280204907544628/974428697815822356/makeitmeme_K9QNN.png?width=587&height=670")
+        await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089421941284864/948987331296260136.webp")
 
     @commands.command()
-    async def tipsi(self, ctx):
+    async def poney(self, ctx):
         await ctx.message.delete()
-        await ctx.send("https://media.discordapp.net/attachments/819280204907544628/974421556753203270/makeitmeme_3950Z.png?width=690&height=670")
-
-    @commands.command()
-    async def dcorp(self, ctx):
-        await ctx.message.delete()
-        await ctx.send("https://cdn.discordapp.com/attachments/819280204907544628/974424878969155615/makeitmeme_9RR4C.png")
-
-    @commands.command()
-    async def poulpie(self, ctx):
-        await ctx.message.delete()
-        await ctx.send("https://media.discordapp.net/attachments/819280204907544628/974422245818630154/makeitmeme_z8xYd.png?width=1188&height=670")
+        await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089986461040700/919272396085669909.webp")
 
     @commands.command()
     async def groot(self, ctx):
         await ctx.message.delete()
-        await ctx.send("https://media.discordapp.net/attachments/819280204907544628/974421242025218129/makeitmeme_4Z1DT.png?width=679&height=670")
-
-    @commands.command()
-    async def sunday(self, ctx):
-        await ctx.message.delete()
-        await ctx.send("https://media.discordapp.net/attachments/819280204907544628/974428032926371910/makeitmeme_lxg1k.png?width=815&height=670")
+        await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089986800783440/918208896433270824.webp")

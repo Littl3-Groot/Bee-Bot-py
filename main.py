@@ -86,7 +86,7 @@ async def reload(ctx, name=None):
 
 
 # Commande qui affiche le temps de réponse du bot (ping)
-@bot.hybrid_command(name="ping", guild_ids=[970708155610837024], description="Affiche le temps de réponse du bot.")
+@slash.slash(name="ping", guild_ids=[970708155610837024], description="Affiche le temps de réponse du bot.")
 async def ping(ctx):
     """Donne le temps de réponse du bot et l'envoie dans un Embed"""
     embed = discord.Embed(title="Pong ! 🏓", description=f'**⌛ Temps :** {round(bot.latency * 1000)}ms ',

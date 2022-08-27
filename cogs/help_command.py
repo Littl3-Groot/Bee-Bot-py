@@ -77,4 +77,4 @@ class Help(commands.Cog):
 
         for i in range(len(liste_embed)):
             if choice_ctx.values[0] == liste_values[i]:
-                await choice_ctx.edit_origin(content=" ", embed=liste_embed[i])
+                await choice_ctx.send(content=" ", embed=liste_embed[i])

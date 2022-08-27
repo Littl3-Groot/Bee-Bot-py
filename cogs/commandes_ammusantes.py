@@ -367,7 +367,7 @@ class Divers(commands.Cog):
         embed.set_footer(text="demandé par : " +
                          f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         try:
-            await ctx.member.send(embed=embed)
+            await ctx.author.send(embed=embed)
             await ctx.send("Votre mot de passe vous à été envoyé par message privé.")
         except:
             ctx.send("je ne peux pas vous envoyer de message", hidden=True)

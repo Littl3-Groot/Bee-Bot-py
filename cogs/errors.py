@@ -32,6 +32,8 @@ class ErrorCog(commands.Cog):
                 embed.set_footer(
                     text="ce message sera supprimé dans 15 secondes.")
                 msg = await ctx.reply(embed=embed)
+                if ctx.channel.type == discord.ChannelType.private:
+                    await ctx.send("Message is in dm")
                 await asyncio.sleep(15)
                 await ctx.message.delete()
                 await msg.delete()

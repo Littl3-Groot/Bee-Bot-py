@@ -69,18 +69,12 @@ class Help(commands.Cog):
                                  description="- Utilisez ``/infocommande`` pour voir les détails d'une commande.\n\n> ``/seuil``: Permet de savoir en quel année le prix de votre objet aura chutter de moitié.\n> ``/francs``: Permet de convertir des Euros en Francs.\n> ``/bisextille`` : Vous permet de savoir si un année est bisextille ou non.\n> ``/dico`` : Permet de savoir quel mot est avant l'autre dans le dictionnaire.\n> ``/decimal`` : Converti un nombre Binaire en nombre décimal.\n> ``/binaire :`` Converti un nombre decimal en binaire.\n> ``/hexa`` : Converti un nombre décimal en hexadecimal.\n> ``!roulette`` : Lance une roulette russe.\n> ``/mdp`` : Vous envoie un message contenant un mot de passe du nombre de caractères que vous souhaiter (lim = 4000) et aléatoire.\n> ``/pdp`` : Renvoie la photo de profil du membre que vous voulez.\n> ``/userinfo`` : Renvoie les information sur l'utilisateur que vous souhaiter",
                                  color=0x5865F2,
                                  )
+        choice_ctx = await wait_for_component(bot, components=select, check=check)
 
-        try:
-            choice_ctx = await wait_for_component(bot, components=select, check=check)
+        liste_embed = [embed1, embedBot, embedFun, embedMod
+                       ]
+        liste_values = ["0", "1", "2", "3"]
 
-            if choice_ctx.values[0] == "Accueil":
-                await choice_ctx.edit_origin(content=" ", embed=embed1)
-            elif choice_ctx.values[0] == "Bot":
-                await choice_ctx.edit_origin(content=" ", embed=embedBot)
-            elif choice_ctx.values[0] == "Modération":
-                await choice_ctx.edit_origin(content=" ", embed=embedMod)
-            elif choice_ctx.values[0] == "Fun":
-                await choice_ctx.edit_origin(content=" ", embed=embedFun)
-
-        except:
-            await ctx.send("Erreur !")
+        for i in range(len(liste_embed)):
+            if choice_ctx.values[0] == liste_values[i]:
+                await choice_ctx.edit_origin(content=" ", embed=liste_embed[i])

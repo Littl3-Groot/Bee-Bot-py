@@ -548,7 +548,11 @@ class Divers(commands.Cog):
     @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024], description="Affiche les membres du Staff.")
     async def staff(self, ctx):
         """Renvoie la liste du staff"""
-        embed = discord.Embed(title="Liste du staff :", description="Ci-dessous vous pouvez retrouvez la liste du Staff du serveur ``Im Beerus`` vous pouvez les contacter en cas de problème. \n\n *PS : pour les problèmes concernant <@970707845249130587> contacter uniquement <@339451806709055489>.*", color=0xa06cd5)
+        embed = discord.Embed(description="Ci-dessous vous pouvez retrouvez la liste du Staff du serveur ``Im Beerus`` vous pouvez les contacter en cas de problème. \n\n *PS : pour les problèmes concernant <@970707845249130587> contacter uniquement <@339451806709055489>.*", color=0xa06cd5)
+        embed.set_author(
+            name="Im Beerus Staff", icon_url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
+        embed.add_field(name="Fondateurs : <@281079773827039232> et <@339451806709055489>",
+                        value="<@240471762960121857> et <@473161105896898607>", inline=False)
         embed.add_field(name="Administrateurs :",
                         value="<@240471762960121857> et <@473161105896898607>", inline=False)
         embed.add_field(name="Super modérateur : ",

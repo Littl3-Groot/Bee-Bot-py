@@ -36,6 +36,14 @@ class ErrorCog(commands.Cog):
                 await ctx.message.delete()
                 await msg.delete()
             else:
-                await ctx.send(f"{error}")
+                embed = discord.Embed(
+                    title=f"<:x_:985826783159021628> Erreur !", description=f"Contenue de l'erreur : ``{error}``", color=0xD00000)
+                embed.set_footer(
+                    text="Si tu vois ce message, contacte le développeur.")
+                await ctx.reply(embed=embed)
         except Exception as error:
-            await ctx.send(f"{error}")
+            embed = discord.Embed(
+                title=f"<:x_:985826783159021628> Erreur !", description=f"Contenue de l'erreur : ``{error}``", color=0xD00000)
+            embed.set_footer(
+                text="Si tu vois ce message, contacte le développeur.")
+            await ctx.reply(embed=embed)

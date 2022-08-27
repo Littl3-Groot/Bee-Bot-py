@@ -184,7 +184,7 @@ async def help(ctx):
             await choice_ctx.edit_origin(content=" ", embed=embedFun)
 
     except:
-        return
+        await ctx.send("Vous ne pouvez utiliser le menu qu'une seul fois.")
 
 
 # Ajout de tous les cogs (autre fichers Python, contenant des commandes, logs ...)

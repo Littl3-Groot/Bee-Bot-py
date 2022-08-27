@@ -18,8 +18,8 @@ class Help(commands.Cog):
     @cog_ext.cog_slash(name="help", guild_ids=[970708155610837024], description="Envoie la commande d'aide.")
     async def help(self, ctx):
         """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""
-        serveur = ctx.guild
-        user = bot.get_user(970707845249130587)
+        serveur = self.ctx.guild
+        user = self.bot.get_user(970707845249130587)
 
         # Embed de base Accueil
         embed1 = discord.Embed(

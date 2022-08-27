@@ -172,13 +172,14 @@ async def help(ctx):
     try:
         choice_ctx = await wait_for_component(bot, components=select, check=check)
 
-        liste_embed = [embed1, embedBot, embedFun, embedMod
-                       ]
-        liste_values = ["0", "1", "2", "3"]
-
-        for i in range(len(liste_embed)):
-            if choice_ctx.values[0] == liste_values[i]:
-                await choice_ctx.edit_origin(content=" ", embed=liste_embed[i])
+        if choice_ctx.values[0] == "Accueil":
+            await choice_ctx.edit_origin(content=" ", embed=embed1)
+        elif choice_ctx.values[0] == "Bot":
+            await choice_ctx.edit_origin(content=" ", embed=embedBot)
+        elif choice_ctx.values[0] == "Modération":
+            await choice_ctx.edit_origin(content=" ", embed=embedMod)
+        elif choice_ctx.values[0] == "Fun":
+            await choice_ctx.edit_origin(content=" ", embed=embedFun)
 
     except:
         await ctx.send("Erreur !")

@@ -371,7 +371,7 @@ class Divers(commands.Cog):
             await ctx.send("Votre mot de passe vous à été envoyé par message privé.")
 
         except:
-            await ctx.send("Vos mp sont fermés, je ne peux pas vous envoyer de messages. Ouvrez-les puis retentez. [ici pour savoir comment faire](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjt-ubJwub5AhUN3RoKHZsaCUAQFnoECBAQAw&url=https%3A%2F%2Fsupport.discord.com%2Fhc%2Ffr%2Farticles%2F217916488-Blocage-et-param%25C3%25A8tres-de-confidentialit%25C3%25A9%23%3A~%3Atext%3DLa%2520premi%25C3%25A8re%2520partie%2520des%2520param%25C3%25A8tres%2Ctrouve%2520dans%2520le%2520menu%2520Confidentialit%25C3%25A9.%26text%3DActiver%2520ou%2520d%25C3%25A9sactiver%2520cette%2520option%2Cdans%2520votre%2520liste%2520d%27amis.&usg=AOvVaw3T5Pxfap9IWqG_H3aQCldE)", hidden=True)
+            await ctx.send("Vos mp sont fermés, je ne peux pas vous envoyer de messages. Ouvrez-les puis retentez. [ici pour savoir comment faire](https://tinyurl.com/2eucd2cr)", hidden=True)
 
     @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024], description="Affiche les informations d'un utilisateur choisit.", options=[
         create_option(name="member",

@@ -28,7 +28,7 @@ class Help(commands.Cog):
     async def help(self, ctx):
         """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""
 
-        user = bot.get_user(970707845249130587)
+        user = self.bot.get_user(970707845249130587)
 
         # Embed de base Accueil
         embed1 = discord.Embed(

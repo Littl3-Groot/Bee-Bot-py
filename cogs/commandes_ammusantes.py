@@ -366,7 +366,7 @@ class Divers(commands.Cog):
 
         embed.set_footer(text="demandé par : " +
                          f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
-        await ctx.author.send(embed=embed)
+        await ctx.member.send(embed=embed)
         await ctx.send("Votre mot de passe vous à été envoyé par message privé.")
 
     @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024], description="Affiche les informations d'un utilisateur choisit.", options=[
@@ -540,3 +540,19 @@ class Divers(commands.Cog):
     async def amour(self, ctx, user):
         """Envoie de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
+
+    @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024], description="Affiche les membres du Staff.")
+    async def staff(self, ctx):
+        """Renvoie certaines informations sur le streamer"""
+        embed = discord.Embed(color=0x5865f2)
+        embed.set_author(
+            name="Im Beerus", icon_url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
+        embed.set_thumbnail(
+            url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
+
+        embed.add_field(name="Réseaux sociaux : ",
+                        value="<:twitch:987815349451907173> Twitch : [clique ici](https://www.twitch.tv/im_beerus)\n <:youtube:987815288894554202> Youtube: [clique ici](https://www.youtube.com/c/ImBeerus)\n ", inline=True)
+
+        embed.set_footer(text="demandé par : " +
+                              f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
+        await ctx.reply(embed=embed)

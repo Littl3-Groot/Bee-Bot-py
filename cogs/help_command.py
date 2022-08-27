@@ -1,13 +1,22 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 
 from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option, create_choice, create_permission
 from discord_slash.utils.manage_components import *
 from discord_slash import cog_ext
 
+
 bot = commands.Bot(command_prefix="!")
 slash = SlashCommand(bot, sync_commands=True)
+
+intents = discord.Intents.default()
+intents.members = True
+intents.messages = True
+intents.guilds = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+bot.remove_command("help")
 
 
 class Help(commands.Cog):
@@ -19,7 +28,7 @@ class Help(commands.Cog):
     async def help(self, ctx):
         """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""
 
-        user = self.bot.get_user(970707845249130587)
+        user = self.get_user(970707845249130587)
 
         # Embed de base Accueil
         embed1 = discord.Embed(
@@ -77,4 +86,4 @@ class Help(commands.Cog):
 
         for i in range(len(liste_embed)):
             if choice_ctx.values[0] == liste_values[i]:
-                await choice_ctx.send(content=" ", embed=liste_embed[i])
+                await choice_ctx.edit_origin(content=" ", embed=liste_embed[i])

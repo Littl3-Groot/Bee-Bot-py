@@ -528,8 +528,8 @@ class Divers(commands.Cog):
         embed = discord.Embed(title="__Remerciements :__", color=0xa06cd5)
         embed.set_author(
             name="Bee'Bot", icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
-        embed.add_field(name="Librairies : ",
-                        value="[discord.py](https://discordpy.readthedocs.io/en/stable/)\n[discord_slash](https://pypi.org/project/discord-py-slash-command/)\n[random](https://docs.python.org/fr/3/library/random.html)\n[asyncio](https://docs.python.org/fr/3/library/asyncio.html)", inline=True)
+        embed.add_field(name="Librairies et hébergeur: ",
+                        value="[discord.py](https://discordpy.readthedocs.io/en/stable/)\n[discord_slash](https://pypi.org/project/discord-py-slash-command/)\n[random](https://docs.python.org/fr/3/library/random.html)\n[asyncio](https://docs.python.org/fr/3/library/asyncio.html) [heroku](https://dashboard.heroku.com/apps)", inline=True)
         embed.add_field(name="Développeur : ",
                         value="<@339451806709055489>", inline=True)
 

@@ -1,3 +1,4 @@
+from turtle import color
 import discord
 from discord.ext import commands
 import asyncio
@@ -529,7 +530,7 @@ class Divers(commands.Cog):
         embed.set_author(
             name="Bee'Bot", icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
         embed.add_field(name="Librairies et hébergeur: ",
-                        value="[discord.py](https://discordpy.readthedocs.io/en/stable/)\n[discord_slash](https://pypi.org/project/discord-py-slash-command/)\n[random](https://docs.python.org/fr/3/library/random.html)\n[asyncio](https://docs.python.org/fr/3/library/asyncio.html) [heroku](https://dashboard.heroku.com/apps)", inline=True)
+                        value="[discord.py](https://discordpy.readthedocs.io/en/stable/)\n[discord_slash](https://pypi.org/project/discord-py-slash-command/)\n[random](https://docs.python.org/fr/3/library/random.html)\n[asyncio](https://docs.python.org/fr/3/library/asyncio.html) \n[heroku](https://dashboard.heroku.com/apps)", inline=True)
         embed.add_field(name="Développeur : ",
                         value="<@339451806709055489>", inline=True)
 
@@ -548,7 +549,7 @@ class Divers(commands.Cog):
     @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024], description="Affiche les membres du Staff.")
     async def staff(self, ctx):
         """Renvoie la liste du staff"""
-        embed = discord.Embed(title="Liste du **staff**", description="ci-dessous vous pouvez retrouvez la liste du Staff du serveur ``Im Beerus`` vous pouvez les contacter en cas de problème. \n\n PS : pour les problèmes concernant Bee'Bot contacter uniquement <@339451806709055489>.")
+        embed = discord.Embed(title="Liste du staff :", description="Ci-dessous vous pouvez retrouvez la liste du Staff du serveur ``Im Beerus`` vous pouvez les contacter en cas de problème. \n\n *PS : pour les problèmes concernant <@970707845249130587> contacter uniquement <@339451806709055489>.*", color=0xa06cd5)
         embed.add_field(name="Administrateurs :",
                         value="<@240471762960121857> et <@473161105896898607>", inline=False)
         embed.add_field(name="Super modérateur : ",

@@ -55,7 +55,7 @@ async def changestatus():
 async def on_ready():
     print("je suis en ligne !")
     chanel = bot.get_channel(979821289365704704)
-    await chanel.send("je suis en ligne !")
+    # await chanel.send("je suis en ligne !")
     changestatus.start()
 
 # Commandes pour load / unload / reload les cogs (il faut la permission administrateur)

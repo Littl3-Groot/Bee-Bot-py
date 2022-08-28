@@ -1,11 +1,10 @@
-# Imports de tous les modules nécésaires au bon fonctionnement du bot
+# Imports de tous les modules nécessaires au bon fonctionnement du bot
 import discord
 from discord.ext import commands, tasks
 from discord.utils import get
 import datetime
 import random
 
-from config import *
 
 # imports des cogs
 import cogs.logs as logs
@@ -24,6 +23,11 @@ import asyncio
 import os
 
 from dotenv import load_dotenv
+
+import pyrebase
+
+from config import *
+
 
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
@@ -57,6 +61,37 @@ async def on_ready():
     chanel = bot.get_channel(979821289365704704)
     # await chanel.send("je suis en ligne !")
     changestatus.start()
+
+# Initialize Firebase
+firebaseConfig = {"apiKey": "AIzaSyDm2HeGl3bApix5KsbhI8NOjdwXkhNTaJM",
+                  "authDomain": "trialauth-7eea1.firebaseapp.com",
+                  "databaseURL": "https://trialauth-7eea1.firebaseio.com",
+                  "projectId": "trialauth-7eea1",
+                  "storageBucket": "trialauth-7eea1.appspot.com",
+                  "messagingSenderId": "441088628124",
+                  "appId": "1:441088628124:web:6fc6142f0e28275e2f2459",
+                  "measurementId": "G-NKL8XN36NX"}
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+
+db = firebase.database()
+
+# Push Data
+data = {"age": 20, "address": ["new york", "los angeles"]}
+print(db.push(data))  # unique key is generated
+
+# Create paths using child
+#data={"name":"Jane", "age":20}
+# db.child("Branch").child("Employees").push(data)
+
+# Create your own key
+data = {"age": 20, "address": ["new york", "los angeles"]}
+db.child("John").set(data)
+
+# Create your own key + paths with child
+data = {"name": "John", "age": 20, "address": ["new york", "los angeles"]}
+db.child("Branch").child("Employee").child(
+    "male employees").child("John's info").set(data)
 
 # Commandes pour load / unload / reload les cogs (il faut la permission administrateur)
 
@@ -104,7 +139,7 @@ async def ping(ctx):
 ])
 async def banner(ctx, user: discord.Member):
     """"Récupère la banière de 'user' et l'envoie"""
-    if user == None:
+    if user is None:
         user = ctx.author
     req = await bot.http.request(discord.http.Route("GET", "/users/{uid}", uid=user.id))
     banner_id = req["banner"]
@@ -119,7 +154,6 @@ async def banner(ctx, user: discord.Member):
 @slash.slash(name="help", guild_ids=[970708155610837024], description="Envoie la commande d'aide.")
 async def help(ctx):
     """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""
-    serveur = ctx.guild
     user = bot.get_user(970707845249130587)
 
     # Embed de base Accueil

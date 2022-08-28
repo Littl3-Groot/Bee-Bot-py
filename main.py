@@ -78,18 +78,6 @@ async def load(ctx, name=None):
         bot.load_extension(name)
 
 
-@bot.command(pass_context=True)
-async def write(ctx):
-    color = input("pick a color")
-    user = ctx.message.author
-    ref = db.reference(f"/")
-    ref.update({
-        user: {
-            "Color": str(color)
-        }
-    })
-
-
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def unload(ctx, name=None):
@@ -142,6 +130,7 @@ async def banner(ctx, user: discord.Member):
 async def help(ctx):
     """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""
     user = bot.get_user(970707845249130587)
+    users = ctx.message.author.id
 
     # Embed de base Accueil
     embed1 = discord.Embed(
@@ -201,6 +190,13 @@ async def help(ctx):
             await choice_ctx.edit_origin(content=" ", embed=embedMod)
         elif choice_ctx.values[0] == "Fun":
             await choice_ctx.edit_origin(content=" ", embed=embedFun)
+
+        ref = db.reference(f"/")
+        ref.update({
+            users: {
+                "Commande help": int(1)
+            }
+        })
 
     except:
         await ctx.send("Erreur !")

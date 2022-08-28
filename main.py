@@ -130,7 +130,7 @@ async def banner(ctx, user: discord.Member):
 async def help(ctx):
     """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""
     user = bot.get_user(970707845249130587)
-    users = ctx.author.id
+    users = ctx.message.author.id
 
     # Embed de base Accueil
     embed1 = discord.Embed(

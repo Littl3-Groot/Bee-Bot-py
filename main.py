@@ -71,19 +71,6 @@ async def on_ready():
     changestatus.start()
 
 
-@bot.command()
-@commands.has_permissions(administrator=True)
-async def load(ctx, name=None):
-    if name:
-        bot.load_extension(name)
-
-
-@bot.command()
-@commands.has_permissions(administrator=True)
-async def prout(ctx, name=None):
-    await ctx.send("proute")
-
-
 @bot.event
 async def on_message(ctx):
     user = ctx.author.id
@@ -95,18 +82,9 @@ async def on_message(ctx):
         }
     })
 
-
-@bot.command()
-@commands.has_permissions(administrator=True)
-async def reload(ctx, name=None):
-    if name:
-        try:
-            bot.reload_extension(name)
-        except:
-            bot.load_extension(name)
-
-
 # Commande qui affiche le temps de réponse du bot (ping)
+
+
 @slash.slash(name="ping", guild_ids=[970708155610837024], description="Affiche le temps de réponse du bot.")
 async def ping(ctx):
     """Donne le temps de réponse du bot et l'envoie dans un Embed"""

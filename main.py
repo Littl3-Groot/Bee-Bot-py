@@ -190,14 +190,6 @@ async def help(ctx):
             await choice_ctx.edit_origin(content=" ", embed=embedMod)
         elif choice_ctx.values[0] == "Fun":
             await choice_ctx.edit_origin(content=" ", embed=embedFun)
-
-        ref = db.reference(f"/")
-        ref.update({
-            users: {
-                "Commande help": int(1)
-            }
-        })
-
     except:
         await ctx.send("Erreur !")
 

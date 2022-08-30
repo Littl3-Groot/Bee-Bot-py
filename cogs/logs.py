@@ -82,7 +82,7 @@ class Plop(commands.Cog):
         elif before.nick != after.nick:
 
             if after.nick is None:
-                after.nick = before.mention
+                after.nick = before.author
 
             embed = discord.Embed(
                 description=f":writing_hand: **le surnom de {before.mention} à été changé.**", timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xFF9F40)

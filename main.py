@@ -80,9 +80,20 @@ async def load(ctx, name=None):
 
 @bot.command()
 @commands.has_permissions(administrator=True)
-async def unload(ctx, name=None):
-    if name:
-        bot.unload_extension(name)
+async def prout(ctx, name=None):
+    await ctx.send("proute")
+
+
+@bot.event
+async def on_message(ctx):
+    user = ctx.message.author.id
+    ref = db.reference('/users')
+    users_ref = ref.child('messages')
+    users_ref.update({
+        user: {
+            "Message": str(ctx.content)
+        }
+    })
 
 
 @bot.command()

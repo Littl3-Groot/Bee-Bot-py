@@ -85,16 +85,25 @@ async def on_message(ctx):
         }
     })
 
+
 # Commande qui affiche le temps de réponse du bot (ping)
 
 
 @slash.slash(name="ping", guild_ids=[970708155610837024], description="Affiche le temps de réponse du bot.")
 async def ping(ctx):
     """Donne le temps de réponse du bot et l'envoie dans un Embed"""
+    user = ctx.author.id
     embed = discord.Embed(title="Pong ! 🏓", description=f'**⌛ Temps :** {round(bot.latency * 1000)}ms ',
                           color=0x5865F2)
     embed.set_footer(text="demandé par : " +
                           f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
+    ref = db.reference('/users')
+    beebot_ref = ref.child('beebot')
+    beebot_ref.update({
+        user: {
+            "Première question": True
+        }
+    })
     await ctx.reply(embed=embed)
 
 # Commande qui affiche la banière de l'utilisateur choisit

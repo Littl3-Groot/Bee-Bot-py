@@ -74,8 +74,11 @@ async def on_ready():
 @bot.event
 async def on_message(ctx):
     user = ctx.author.id
+    member = ctx.author
     ref = db.reference('/users')
     users_ref = ref.child('messages')
+    if member.bot == True:
+        return
     users_ref.update({
         user: {
             "Message": str(ctx.content)

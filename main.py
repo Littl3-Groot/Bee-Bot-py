@@ -86,7 +86,7 @@ async def prout(ctx, name=None):
 
 @bot.event
 async def on_message(ctx):
-    user = ctx.message.author.id
+    user = ctx.author.id
     ref = db.reference('/users')
     users_ref = ref.child('messages')
     users_ref.update({

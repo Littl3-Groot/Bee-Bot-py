@@ -134,15 +134,15 @@ async def banner(ctx, user: discord.Member):
     if banner_id:
         banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
 
-    ref = db.reference("/users/beebot/")
-    beebot = ref.get()
-    print(beebot)
-    for users, value in beebot.items():
-        if(value["Première question"] == True):
-            print("Première question validée")
-            await ctx.send(f"{banner_url}")
-        else:
-            return
+    #ref = db.reference("/users/beebot/")
+    #beebot = ref.get()
+    # print(beebot)
+    # for users, value in beebot.items():
+    #    if(value["Première question"] == True):
+    #        print("Première question validée")
+    #    else:
+    #        return
+    await ctx.send(f"{banner_url}")
 
 
 # Commande d'aide du Bot

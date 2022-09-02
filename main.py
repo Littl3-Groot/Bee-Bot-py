@@ -72,19 +72,19 @@ async def on_ready():
     changestatus.start()
 
 
-# @bot.event
-# async def on_message(ctx):
-#    user = ctx.author.id
-#    member = ctx.author
-#    ref = db.reference('/users')
-#    users_ref = ref.child('messages')
-#    if member.bot == True:
-#        return
-#    users_ref.update({
-#        user: {
-#            "Message": str(ctx.content)
-#        }
-#    })
+@bot.event
+async def on_message(ctx):
+    user = ctx.author.id
+    member = ctx.author
+    ref = db.reference('/users')
+    users_ref = ref.child('messages')
+    if member.bot == True:
+        return
+    users_ref.update({
+        user: {
+            "Message": str(ctx.content)
+        }
+    })
 
 
 # ça marche !
@@ -144,38 +144,39 @@ async def banner(ctx, user: discord.Member):
     #        return
     await ctx.send(f"{banner_url}")
 
-
-@bot.command()
-async def dm_all(ctx, *, args=None):
-    if args != None:
-        members = ctx.guild.members
-        for member in members:
-            try:
-                await member.send(args)
-            except:
-                print("Ne fonctionne pas.")
-
-    else:
-        await ctx.send("Please provide an argument !")
-
-
-@bot.command()
-async def dm(ctx, user_id=None, *, args=None):
-    if user_id != None and args != None:
-        try:
-            target = await bot.fetch_user(user_id)
-            await target.send(args)
-
-            await ctx.channel.send("'" + args + "' sent to: " + target.name)
-
-        except:
-            await ctx.channel.send("Couldn't dm the given user.")
-
-    else:
-        await ctx.channel.send("You didn't provide a user's id and/or a message.")
-
+# @bot.command()
+# async def dm_all(ctx, *, args=None):
+#    if args != None:
+#        members = ctx.guild.members
+#        for member in members:
+#            try:
+#                await member.send(args)
+#            except:
+#                print("Ne fonctionne pas.")
+#
+#    else:
+#        await ctx.send("Please provide an argument !")
+#
+#
+# @bot.command()
+# async def dm(ctx, user_id=None, *, args=None):
+#    if user_id != None and args != None:
+#        try:
+#            target = await bot.fetch_user(user_id)
+#            await target.send(args)
+#
+#            await ctx.channel.send("'" + args + "' sent to: " + target.name)
+#
+#        except:
+#            await ctx.channel.send("Couldn't dm the given user.")
+#
+#    else:
+#        await ctx.channel.send("You didn't provide a user's id and/or a message.")
+#
 
 # Commande d'aide du Bot
+
+
 @slash.slash(name="help", guild_ids=[970708155610837024], description="Envoie la commande d'aide.")
 async def help(ctx):
     """Commande d'aide du Bot, Fait plusieur Embed et affiche un menu déroulant tout ça dans un Embed"""

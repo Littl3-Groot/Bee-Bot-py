@@ -16,8 +16,9 @@ import cogs.easter_egg as easter_egg
 import cogs.errors as errors
 
 from discord_slash import SlashCommand
-from discord_slash.utils.manage_commands import create_option
+from discord_slash.utils.manage_commands import create_option, create_permission
 from discord_slash.utils.manage_components import *
+from discord_slash.model import SlashCommandPermissionType
 
 import asyncio
 import os
@@ -50,7 +51,7 @@ bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
 
 # Liste des statuts du bot
-status = ["/help", "manger ! 🍦", ]
+status = ["/help", "manger ! 🍦", "V1"]
 
 # Change le statut du bot toute les 5 secondes
 
@@ -84,6 +85,15 @@ async def on_message(ctx):
             "Message": str(ctx.content)
         }
     })
+
+
+# ça marche !
+#ref = db.reference("/users/beebot/")
+#beebot = ref.get()
+# print(beebot)
+# for users, value in beebot.items():
+#    if(value["Première question"] == True):
+#        print("Première question validée")
 
 
 # Commande qui affiche le temps de réponse du bot (ping)

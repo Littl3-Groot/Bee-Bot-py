@@ -72,19 +72,19 @@ async def on_ready():
     changestatus.start()
 
 
-@bot.event
-async def on_message(ctx):
-    user = ctx.author.id
-    member = ctx.author
-    ref = db.reference('/users')
-    users_ref = ref.child('messages')
-    if member.bot == True:
-        return
-    users_ref.update({
-        user: {
-            "Message": str(ctx.content)
-        }
-    })
+# @bot.event
+# async def on_message(ctx):
+#    user = ctx.author.id
+#    member = ctx.author
+#    ref = db.reference('/users')
+#    users_ref = ref.child('messages')
+#    if member.bot == True:
+#        return
+#    users_ref.update({
+#        user: {
+#            "Message": str(ctx.content)
+#        }
+#    })
 
 
 # ça marche !
@@ -133,7 +133,7 @@ async def banner(ctx, user: discord.Member):
     # If statement because the user may not have a banner
     if banner_id:
         banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
-
+    # ça marche pas très bien pour l'instant, le if marche mais pas pour l'id unique
     #ref = db.reference("/users/beebot/")
     #beebot = ref.get()
     # print(beebot)
@@ -143,6 +143,17 @@ async def banner(ctx, user: discord.Member):
     #    else:
     #        return
     await ctx.send(f"{banner_url}")
+
+
+@bot.command()
+async def dmall(ctx, desc):
+    title = f'message de {ctx.message.author}'
+    await ctx.send('Envoie du message !')
+    for member in ctx.guild.members:
+        embed = discord.Embed(title=title, description=desc)
+        await member.send(embed=embed)
+        print('Sent a message!')
+        await asyncio.sleep(3)
 
 
 # Commande d'aide du Bot

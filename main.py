@@ -146,14 +146,17 @@ async def banner(ctx, user: discord.Member):
 
 
 @bot.command()
-async def dmall(ctx, desc):
-    title = f'message de {ctx.message.author}'
-    await ctx.send('Envoie du message !')
-    for member in ctx.guild.members:
-        embed = discord.Embed(title=title, description=desc)
-        await member.send(embed=embed)
-        print('Sent a message!')
-        await asyncio.sleep(3)
+async def dm_all(ctx, *, args=None):
+    if args != None:
+        members = ctx.guild.members
+        for member in members:
+            try:
+                await member.send(args)
+            except:
+                print("Ne fonctionne pas.")
+
+    else:
+        await ctx.send("Please provide an argument !")
 
 
 # Commande d'aide du Bot

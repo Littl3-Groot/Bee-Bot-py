@@ -159,6 +159,22 @@ async def dm_all(ctx, *, args=None):
         await ctx.send("Please provide an argument !")
 
 
+@bot.command()
+async def dm(ctx, user_id=None, *, args=None):
+    if user_id != None and args != None:
+        try:
+            target = await bot.fetch_user(user_id)
+            await target.send(args)
+
+            await ctx.channel.send("'" + args + "' sent to: " + target.name)
+
+        except:
+            await ctx.channel.send("Couldn't dm the given user.")
+
+    else:
+        await ctx.channel.send("You didn't provide a user's id and/or a message.")
+
+
 # Commande d'aide du Bot
 @slash.slash(name="help", guild_ids=[970708155610837024], description="Envoie la commande d'aide.")
 async def help(ctx):

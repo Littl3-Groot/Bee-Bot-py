@@ -165,7 +165,7 @@ class Divers(commands.Cog):
         embed.set_author(name=serverName, icon_url=serverIcon)
         embed.set_thumbnail(url=serverIcon)
         embed.add_field(name="👥┃Membres : ", value="``" +
-                                                    str(numberOfPerson) + "``", inline=False)
+                        str(numberOfPerson) + "``", inline=False)
 
         levels = ['Niveau 0', 'Niveau 1', 'Niveau 2', 'Niveau 3']
         if 0 < boost <= 2:
@@ -178,22 +178,25 @@ class Divers(commands.Cog):
             i = 0
 
         embed.add_field(name="💬┃Textuelles :", value="``" +
-                                                      str(numberOfTextChannels) + "``", inline=True)
+                        str(numberOfTextChannels) + "``", inline=True)
 
-        embed.add_field(name="🔊┃ Vocaux :", value="``" +str(numberOfVoiceChannels) + "``", inline=True)
+        embed.add_field(name="🔊┃ Vocaux :", value="``" +
+                        str(numberOfVoiceChannels) + "``", inline=True)
 
-        embed.add_field(name="📂┃Catégories :", value=f"``{len(serveur.categories)}``", inline=True)
+        embed.add_field(name="📂┃Catégories :",
+                        value=f"``{len(serveur.categories)}``", inline=True)
 
         embed.add_field(name="📅┃Créé le : ", value="``" +
-                                                    str(date_creation) + "``", inline=True)
+                        str(date_creation) + "``", inline=True)
 
         embed.add_field(name="🆔┃ID serveur :", value="``" +
-                                                      str(serverId) + "``", inline=True)
+                        str(serverId) + "``", inline=True)
 
         embed.add_field(name="👑┃Propriétaire :", value="<@" +
-                                                        str(serveurOwner) + ">", inline=True)
+                        str(serveurOwner) + ">", inline=True)
 
-        embed.add_field(name="💎┃Nombre de boost:", value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)
+        embed.add_field(name="💎┃Nombre de boost:",
+                        value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)
 
         # embed_emotes = discord.Embed(color=0x5865f2)
 
@@ -216,7 +219,7 @@ class Divers(commands.Cog):
                                          description="L'année d'achat.", option_type=4, required=True),
                            create_option(name="pourcentage",
                                          description="Le taux de baisse du prix en %.", option_type=4, required=True),
-                       ])
+    ])
     async def seuil(self, ctx, prix: float, annee: int, pourcentage: int):
         """Envoie un message qui retourne l'année où le prix aura diminué de moitié"""
         annee = vieillisement(prix, annee, pourcentage)
@@ -232,7 +235,7 @@ class Divers(commands.Cog):
                            create_option(name="valeureuro",
                                          description="La valeur en euro que vous voulez convetir.", option_type=4,
                                          required=True),
-                       ])
+    ])
     async def francs(self, ctx, valeureuro: int):
         """Récupère une valeur en euro, appelle la fonction qui convertis en Francs et l'envoie dans un salon sous forme d'Embed."""
         valeurFrancs = euroToFrancs(valeureuro)
@@ -244,9 +247,9 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="bissextile", guild_ids=[970708155610837024],
                        description="Dit si l'année marquée est bissextile ou pas.", options=[
-            create_option(name="annee",
-                          description="L'année que vous voulez vérifer", option_type=4, required=True),
-        ])
+        create_option(name="annee",
+                      description="L'année que vous voulez vérifer", option_type=4, required=True),
+    ])
     async def bissextile(self, ctx, annee: int):
         """Récupère l'année choisit par l'utilisateur et envoie dans un salon sous forme d'Embed si elle est Bisextille ou non """
         if test_bissextile(annee):
@@ -260,17 +263,18 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="dico", guild_ids=[970708155610837024],
                        description="Donne l'ordre des mots dans le dictionaire.", options=[
-            create_option(name="mot1",
-                          description="Mot numéro 1", option_type=3, required=True),
-            create_option(name="mot2",
-                          description="Mot numéro 2", option_type=3, required=True),
-        ])
+        create_option(name="mot1",
+                      description="Mot numéro 1", option_type=3, required=True),
+        create_option(name="mot2",
+                      description="Mot numéro 2", option_type=3, required=True),
+    ])
     async def dico(self, ctx, mot1: str, mot2: str):
         """Retourne si le mot1 est avant ou après le mot2 dans le dictionaire."""
         resultat = compare(mot1, mot2)
         embed = discord.Embed(
             description=f'Le mot **{mot1}** est ``' + f'{resultat}' +
-                        "`` le mot **" + f'{mot2}' + "** dans le dictionnaire.",
+                        "`` le mot **" + f'{mot2}' +
+            "** dans le dictionnaire.",
             color=0x5865F2)
 
         embed.set_footer(text="demandé par : " +
@@ -279,9 +283,9 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="decimal", guild_ids=[970708155610837024],
                        description="Converti un nombre binaire en decimal.", options=[
-            create_option(name="valeurbinaire",
-                          description="Nombre binaire", option_type=4, required=True),
-        ])
+        create_option(name="valeurbinaire",
+                      description="Nombre binaire", option_type=4, required=True),
+    ])
     async def decimal(self, ctx, valeurbinaire: int):
         """Récupère une valeur binaire saisie par l'utilisateur, la convertie en decimal et envoie la valeur sous forme d'Embed dans un salon."""
         valeurdecimal = binversdec(valeurbinaire)
@@ -296,9 +300,9 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="binaire", guild_ids=[970708155610837024],
                        description="Converti un nombre decimal en binaire.", options=[
-            create_option(name="valeurdecimal",
-                          description="Nombre décimal", option_type=4, required=True),
-        ])
+        create_option(name="valeurdecimal",
+                      description="Nombre décimal", option_type=4, required=True),
+    ])
     async def binaire(self, ctx, valeurdecimal: int):
         """Récupère une valeur decimal saisie par l'utilisateur, la convertie en binaire et envoie la valeur sous forme d'Embed dans un salon."""
         valeurbinaire = decversbin(valeurdecimal)
@@ -313,9 +317,9 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="hexa", guild_ids=[970708155610837024],
                        description="Converti un nombre decimal en hexadecimal.", options=[
-            create_option(name="valeurdecimal",
-                          description="Nombre décimal", option_type=4, required=True),
-        ])
+        create_option(name="valeurdecimal",
+                      description="Nombre décimal", option_type=4, required=True),
+    ])
     async def hexa(self, ctx, valeurdecimal: int):
         """Récupère une valeur decimal saisie par l'utilisateur, la convertie en hexadecimal et envoie la valeur sous forme d'Embed dans un salon."""
         valeurhexadecimal = decimalToHexadecimal(valeurdecimal)
@@ -365,10 +369,10 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="mdp", guild_ids=[970708155610837024],
                        description="Donne un mot de passe sécurisé au hasard.", options=[
-            create_option(name="longueur",
-                          description="La longueur du mot de passe (longueur original = 12)", option_type=4,
-                          required=False),
-        ])
+        create_option(name="longueur",
+                      description="La longueur du mot de passe (longueur original = 12)", option_type=4,
+                      required=False),
+    ])
     async def mdp(self, ctx, longueur=12):
         """Récupère la longueur du mot de passe souhaiter par l'utilisateur, le crée et l'envoie dans ses messages privés."""
         mot = generate_random_password(longueur)
@@ -388,13 +392,14 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024],
                        description="Affiche les informations d'un utilisateur choisit.", options=[
-            create_option(name="member",
-                          description="L'utilisateur dont tu veux voir les informations.", option_type=6,
-                          required=True),
-        ])
+        create_option(name="member",
+                      description="L'utilisateur dont tu veux voir les informations.", option_type=6,
+                      required=True),
+    ])
     async def userinfo(self, ctx, member: discord.Member):
         """Récupère l'utilisateur choisit et envoie les informations le concernant."""
         roles = list(member.roles)
+        del roles[0]
 
         embed = discord.Embed(color=member.color)
         embed.set_author(
@@ -423,10 +428,10 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="pdp", guild_ids=[970708155610837024],
                        description="Affiche la photo de profil d'un utilisateur choisit.", options=[
-            create_option(name="member",
-                          description="L'utilisateur dont tu veux voir la photo de profil.", option_type=6,
-                          required=True),
-        ])
+        create_option(name="member",
+                      description="L'utilisateur dont tu veux voir la photo de profil.", option_type=6,
+                      required=True),
+    ])
     async def pdp(self, ctx, member: discord.Member):
         """Renvoie la photo de profil de l'utilisateur choisit."""
         await ctx.send(f'{ctx.author.mention} : Voici la photo de profil de **{member.name}** :\n {member.avatar_url}')
@@ -499,9 +504,9 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="hack", guild_ids=[970708155610837024],
                        description="Lance un hack sur l'utilisateur choisit.", options=[
-            create_option(name="user",
-                          description="L'utilisateur que tu veux hacker.", option_type=6, required=True),
-        ])
+        create_option(name="user",
+                      description="L'utilisateur que tu veux hacker.", option_type=6, required=True),
+    ])
     async def hack(self, ctx, user: discord.User):
         """Lance un (troll) hack sur l'user choisit"""
         hacking = ["🟩🟩🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥",
@@ -572,9 +577,9 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="amour", guild_ids=[970708155610837024],
                        description="Envoie de l'amour à l'utilisateur choisit.", options=[
-            create_option(name="user",
-                          description="L'utilisateur à qui tu veux envoyer de l'amour !", option_type=6, required=True),
-        ])
+        create_option(name="user",
+                      description="L'utilisateur à qui tu veux envoyer de l'amour !", option_type=6, required=True),
+    ])
     async def amour(self, ctx, user):
         """Envoie de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")

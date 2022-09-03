@@ -159,3 +159,12 @@ class Plop(commands.Cog):
             embed.set_footer(text=f'{serveur.name}')
 
             await chanel.send(embed=embed)
+
+    @commands.Cog.listener()
+    async def on_message(self, ctx):
+        serveur = ctx.guild
+        chanel = self.bot.get_channel(972922901781164102)
+        if ctx.channel.type == discord.ChannelType.private:
+            await chanel.send("nouveau mp")
+        else:
+            return

@@ -20,6 +20,12 @@ class Admin(commands.Cog):
         await ctx.message.delete()
         await ctx.send(message.format(message))
 
+    # DM
+    @commands.command()
+    @commands.has_permissions(ban_members=True)
+    async def mp(self, ctx, user: discord.User, message):
+        await user.send("mp")
+
     # CLEAR
     @commands.command()
     @ commands.has_permissions(manage_messages=True)

@@ -1,3 +1,4 @@
+from email import message
 import discord
 from discord.ext import commands
 import datetime
@@ -165,9 +166,8 @@ class Plop(commands.Cog):
         serveur = ctx.guild
         chanel = self.bot.get_channel(972922901781164102)
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
-            try:
-                await chanel.send(f"{ctx}")
-            except:
-                await ctx.send("Je ne peux pas envoyer de message à cet utilisateur.")
-        else:
-            return
+            embed = discord.Embed(
+                description=f'``{message}``', color=0x5865F2)
+            embed.set_author(name=ctx.name,
+                             icon_url=ctx.avatar_url)
+            await chanel.send(embed=embed)

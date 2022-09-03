@@ -154,8 +154,7 @@ class Divers(commands.Cog):
         serverId = serveur.id
         serveurOwner = serveur.owner_id
         banner = ctx.guild.banner_url
-        date_creation = serveur.created_at.strftime(
-            "%c")
+        date_creation = serveur.created_at.strftime('%Y-%m-%d %H:%M:%S %Z%z')
         all_emotes = list(ctx.guild.emojis)
         emojis = ''.join(
             [str(i) for i in all_emotes])
@@ -413,9 +412,9 @@ class Divers(commands.Cog):
                         value=member.display_name, inline=False)
 
         embed.add_field(name="Date création du compte", value=member.created_at.strftime(
-            "%c"), inline=False)
+            '%Y-%m-%d %H:%M:%S %Z%z'), inline=False)
         embed.add_field(name="Rejoin le : ", value=member.joined_at.strftime(
-            "%c"), inline=False)
+            '%Y-%m-%d %H:%M:%S %Z%z'), inline=False)
 
         embed.add_field(name=f'Rôles {len(roles)} :', value=", ".join(
             [role.mention for role in roles]), inline=False)

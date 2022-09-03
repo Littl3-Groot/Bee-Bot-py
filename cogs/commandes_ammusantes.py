@@ -4,8 +4,7 @@ import asyncio
 import random
 import string
 from discord_slash import SlashCommand
-from discord_slash.utils.manage_commands import create_option, create_choice, create_permission
-from discord_slash.model import SlashCommandPermissionType
+from discord_slash.utils.manage_commands import create_option, create_choice
 from discord_slash import cog_ext
 
 bot = commands.Bot(command_prefix="!")
@@ -14,6 +13,7 @@ slash = SlashCommand(bot, sync_commands=True)
 # Symboles pour le mot de passe généré alléatoirement
 characters = list(string.ascii_letters + string.digits +
                   "!@#$%^&*()" + "1234567890")
+
 
 # Toutes les fonctions nécéssaire au bon fonctionnement du Bot
 
@@ -140,7 +140,8 @@ class Divers(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024], description="Permet de voir les infromation du serveur")
+    @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024],
+                       description="Permet de voir les infromation du serveur")
     async def serveur(self, ctx):
         """Affiche les information du serveur"""
 
@@ -155,7 +156,7 @@ class Divers(commands.Cog):
         banner = ctx.guild.banner_url
         date_creation = serveur.created_at.strftime(
             "%c")
-        all_emotes = [emoji for emoji in ctx.guild.emojis]
+        all_emotes = list(ctx.guild.emojis)
         emojis = ''.join(
             [str(i) for i in all_emotes])
         boost = ctx.guild.premium_subscription_count
@@ -164,7 +165,7 @@ class Divers(commands.Cog):
         embed.set_author(name=serverName, icon_url=serverIcon)
         embed.set_thumbnail(url=serverIcon)
         embed.add_field(name="👥┃Membres : ", value="``" +
-                        str(numberOfPerson) + "``", inline=False)
+                                                    str(numberOfPerson) + "``", inline=False)
 
         levels = ['Niveau 0', 'Niveau 1', 'Niveau 2', 'Niveau 3']
         if 0 < boost <= 2:
@@ -177,26 +178,24 @@ class Divers(commands.Cog):
             i = 0
 
         embed.add_field(name="💬┃Textuelles :", value="``" +
-                        str(numberOfTextChannels) + "``", inline=True)
+                                                      str(numberOfTextChannels) + "``", inline=True)
 
-        embed.add_field(name="🔊┃ Vocaux :", value="``" +
-                        str(numberOfVoiceChannels) + "``", inline=True)
+        embed.add_field(name="🔊┃ Vocaux :", value="``" +str(numberOfVoiceChannels) + "``", inline=True)
 
-        embed.add_field(name="📂┃Catégories :", value="``" + str(len(
-            serveur.categories)) + "``", inline=True)
+        embed.add_field(name="📂┃Catégories :", value=f"``{len(serveur.categories)}``", inline=True)
 
         embed.add_field(name="📅┃Créé le : ", value="``" +
-                        str(date_creation) + "``", inline=True)
+                                                    str(date_creation) + "``", inline=True)
 
         embed.add_field(name="🆔┃ID serveur :", value="``" +
-                        str(serverId) + "``", inline=True)
+                                                      str(serverId) + "``", inline=True)
 
         embed.add_field(name="👑┃Propriétaire :", value="<@" +
-                        str(serveurOwner) + ">", inline=True)
+                                                        str(serveurOwner) + ">", inline=True)
 
-        embed.add_field(name=f"💎┃Nombre de boost:",
-                        value="``" + str(boost) + "`` "f'{levels[i]}', inline=False)
-        #embed_emotes = discord.Embed(color=0x5865f2)
+        embed.add_field(name="💎┃Nombre de boost:", value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)
+
+        # embed_emotes = discord.Embed(color=0x5865f2)
 
         # embed_emotes.add_field(name=f"Liste des émojis [{len(all_emotes)}] :",
         #                       value=emojis, inline=False)
@@ -208,14 +207,16 @@ class Divers(commands.Cog):
         await ctx.reply(embed=embed)
         # await ctx.reply(embed=embed_emotes)
 
-    @cog_ext.cog_slash(name="seuil", guild_ids=[970708155610837024], description="Permet de savoir en quel année le prix de votre objet aura chutter de moitié.", options=[
-        create_option(name="prix",
-                      description="Le prix de l'objet.", option_type=4, required=True),
-        create_option(name="annee",
-                      description="L'année d'achat.", option_type=4, required=True),
-        create_option(name="pourcentage",
-                      description="Le taux de baisse du prix en %.", option_type=4, required=True),
-    ])
+    @cog_ext.cog_slash(name="seuil", guild_ids=[970708155610837024],
+                       description="Permet de savoir en quel année le prix de votre objet aura chutter de moitié.",
+                       options=[
+                           create_option(name="prix",
+                                         description="Le prix de l'objet.", option_type=4, required=True),
+                           create_option(name="annee",
+                                         description="L'année d'achat.", option_type=4, required=True),
+                           create_option(name="pourcentage",
+                                         description="Le taux de baisse du prix en %.", option_type=4, required=True),
+                       ])
     async def seuil(self, ctx, prix: float, annee: int, pourcentage: int):
         """Envoie un message qui retourne l'année où le prix aura diminué de moitié"""
         annee = vieillisement(prix, annee, pourcentage)
@@ -226,10 +227,12 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="francs", guild_ids=[970708155610837024], description="Convertir des Euros en Francs.", options=[
-        create_option(name="valeureuro",
-                      description="La valeur en euro que vous voulez convetir.", option_type=4, required=True),
-    ])
+    @cog_ext.cog_slash(name="francs", guild_ids=[970708155610837024], description="Convertir des Euros en Francs.",
+                       options=[
+                           create_option(name="valeureuro",
+                                         description="La valeur en euro que vous voulez convetir.", option_type=4,
+                                         required=True),
+                       ])
     async def francs(self, ctx, valeureuro: int):
         """Récupère une valeur en euro, appelle la fonction qui convertis en Francs et l'envoie dans un salon sous forme d'Embed."""
         valeurFrancs = euroToFrancs(valeureuro)
@@ -239,10 +242,11 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="bissextile", guild_ids=[970708155610837024], description="Dit si l'année marquée est bissextile ou pas.", options=[
-        create_option(name="annee",
-                      description="L'année que vous voulez vérifer", option_type=4, required=True),
-    ])
+    @cog_ext.cog_slash(name="bissextile", guild_ids=[970708155610837024],
+                       description="Dit si l'année marquée est bissextile ou pas.", options=[
+            create_option(name="annee",
+                          description="L'année que vous voulez vérifer", option_type=4, required=True),
+        ])
     async def bissextile(self, ctx, annee: int):
         """Récupère l'année choisit par l'utilisateur et envoie dans un salon sous forme d'Embed si elle est Bisextille ou non """
         if test_bissextile(annee):
@@ -254,76 +258,81 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="dico", guild_ids=[970708155610837024], description="Donne l'ordre des mots dans le dictionaire.", options=[
-        create_option(name="mot1",
-                      description="Mot numéro 1", option_type=3, required=True),
-        create_option(name="mot2",
-                      description="Mot numéro 2", option_type=3, required=True),
-    ])
+    @cog_ext.cog_slash(name="dico", guild_ids=[970708155610837024],
+                       description="Donne l'ordre des mots dans le dictionaire.", options=[
+            create_option(name="mot1",
+                          description="Mot numéro 1", option_type=3, required=True),
+            create_option(name="mot2",
+                          description="Mot numéro 2", option_type=3, required=True),
+        ])
     async def dico(self, ctx, mot1: str, mot2: str):
         """Retourne si le mot1 est avant ou après le mot2 dans le dictionaire."""
         resultat = compare(mot1, mot2)
         embed = discord.Embed(
             description=f'Le mot **{mot1}** est ``' + f'{resultat}' +
-            "`` le mot **" + f'{mot2}' + "** dans le dictionnaire.",
+                        "`` le mot **" + f'{mot2}' + "** dans le dictionnaire.",
             color=0x5865F2)
 
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="decimal", guild_ids=[970708155610837024], description="Converti un nombre binaire en decimal.", options=[
-        create_option(name="valeurbinaire",
-                      description="Nombre binaire", option_type=4, required=True),
-    ])
+    @cog_ext.cog_slash(name="decimal", guild_ids=[970708155610837024],
+                       description="Converti un nombre binaire en decimal.", options=[
+            create_option(name="valeurbinaire",
+                          description="Nombre binaire", option_type=4, required=True),
+        ])
     async def decimal(self, ctx, valeurbinaire: int):
         """Récupère une valeur binaire saisie par l'utilisateur, la convertie en decimal et envoie la valeur sous forme d'Embed dans un salon."""
         valeurdecimal = binversdec(valeurbinaire)
         embed = discord.Embed(title=" Conversion en decimal :",
                               description=f'{valeurbinaire} <:fleche:1012636976874278952> ' +
-                              f'{valeurdecimal}',
+                                          f'{valeurdecimal}',
                               color=0x5865F2)
 
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="binaire", guild_ids=[970708155610837024], description="Converti un nombre decimal en binaire.", options=[
-        create_option(name="valeurdecimal",
-                      description="Nombre décimal", option_type=4, required=True),
-    ])
+    @cog_ext.cog_slash(name="binaire", guild_ids=[970708155610837024],
+                       description="Converti un nombre decimal en binaire.", options=[
+            create_option(name="valeurdecimal",
+                          description="Nombre décimal", option_type=4, required=True),
+        ])
     async def binaire(self, ctx, valeurdecimal: int):
         """Récupère une valeur decimal saisie par l'utilisateur, la convertie en binaire et envoie la valeur sous forme d'Embed dans un salon."""
         valeurbinaire = decversbin(valeurdecimal)
         embed = discord.Embed(title=" Conversion en binaire",
                               description=f'{valeurdecimal} <:fleche:1012636976874278952> ' +
-                              f'{valeurbinaire}',
+                                          f'{valeurbinaire}',
                               color=0x5865F2)
 
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="hexa", guild_ids=[970708155610837024], description="Converti un nombre decimal en hexadecimal.", options=[
-        create_option(name="valeurdecimal",
-                      description="Nombre décimal", option_type=4, required=True),
-    ])
+    @cog_ext.cog_slash(name="hexa", guild_ids=[970708155610837024],
+                       description="Converti un nombre decimal en hexadecimal.", options=[
+            create_option(name="valeurdecimal",
+                          description="Nombre décimal", option_type=4, required=True),
+        ])
     async def hexa(self, ctx, valeurdecimal: int):
         """Récupère une valeur decimal saisie par l'utilisateur, la convertie en hexadecimal et envoie la valeur sous forme d'Embed dans un salon."""
         valeurhexadecimal = decimalToHexadecimal(valeurdecimal)
         embed = discord.Embed(title=" Decimal → Hexadecimal ",
                               description=f'{valeurdecimal} <:fleche:1012636976874278952> #' +
-                              f'{valeurhexadecimal}',
+                                          f'{valeurhexadecimal}',
                               color=0x5865F2)
 
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    # roulette pas FINI
-    # @cog_ext.cog_slash(name="roulette", guild_ids=[970708155610837024], description="Lance un roulette russe.")
-    # async def roulette(self, ctx):
+        # roulette pas FINI
+        # @cog_ext.cog_slash(name="roulette", guild_ids=[970708155610837024], description="Lance un roulette russe.")
+        # async def roulette(self, ctx):
         """Lance une roulette"""
+
     #    await ctx.send("La roulette commencera dans 10 secondes. Envoyer \"moi\" dans ce salon pour y participer !")
 
     #    joueurs = []
@@ -354,10 +363,12 @@ class Divers(commands.Cog):
     #    await asyncio.sleep(2)
     #    await message.edit(content=f"La personne qui a gagner un {prix} est {loser.mention}")
 
-    @cog_ext.cog_slash(name="mdp", guild_ids=[970708155610837024], description="Donne un mot de passe sécurisé au hasard.", options=[
-        create_option(name="longueur",
-                      description="La longueur du mot de passe (longueur original = 12)", option_type=4, required=False),
-    ])
+    @cog_ext.cog_slash(name="mdp", guild_ids=[970708155610837024],
+                       description="Donne un mot de passe sécurisé au hasard.", options=[
+            create_option(name="longueur",
+                          description="La longueur du mot de passe (longueur original = 12)", option_type=4,
+                          required=False),
+        ])
     async def mdp(self, ctx, longueur=12):
         """Récupère la longueur du mot de passe souhaiter par l'utilisateur, le crée et l'envoie dans ses messages privés."""
         mot = generate_random_password(longueur)
@@ -365,28 +376,32 @@ class Divers(commands.Cog):
             description=f'Votre mot de passe est : ``{mot}``', color=0x5865F2)
 
         embed.set_footer(text="demandé par : " +
-                         f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
+                              f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         try:
             await ctx.author.send(embed=embed)
             await ctx.send("Votre mot de passe vous à été envoyé par message privé.")
 
         except:
-            await ctx.send("Vos mp sont fermés, je ne peux pas vous envoyer de messages. Ouvrez-les puis retentez. [ici pour savoir comment faire](https://tinyurl.com/2eucd2cr)", hidden=True)
+            await ctx.send(
+                "Vos mp sont fermés, je ne peux pas vous envoyer de messages. Ouvrez-les puis retentez. [ici pour savoir comment faire](https://tinyurl.com/2eucd2cr)",
+                hidden=True)
 
-    @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024], description="Affiche les informations d'un utilisateur choisit.", options=[
-        create_option(name="member",
-                      description="L'utilisateur dont tu veux voir les informations.", option_type=6, required=True),
-    ])
+    @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024],
+                       description="Affiche les informations d'un utilisateur choisit.", options=[
+            create_option(name="member",
+                          description="L'utilisateur dont tu veux voir les informations.", option_type=6,
+                          required=True),
+        ])
     async def userinfo(self, ctx, member: discord.Member):
         """Récupère l'utilisateur choisit et envoie les informations le concernant."""
-        roles = [role for role in member.roles]
+        roles = list(member.roles)
 
         embed = discord.Embed(color=member.color)
         embed.set_author(
             name=f'Information de - {member}', icon_url=member.avatar_url)
         embed.set_thumbnail(url=member.avatar_url)
         embed.set_footer(text="demandé par : " +
-                         f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
+                              f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
 
         embed.add_field(name='ID', value=member.id, inline=False)
         embed.add_field(name="Pseudo :",
@@ -406,39 +421,50 @@ class Divers(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="pdp", guild_ids=[970708155610837024], description="Affiche la photo de profil d'un utilisateur choisit.", options=[
-        create_option(name="member",
-                      description="L'utilisateur dont tu veux voir la photo de profil.", option_type=6, required=True),
-    ])
+    @cog_ext.cog_slash(name="pdp", guild_ids=[970708155610837024],
+                       description="Affiche la photo de profil d'un utilisateur choisit.", options=[
+            create_option(name="member",
+                          description="L'utilisateur dont tu veux voir la photo de profil.", option_type=6,
+                          required=True),
+        ])
     async def pdp(self, ctx, member: discord.Member):
         """Renvoie la photo de profil de l'utilisateur choisit."""
         await ctx.send(f'{ctx.author.mention} : Voici la photo de profil de **{member.name}** :\n {member.avatar_url}')
 
-    @cog_ext.cog_slash(name="youtube", guild_ids=[970708155610837024], description="Affiche le lien de la chaîne YouTube d'im Beerus.")
+    @cog_ext.cog_slash(name="youtube", guild_ids=[970708155610837024],
+                       description="Affiche le lien de la chaîne YouTube d'im Beerus.")
     async def youtube(self, ctx):
         """Renvoie le lien de la chaîne YouTube"""
         embed = discord.Embed(color=0xf00020)
 
-        embed.add_field(
-            name='YouTube', value=f"Voici la chaîne YouTube **d'Im Beerus** : [Le lien](https://www.youtube.com/c/ImBeerus)", inline=False)
+        embed.add_field(name='YouTube',
+                        value="Voici la chaîne YouTube **d'Im Beerus** : [Le lien](https://www.youtube.com/c/ImBeerus)",
+                        inline=False)
+
         await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="twitch", guild_ids=[970708155610837024], description="Affiche le lien de la chaine Twitch d'im Beerus.")
+    @cog_ext.cog_slash(name="twitch", guild_ids=[970708155610837024],
+                       description="Affiche le lien de la chaine Twitch d'im Beerus.")
     async def twitch(self, ctx):
         """Renvoie le lien de la chaîne Twitch"""
         embed = discord.Embed(color=0x6441a5)
 
-        embed.add_field(
-            name='Twitch', value=f"Voici la chaîne Twitch **d'Im Beerus** : [Le lien](https://www.twitch.tv/im_beerus)", inline=False)
+        embed.add_field(name='Twitch',
+                        value="Voici la chaîne Twitch **d'Im Beerus** : [Le lien](https://www.twitch.tv/im_beerus)",
+                        inline=False)
+
         await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="don", guild_ids=[970708155610837024], description="Affiche le lien pour faire des dons à Denver.")
+    @cog_ext.cog_slash(name="don", guild_ids=[970708155610837024],
+                       description="Affiche le lien pour faire des dons à Denver.")
     async def don(self, ctx):
         """Renvoie le lien pour faire des dons"""
         embed = discord.Embed(color=0xffd700)
 
-        embed.add_field(
-            name='Don 💰', value=f"Voici le lien pour faire un don à **Beerus** : [Le lien](https://streamlabs.com/imbeerus/tip)", inline=False)
+        embed.add_field(name='Don 💰',
+                        value="Voici le lien pour faire un don à **Beerus** : [Le lien](https://streamlabs.com/imbeerus/tip)",
+                        inline=False)
+
         await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="dé", guild_ids=[970708155610837024], description="Lance un dé", options=[
@@ -471,10 +497,11 @@ class Divers(commands.Cog):
             num = 4
         await ctx.send(f"**{num}** 🎲!")
 
-    @cog_ext.cog_slash(name="hack", guild_ids=[970708155610837024], description="Lance un hack sur l'utilisateur choisit.", options=[
-        create_option(name="user",
-                      description="L'utilisateur que tu veux hacker.", option_type=6, required=True),
-    ])
+    @cog_ext.cog_slash(name="hack", guild_ids=[970708155610837024],
+                       description="Lance un hack sur l'utilisateur choisit.", options=[
+            create_option(name="user",
+                          description="L'utilisateur que tu veux hacker.", option_type=6, required=True),
+        ])
     async def hack(self, ctx, user: discord.User):
         """Lance un (troll) hack sur l'user choisit"""
         hacking = ["🟩🟩🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥🟥",
@@ -506,30 +533,36 @@ class Divers(commands.Cog):
     #        url="https://cdn.discordapp.com/attachments/972163356913958942/985803183270006814/PLANNING.png")
     #    await ctx.send(embed=embed)
 
-    @cog_ext.cog_slash(name="streamer", guild_ids=[970708155610837024], description="Affiche les informations concernant Im Beerus.")
+    @cog_ext.cog_slash(name="streamer", guild_ids=[970708155610837024],
+                       description="Affiche les informations concernant Im Beerus.")
     async def streamer(self, ctx):
         """Renvoie certaines informations sur le streamer"""
         embed = discord.Embed(color=0x5865f2)
         embed.set_author(
-            name="Im Beerus", icon_url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
+            name="Im Beerus",
+            icon_url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
         embed.set_thumbnail(
             url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
 
         embed.add_field(name="Réseaux sociaux : ",
-                        value="<:twitch:987815349451907173> Twitch : [clique ici](https://www.twitch.tv/im_beerus)\n <:youtube:987815288894554202> Youtube: [clique ici](https://www.youtube.com/c/ImBeerus)\n ", inline=True)
+                        value="<:twitch:987815349451907173> Twitch : [clique ici](https://www.twitch.tv/im_beerus)\n <:youtube:987815288894554202> Youtube: [clique ici](https://www.youtube.com/c/ImBeerus)\n ",
+                        inline=True)
 
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="remerciements", guild_ids=[970708155610837024], description="Affiche les remerciements et les credits.")
+    @cog_ext.cog_slash(name="remerciements", guild_ids=[970708155610837024],
+                       description="Affiche les remerciements et les credits.")
     async def remerciements(self, ctx):
         """Envoie les remerciments"""
         embed = discord.Embed(title="__Remerciements :__", color=0xa06cd5)
         embed.set_author(
-            name="Bee'Bot", icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
+            name="Bee'Bot",
+            icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
         embed.add_field(name="Librairies et hébergeur: ",
-                        value="[discord.py](https://discordpy.readthedocs.io/en/stable/)\n[discord_slash](https://pypi.org/project/discord-py-slash-command/)\n[random](https://docs.python.org/fr/3/library/random.html)\n[asyncio](https://docs.python.org/fr/3/library/asyncio.html) \n[heroku](https://dashboard.heroku.com/apps)", inline=True)
+                        value="[discord.py](https://discordpy.readthedocs.io/en/stable/)\n[discord_slash](https://pypi.org/project/discord-py-slash-command/)\n[random](https://docs.python.org/fr/3/library/random.html)\n[asyncio](https://docs.python.org/fr/3/library/asyncio.html) \n[heroku](https://dashboard.heroku.com/apps)",
+                        inline=True)
         embed.add_field(name="Développeur : ",
                         value="<@339451806709055489>", inline=True)
 
@@ -537,10 +570,11 @@ class Divers(commands.Cog):
                          icon_url='https://images-ext-2.discordapp.net/external/-lgvQlDkxHESfYb2GaSj_R1-OF1tIftUjbE8O5Be-5k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/339451806709055489/a_29c854cacd0437ac5091a1793447cbfe.gif')
         await ctx.reply(embed=embed)
 
-    @cog_ext.cog_slash(name="amour", guild_ids=[970708155610837024], description="Envoie de l'amour à l'utilisateur choisit.", options=[
-        create_option(name="user",
-                      description="L'utilisateur à qui tu veux envoyer de l'amour !", option_type=6, required=True),
-    ])
+    @cog_ext.cog_slash(name="amour", guild_ids=[970708155610837024],
+                       description="Envoie de l'amour à l'utilisateur choisit.", options=[
+            create_option(name="user",
+                          description="L'utilisateur à qui tu veux envoyer de l'amour !", option_type=6, required=True),
+        ])
     async def amour(self, ctx, user):
         """Envoie de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
@@ -548,9 +582,12 @@ class Divers(commands.Cog):
     @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024], description="Affiche les membres du Staff.")
     async def staff(self, ctx):
         """Renvoie la liste du staff"""
-        embed = discord.Embed(description="Ci-dessous, vous pouvez retrouver la liste du Staff du serveur ``Im Beerus`` vous pouvez les contacter en cas de problème. \n\n *PS : pour les problèmes concernant <@970707845249130587> contacter uniquement <@339451806709055489>.*", color=0xa06cd5)
+        embed = discord.Embed(
+            description="Ci-dessous, vous pouvez retrouver la liste du Staff du serveur ``Im Beerus`` vous pouvez les contacter en cas de problème. \n\n *PS : pour les problèmes concernant <@970707845249130587> contacter uniquement <@339451806709055489>.*",
+            color=0xa06cd5)
         embed.set_author(
-            name="Im Beerus Staff", icon_url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
+            name="Im Beerus Staff",
+            icon_url="https://cdn.discordapp.com/avatars/281079773827039232/a_f516c458e6a1ab14fa95236a45b74e94.gif?size=4096")
         embed.add_field(name="Fondateurs : ",
                         value="<@281079773827039232> et <@339451806709055489>", inline=False)
         embed.add_field(name="Administrateurs :",

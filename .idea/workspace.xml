@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="918127d6-f6e9-4940-9c9d-8b06732cc771" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/cogs/arrive.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/arrive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cogs/commandes_ammusantes.py" beforeDir="false" afterPath="$PROJECT_DIR$/cogs/commandes_ammusantes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

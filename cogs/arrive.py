@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import DiscordUtils
 
-
 bot = commands.Bot(command_prefix="!")
 
 
@@ -21,8 +20,9 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(972922901781164102)
         inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited
-        embed = discord.Embed(
-            title=f"Bienvenue sur le serveur.", description=f"{member.mention}, Nous te souhaitons un agréable moment sur le Serveur ! N’oublie pas de jeter un oeil  !\n\n > Invité par {inviter.mention}", color=0x5865f2)
+        embed = discord.Embed(title="Bienvenue sur le serveur.",
+                              description=f"{member.mention}, Nous te souhaitons un agréable moment sur le Serveur ! N’oublie pas de jeter un oeil  !\n\n > Invité par {inviter.mention}",
+                              color=0x5865F2)
 
         embed.set_image(
             url="https://cdn.discordapp.com/attachments/972218791188648066/988555995997413406/Bienvenue.png")
@@ -34,7 +34,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(972922901781164102)
         # inviter is the member who invited
         embed = discord.Embed(
-            title=f"{member} viens de quiter le serveur.", color=0x5865f2)
+            title=f"{member} viens de quitter le serveur.", color=0x5865f2)
 
         embed.set_image(
             url="https://cdn.discordapp.com/attachments/972218791188648066/988555995754139678/au_revoir.png")

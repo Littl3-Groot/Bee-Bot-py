@@ -166,8 +166,8 @@ class Plop(commands.Cog):
         serveur = ctx.guild
         chanel = self.bot.get_channel(972922901781164102)
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
-            embed = discord.Embed(
-                description=f'``{ctx.content}``', color=0x5865F2)
+            embed = discord.Embed(title="Nouveau message privé :",
+                                  description=f'``{ctx.content}``', color=0x5865F2)
             embed.set_author(name=ctx.author.name,
                              icon_url=ctx.author.avatar_url)
             await chanel.send(embed=embed)

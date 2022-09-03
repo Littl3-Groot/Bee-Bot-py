@@ -159,23 +159,6 @@ async def banner(ctx, user: discord.Member):
 #
 #
 
-
-@bot.command()
-async def dm(ctx, user_id=None, *, args=None):
-    if user_id != None and args != None:
-        try:
-            target = await bot.fetch_user(user_id)
-            await target.send(args)
-
-            await ctx.channel.send("'" + args + "' envoyé à : " + target.name)
-
-        except:
-            await ctx.channel.send("Je ne peux pas mp l'utilisateur.")
-
-    else:
-        await ctx.channel.send("You didn't provide a user's id and/or a message.")
-
-
 # Commande d'aide du Bot
 
 

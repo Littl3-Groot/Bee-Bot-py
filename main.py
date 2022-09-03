@@ -161,7 +161,6 @@ async def banner(ctx, user: discord.Member):
 
 
 @bot.command()
-@commands.has_permissions(ban_members=True)
 async def dm(ctx, user_id=None, *, args=None):
     if user_id != None and args != None:
         try:

@@ -25,6 +25,12 @@ class Admin(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def mp(self, ctx, user: discord.User, *, message):
         await user.send(f"{message}")
+        await ctx.message.delete()
+        embed = discord.Embed(title="Gérant du bot :",
+                              description=f'{ctx.content}', color=0x5865F2)
+        embed.set_author(name=ctx.author.name,
+                         icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
 
     # CLEAR
     @commands.command()

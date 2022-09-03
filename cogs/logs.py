@@ -164,7 +164,7 @@ class Plop(commands.Cog):
     async def on_message(self, ctx):
         serveur = ctx.guild
         chanel = self.bot.get_channel(972922901781164102)
-        if ctx.channel.type == discord.ChannelType.private:
+        if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             await chanel.send("nouveau mp")
         else:
             return

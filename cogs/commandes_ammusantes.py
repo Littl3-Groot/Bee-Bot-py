@@ -407,9 +407,10 @@ class Divers(commands.Cog):
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
 
-        embed.add_field(name='ID', value="``" + member.id + "``", inline=False)
+        embed.add_field(name='ID', value="``" +
+                        str(member.id) + "``", inline=False)
         embed.add_field(name="Pseudo :",
-                        value="``" + member.display_name + "``", inline=False)
+                        value="``" + str(member.display_name) + "``", inline=False)
 
         embed.add_field(name="Date création du compte", value=member.created_at.strftime(
             '``%Y-%m-%d %H:%M:%S %Z%z``'), inline=False)
@@ -422,7 +423,7 @@ class Divers(commands.Cog):
                         value=member.top_role.mention, inline=False)
 
         embed.add_field(name="Bot", value="``" +
-                        member.bot + "``", inline=False)
+                        str(member.bot) + "``", inline=False)
 
         await ctx.send(embed=embed)
 

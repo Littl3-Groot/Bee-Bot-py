@@ -154,8 +154,7 @@ class Divers(commands.Cog):
         serverId = serveur.id
         serveurOwner = serveur.owner_id
         banner = ctx.guild.banner_url
-        date_creation = serveur.created_at.strftime(
-            "%c")
+        date_creation = serveur.created_at.strftime('%Y-%m-%d %H:%M:%S %Z%z')
         all_emotes = list(ctx.guild.emojis)
         emojis = ''.join(
             [str(i) for i in all_emotes])

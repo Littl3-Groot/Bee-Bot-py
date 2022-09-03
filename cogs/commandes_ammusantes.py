@@ -187,7 +187,7 @@ class Divers(commands.Cog):
                         value=f"``{len(serveur.categories)}``", inline=True)
 
         embed.add_field(name="📅┃Créé le : ", value="``" +
-                        str(date_creation.utc) + "``", inline=True)
+                        str(date_creation) + "``", inline=True)
 
         embed.add_field(name="🆔┃ID serveur :", value="``" +
                         str(serverId) + "``", inline=True)

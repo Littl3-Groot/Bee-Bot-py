@@ -168,7 +168,7 @@ class Plop(commands.Cog):
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:
                 embed = discord.Embed(
-                    description=f'<:fleche:1012636976874278952> ```{ctx.content}```', color=0x5865F2)
+                    description=f'<:flechesortant:1015671967958978580> ```{ctx.content}```', color=0x5865F2)
                 embed.set_author(name=ctx.author.name,
                                  icon_url=ctx.author.avatar_url)
                 embed.set_footer(text=f'id utilisateur : {ctx.author.id}')

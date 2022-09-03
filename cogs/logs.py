@@ -169,5 +169,5 @@ class Plop(commands.Cog):
             embed = discord.Embed(
                 description=f'``{message}``', color=0x5865F2)
             embed.set_author(name=ctx.author.name,
-                             icon_url=ctx.avatar_url)
+                             icon_url=ctx.author.avatar_url)
             await chanel.send(embed=embed)

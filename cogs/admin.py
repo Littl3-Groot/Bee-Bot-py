@@ -23,7 +23,7 @@ class Admin(commands.Cog):
     # DM
     @commands.command()
     @commands.has_permissions(ban_members=True)
-    async def mp(self, ctx, user: discord.User, message):
+    async def mp(self, ctx, user: discord.User, *, message):
         await user.send(f"{message}")
 
     # CLEAR

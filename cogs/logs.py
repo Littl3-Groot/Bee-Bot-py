@@ -165,6 +165,9 @@ class Plop(commands.Cog):
         serveur = ctx.guild
         chanel = self.bot.get_channel(972922901781164102)
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
-            await chanel.send("nouveau mp")
+            try:
+                await chanel.send(f"{ctx}")
+            except:
+                await ctx.send("Je ne peux pas envoyer de message à cet utilisateur.")
         else:
             return

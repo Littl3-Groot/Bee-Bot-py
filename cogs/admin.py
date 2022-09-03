@@ -26,7 +26,7 @@ class Admin(commands.Cog):
     async def mp(self, ctx, user: discord.User, *, message):
         await user.send(f"{message}")
         await ctx.message.delete()
-        embed = discord.Embed(description=f'{message}', color=0x5865F2)
+        embed = discord.Embed(description=f'{message}', color=0x00b200)
         embed.set_author(name="Gérant du bot",
                          icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
         await ctx.send(embed=embed)

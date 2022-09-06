@@ -16,8 +16,8 @@ class ErrorCog(commands.Cog):
     async def on_command_error(self, ctx, error):
         try:
             if isinstance(error, commands.CommandNotFound):
-                embed_erreur = discord.Embed(
-                    title=f"<:x_:985826783159021628> Erreur !", description=f"La commande ``{ctx.message.content}`` n'existe pas. Veuillez réitérer votre demande.", color=0xD00000)
+                embed_erreur = discord.Embed(title="<:x_:985826783159021628> Erreur !", description=f"La commande ``{ctx.message.content}`` n'existe pas. Veuillez réitérer votre demande.", color=0xD00000)
+
                 embed_erreur.set_footer(
                     text="ce message sera supprimé dans 15 secondes.")
                 msg = await ctx.reply(embed=embed_erreur)
@@ -40,14 +40,14 @@ class ErrorCog(commands.Cog):
                 await ctx.message.delete()
                 await msg.delete()
             else:
-                embed = discord.Embed(
-                    title=f"<:x_:985826783159021628> Erreur !", description=f"Contenue de l'erreur : ``{error}``", color=0xD00000)
+                embed = discord.Embed(title="<:x_:985826783159021628> Erreur !", description=f"Contenue de l'erreur : ``{error}``", color=0xD00000)
+
                 embed.set_footer(
                     text="Si tu vois ce message, contacte le développeur.")
                 await ctx.reply(embed=embed)
         except Exception as error:
-            embed = discord.Embed(
-                title=f"<:x_:985826783159021628> Erreur !", description=f"Contenue de l'erreur : ``{error}``", color=0xD00000)
+            embed = discord.Embed(title="<:x_:985826783159021628> Erreur !", description=f"Contenue de l'erreur : ``{error}``", color=0xD00000)
+
             embed.set_footer(
                 text="Si tu vois ce message, contacte le développeur.")
             await ctx.reply(embed=embed)

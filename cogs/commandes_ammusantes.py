@@ -10,12 +10,12 @@ from discord_slash import cog_ext
 bot = commands.Bot(command_prefix="!")
 slash = SlashCommand(bot, sync_commands=True)
 
-# Symboles pour le mot de passe généré alléatoirement
+# Symboles pour le mot de passe généré aléatoirement
 characters = list(string.ascii_letters + string.digits +
                   "!@#$%^&*()" + "1234567890")
 
 
-# Toutes les fonctions nécéssaire au bon fonctionnement du Bot
+# Toutes les fonctions nécessaire au bon fonctionnement du Bot
 
 
 def generate_random_password(longueur):
@@ -143,7 +143,7 @@ class Divers(commands.Cog):
     @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024],
                        description="Permet de voir les infromation du serveur")
     async def serveur(self, ctx):
-        """Affiche les information du serveur"""
+        """Affiche les informations du serveur"""
 
         serveur = ctx.guild
         numberOfTextChannels = len(serveur.text_channels)
@@ -358,13 +358,13 @@ class Divers(commands.Cog):
     #    await asyncio.sleep(1)
     #    await message.edit(content="Le tirage commence dans 2 secondes !")
     #    await asyncio.sleep(1)
-    #    await message.edit(content="Le tirage commence dans 1 secondes !")
+    #    await message.edit(content="Le tirage commence dans 1 seconde !")
     #    await asyncio.sleep(1)
     #    loser = random.choice(joueurs)
     #    prix = random.choice(malus)
     #    await message.edit(content=f"La personne qui a gagner un {prix} est ...")
     #    await asyncio.sleep(2)
-    #    await message.edit(content=f"La personne qui a gagner un {prix} est {loser.mention}")
+    #    await message.edit(content=f"La personne qui a gagné un {prix} est {loser.mention}")
 
     @cog_ext.cog_slash(name="mdp", guild_ids=[970708155610837024],
                        description="Donne un mot de passe sécurisé au hasard.", options=[
@@ -561,7 +561,7 @@ class Divers(commands.Cog):
     @cog_ext.cog_slash(name="remerciements", guild_ids=[970708155610837024],
                        description="Affiche les remerciements et les credits.")
     async def remerciements(self, ctx):
-        """Envoie les remerciments"""
+        """Envoie les remerciements"""
         embed = discord.Embed(title="__Remerciements :__", color=0xa06cd5)
         embed.set_author(
             name="Bee'Bot",
@@ -572,7 +572,7 @@ class Divers(commands.Cog):
         embed.add_field(name="Développeur : ",
                         value="<@339451806709055489>", inline=True)
 
-        embed.set_footer(text=" Developpeur : Im Little Groot",
+        embed.set_footer(text=" Développeur : Im Little Groot",
                          icon_url='https://images-ext-2.discordapp.net/external/-lgvQlDkxHESfYb2GaSj_R1-OF1tIftUjbE8O5Be-5k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/339451806709055489/a_29c854cacd0437ac5091a1793447cbfe.gif')
         await ctx.reply(embed=embed)
 
@@ -582,7 +582,7 @@ class Divers(commands.Cog):
                       description="L'utilisateur à qui tu veux envoyer de l'amour !", option_type=6, required=True),
     ])
     async def amour(self, ctx, user):
-        """Envoie de l'amour à l'utilisateur choisit."""
+        """Envoi de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
 
     @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024], description="Affiche les membres du Staff.")

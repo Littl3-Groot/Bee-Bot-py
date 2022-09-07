@@ -169,7 +169,7 @@ class Plop(commands.Cog):
             try:
                 embed = discord.Embed(
                     description=f'<:flechesortant:1015671967958978580> ```{ctx.content}```', color=0x5865F2)
-                embed.set_author(name=ctx.author.name,
+                embed.set_author(name=f'De {ctx.author.name}',
                                  icon_url=ctx.author.avatar_url)
                 embed.set_footer(text=f'id utilisateur : {ctx.author.id}')
                 await chanel.send(embed=embed)

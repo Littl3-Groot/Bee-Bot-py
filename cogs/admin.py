@@ -27,7 +27,7 @@ class Admin(commands.Cog):
         await user.send(f"{message}")
         await ctx.message.delete()
         embed = discord.Embed(
-            description=f'<:fleche:1012636976874278952> ```{message}```', color=0x5865F2)
+            description=f'<:fleche:1012636976874278952> {user.name} ```{message}```', color=0x5865F2)
         embed.set_author(name="Gérant du bot",
                          icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
         await ctx.send(embed=embed)

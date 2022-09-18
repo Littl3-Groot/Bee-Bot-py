@@ -163,7 +163,6 @@ class Plop(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, ctx):
-        serveur = ctx.guild
         chanel = self.bot.get_channel(1015554264938070037)
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:

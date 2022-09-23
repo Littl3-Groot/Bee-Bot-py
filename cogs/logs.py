@@ -1,4 +1,3 @@
-from email import message
 import discord
 from discord.ext import commands
 import datetime
@@ -61,7 +60,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
         serveur = before.guild
-        channel = serveur.get_channel(972922901781164102)
+        channel = self.serveur.get_channel(972922901781164102)
 
         if len(before.roles) > len(after.roles):
             role = next(
@@ -170,7 +169,7 @@ class Plop(commands.Cog):
                     description=f'<:flechesortant:1015671967958978580> ```{ctx.content}```', color=0x5865F2)
                 embed.set_author(name=f'De {ctx.author.name}',
                                  icon_url=ctx.author.avatar_url)
-                embed.set_footer(text=f'id utilisateur : {ctx.author.id}')
+                embed.set_footer(text=f'{ctx.author.id}')
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés")

@@ -145,7 +145,7 @@ class Divers(commands.Cog):
     async def serveur(self, ctx):
         """Affiche les informations du serveur"""
 
-        serveur = self.ctx.guild
+        serveur = ctx.guild
         numberOfTextChannels = len(serveur.text_channels)
         numberOfVoiceChannels = len(serveur.voice_channels)
         numberOfPerson = serveur.member_count

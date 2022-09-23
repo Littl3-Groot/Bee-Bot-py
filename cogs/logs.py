@@ -60,7 +60,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
         serveur = before.guild
-        channel = self.serveur.get_channel(972922901781164102)
+        channel = self.bot.get_channel(972922901781164102)
 
         if len(before.roles) > len(after.roles):
             role = next(

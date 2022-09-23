@@ -140,7 +140,7 @@ class Divers(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024, 753278912011698247],
+    @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024],
                        description="Permet de voir les infromation du serveur")
     async def serveur(self, ctx):
         """Affiche les informations du serveur"""

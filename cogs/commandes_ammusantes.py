@@ -207,6 +207,7 @@ class Divers(commands.Cog):
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
+        await ctx.reply(embed=embed_emotes)
         # await ctx.reply(embed=embed_emotes)
 
     @cog_ext.cog_slash(name="seuil", guild_ids=[970708155610837024],

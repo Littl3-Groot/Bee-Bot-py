@@ -197,7 +197,7 @@ class Divers(commands.Cog):
         embed.add_field(name="💎┃Nombre de boost:",
                         value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)
 
-        embed_emotes = discord.Embed(color=0x5865f2)
+        #embed_emotes = discord.Embed(color=0x5865f2)
 
         # embed_emotes.add_field(name=f"Liste des émojis [{len(all_emotes)}] :",
         #                       value=emojis, inline=False)
@@ -207,6 +207,7 @@ class Divers(commands.Cog):
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
+        await ctx.send(banner)
         # await ctx.reply(embed=embed_emotes)
 
     @cog_ext.cog_slash(name="seuil", guild_ids=[970708155610837024],

@@ -153,8 +153,6 @@ class Divers(commands.Cog):
         serverIcon = serveur.icon_url
         serverId = serveur.id
         serveurOwner = serveur.owner_id
-        banner = ctx.guild.banner_url
-        print(banner)
         date_creation = serveur.created_at.strftime('%Y-%m-%d %H:%M:%S %Z%z')
         all_emotes = list(ctx.guild.emojis)
         emojis = ''.join(
@@ -195,7 +193,9 @@ class Divers(commands.Cog):
         embed.add_field(name="👑┃Propriétaire :", value="<@" +
                         str(serveurOwner) + ">", inline=True)
 
-        embed.set_image(url=banner)
+        if ctx.guild.banner:
+            embed.set_image(url=ctx.guild.banner.with_format(
+                "png").with_size(1024))
 
         embed.add_field(name="💎┃Nombre de boost:",
                         value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)

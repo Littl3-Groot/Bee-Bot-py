@@ -405,6 +405,7 @@ class Info(commands.Cog):
             'embedbanner': 29,
             'embedping': 30,
         }
+
         liste_embed = [embedkick, embedban, embedunban, embedsay, embedwarn, embedclear, embedseuil, embedfrancs, embedbisextille,
                        embeddico, embeddecimal, embedbinaire, embedhexa, embedroulette, embedmdp, embedpdp, embeduserinfo, embedserveur,
                        embedhelp, embedyoutube, embedtwitch, embeddon, embedde, embedhack, embedplaning, embedstreamer, embedremerciments,
@@ -415,11 +416,11 @@ class Info(commands.Cog):
                         "17", "18", "19", "20", "21", "22", "23", "24",
                         "25", "26", "27", "28", "29", "30"]
 
-        # for i in range(len(liste_embed)):
-        #    if nomcommande == liste_values[i]:
-        #        await ctx.send(embed=liste_embed[i])
+        for i in range(len(liste_embed)):
+            if nomcommande == liste_values[i]:
+                await ctx.send(embed=liste_embed[i])
 
-        for (nom_embed, values) in commmandes_dispo.items():
-            if nomcommande == values:
-                print("ici")
-                await ctx.send(embed=nom_embed)
+        # for (nom_embed, values) in commmandes_dispo.items():
+        #    if nomcommande == values:
+        #        print("ici")
+        #        await ctx.send(embed=nom_embed)

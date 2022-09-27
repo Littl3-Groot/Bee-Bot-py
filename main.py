@@ -211,20 +211,23 @@ async def help(ctx):
                              description="- Utilisez ``/infocommande`` pour voir les détails d'une commande.\n\n> ``/seuil``: Permet de savoir en quel année le prix de votre objet aura chuté de moitié.\n> ``/francs``: Permet de convertir des Euros en Francs.\n> ``/bissextile`` : Vous permet de savoir si un année est bissextile ou non.\n> ``/dico`` : Permet de savoir quel mot est avant l'autre dans le dictionnaire.\n> ``/decimal`` : Converti un nombre Binaire en nombre décimal.\n> ``/binaire :`` Converti un nombre decimal en binaire.\n> ``/hexa`` : Converti un nombre décimal en hexadecimal.\n> ``!roulette`` : bientôt.\n> ``/mdp`` : Vous envoie un message contenant un mot de passe du nombre de caractères que vous souhaiter (lim = 4000) et aléatoire.\n> ``/pdp`` : Renvoie la photo de profil du membre que vous voulez.\n> ``/dé`` : Lance un dé entre 1 et 6 de base (vous pouvez changer cette valeur). \n> ``/hack`` : Lance un hack sur l'utilisateur choisit. \n> ``/amour`` : Envoie de l'amour à l'utilisateur choisit. \n> ``/banner`` : Affiche la banière de l'utilisateur choisit. \n> ``/ping`` : Affiche le temps de réponse du bot.",
                              color=0x5865F2,
                              )
+    while True:
+        try:
+            choice_ctx = await wait_for_component(bot, components=select, check=check)
 
-    try:
-        choice_ctx = await wait_for_component(bot, components=select, check=check)
+            if choice_ctx.values[0] == "Accueil":
+                await choice_ctx.edit_origin(content=" ", embed=embed1)
+            elif choice_ctx.values[0] == "Bot":
+                await choice_ctx.edit_origin(content=" ", embed=embedBot)
+            elif choice_ctx.values[0] == "Modération":
+                await choice_ctx.edit_origin(content=" ", embed=embedMod)
+            elif choice_ctx.values[0] == "Fun":
+                await choice_ctx.edit_origin(content=" ", embed=embedFun)
+        except:
+            await ctx.send("Erreur !")
 
-        if choice_ctx.values[0] == "Accueil":
-            await choice_ctx.edit_origin(content=" ", embed=embed1)
-        elif choice_ctx.values[0] == "Bot":
-            await choice_ctx.edit_origin(content=" ", embed=embedBot)
-        elif choice_ctx.values[0] == "Modération":
-            await choice_ctx.edit_origin(content=" ", embed=embedMod)
-        elif choice_ctx.values[0] == "Fun":
-            await choice_ctx.edit_origin(content=" ", embed=embedFun)
-    except:
-        await ctx.send("Erreur !")
+        await asyncio.sleep(60)
+        await fait_choix.message.delete()
 
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)

@@ -372,6 +372,39 @@ class Info(commands.Cog):
         embedping.set_footer(text="demandé par : " +
                              f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
 
+        commmandes_dispo = {
+            'embedkick': 0,
+            'embedban': 1,
+            'embedunban': 2,
+            'embedsay': 3,
+            'embedwarn': 4,
+            'embedclear': 5,
+            'embedseuil': 6,
+            'embedfrancs': 7,
+            'embedbisextille': 8,
+            'embeddico': 9,
+            'embeddecimal': 10,
+            'embedbinaire': 11,
+            'embedhexa': 12,
+            'embedroulette': 13,
+            'embedmdp': 14,
+            'embedpdp': 15,
+            'embeduserinfo': 16,
+            'embedserveur': 17,
+            'embedhelp': 18,
+            'embedyoutube': 19,
+            'embedtwitch': 20,
+            'embeddon': 21,
+            'embedde': 22,
+            'embedhack': 23,
+            'embedplaning': 24,
+            'embedstreamer': 25,
+            'embedremerciments': 26,
+            'embedamour': 27,
+            'embedinfocommandes': 28,
+            'embedbanner': 29,
+            'embedping': 30,
+        }
         liste_embed = [embedkick, embedban, embedunban, embedsay, embedwarn, embedclear, embedseuil, embedfrancs, embedbisextille,
                        embeddico, embeddecimal, embedbinaire, embedhexa, embedroulette, embedmdp, embedpdp, embeduserinfo, embedserveur,
                        embedhelp, embedyoutube, embedtwitch, embeddon, embedde, embedhack, embedplaning, embedstreamer, embedremerciments,
@@ -382,6 +415,10 @@ class Info(commands.Cog):
                         "17", "18", "19", "20", "21", "22", "23", "24",
                         "25", "26", "27", "28", "29", "30"]
 
-        for i in range(len(liste_embed)):
-            if nomcommande == liste_values[i]:
-                await ctx.send(embed=liste_embed[i])
+        # for i in range(len(liste_embed)):
+        #    if nomcommande == liste_values[i]:
+        #        await ctx.send(embed=liste_embed[i])
+
+        for (nom_embed, values) in commmandes_dispo.items():
+            if nomcommande == values:
+                await ctx.send(embed=nom_embed)

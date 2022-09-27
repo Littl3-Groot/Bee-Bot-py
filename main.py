@@ -226,9 +226,6 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
-        await asyncio.sleep(60)
-        await fait_choix.message.delete()
-
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

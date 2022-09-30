@@ -420,7 +420,7 @@ class Info(commands.Cog):
         #    if nomcommande == liste_values[i]:
         #        await ctx.send(embed=liste_embed[i])
 
-        for i in range(len(commands)):
+        for i in range(len(commmandes_dispo)):
             for (nom_embed, values) in commmandes_dispo.items():
                 if nomcommande == values:
                     print("ici")

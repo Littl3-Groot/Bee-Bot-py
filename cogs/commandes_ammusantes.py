@@ -180,7 +180,6 @@ class Divers(commands.Cog):
 
         embed.add_field(name="🔊┃ Vocaux :", value="``" +
                         str(numberOfVoiceChannels) + "``", inline=True)
-
         embed.add_field(name="📂┃Catégories :",
                         value=f"``{len(serveur.categories)}``", inline=True)
 
@@ -395,35 +394,35 @@ class Divers(commands.Cog):
                       description="L'utilisateur dont tu veux voir les informations.", option_type=6,
                       required=True),
     ])
-    async def userinfo(self, ctx, member: discord.Member):
+    async def userinfo(self, ctx, user):
         """Récupère l'utilisateur choisit et envoie les informations le concernant."""
-        roles = list(member.roles)
+        roles = list(user.roles)
         del roles[0]
 
-        embed = discord.Embed(color=member.color)
+        embed = discord.Embed(color=user.color)
         embed.set_author(
-            name=f'Information de - {member}', icon_url=member.avatar_url)
-        embed.set_thumbnail(url=member.avatar_url)
+            name=f'Information de - {user}', icon_url=user.avatar_url)
+        embed.set_thumbnail(url=user.avatar_url)
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
 
         embed.add_field(name='ID', value="``" +
-                        str(member.id) + "``", inline=False)
+                        str(user.id) + "``", inline=False)
         embed.add_field(name="Pseudo :",
-                        value="``" + str(member.display_name) + "``", inline=False)
+                        value="``" + str(user.display_name) + "``", inline=False)
 
-        embed.add_field(name="Date création du compte", value=member.created_at.strftime(
+        embed.add_field(name="Date création du compte", value=user.created_at.strftime(
             '``%Y-%m-%d %H:%M:%S %Z%z``'), inline=False)
-        embed.add_field(name="Rejoin le : ", value=member.joined_at.strftime(
+        embed.add_field(name="Rejoin le : ", value=user.joined_at.strftime(
             '``%Y-%m-%d %H:%M:%S %Z%z``'), inline=False)
 
         embed.add_field(name=f'Rôles {len(roles)} :', value=", ".join(
             [role.mention for role in roles]), inline=False)
         embed.add_field(name="Top role :",
-                        value=member.top_role.mention, inline=False)
+                        value=user.top_role.mention, inline=False)
 
         embed.add_field(name="Bot", value="``" +
-                        str(member.bot) + "``", inline=False)
+                        str(user.bot) + "``", inline=False)
 
         await ctx.send(embed=embed)
 

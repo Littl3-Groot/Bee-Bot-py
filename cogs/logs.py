@@ -163,7 +163,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, ctx):
         chanel = self.bot.get_channel(1015554264938070037)
-        pic_ext = ['.jpg', '.png', '.jpeg', '.txt']
+        pic_ext = ['.jpg', '.png', '.jpeg']
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:
                 embed = discord.Embed(

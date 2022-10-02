@@ -163,12 +163,18 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, ctx):
         chanel = self.bot.get_channel(1015554264938070037)
+        pic_ext = ['.jpg', '.png', '.jpeg']
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:
                 embed = discord.Embed(
                     description=f'<:flechesortant:1015671967958978580> ```{ctx.content}```', color=0x5865F2)
                 embed.set_author(name=f'De {ctx.author.name}',
                                  icon_url=ctx.author.avatar_url)
+                for ext in pic_ext:
+                    if ctx.content.endswith(ext):
+                        print("image !")
+                        # embed.set_image(url=ctx.url)
+
                 embed.set_footer(text=f'{ctx.author.id}')
                 await chanel.send(embed=embed)
             except:

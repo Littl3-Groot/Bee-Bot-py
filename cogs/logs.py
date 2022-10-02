@@ -170,11 +170,12 @@ class Plop(commands.Cog):
                     description=f'<:flechesortant:1015671967958978580> ```{ctx.content}```', color=0x5865F2)
                 embed.set_author(name=f'De {ctx.author.name}',
                                  icon_url=ctx.author.avatar_url)
-                for ext in pic_ext:
-                    if ctx.content.endswith(ext):
-                        print("image !")
-                        # embed.set_image(url=ctx.url)
-
+                if len(ctx.attachments) > 0:  # Checks if there are attachments
+                    for file in ctx.attachments:
+                        for ext in pic_ext:
+                            if file.filename.endswith(ext):
+                                print(
+                                    f"This message has an Image called: {file.filename}")
                 embed.set_footer(text=f'{ctx.author.id}')
                 await chanel.send(embed=embed)
             except:

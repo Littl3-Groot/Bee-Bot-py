@@ -390,7 +390,7 @@ class Divers(commands.Cog):
 
     @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024],
                        description="Affiche les informations d'un utilisateur choisit.", options=[
-        create_option(name="member",
+        create_option(name="user",
                       description="L'utilisateur dont tu veux voir les informations.", option_type=6,
                       required=True),
     ])

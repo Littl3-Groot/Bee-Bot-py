@@ -163,13 +163,14 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, ctx):
         chanel = self.bot.get_channel(1015554264938070037)
-        pic_ext = ['.jpg', '.png', '.jpeg']
+        pic_ext = ['.jpg', '.png', '.jpeg', '.txt']
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:
                 embed = discord.Embed(
-                    description=f'<:flechesortant:1015671967958978580> ```{ctx.content}```', color=0x5865F2)
+                    description=f'<:flechesortant:1015671967958978580> \n{ctx.content}', color=0x5865F2)
                 embed.set_author(name=f'De {ctx.author.name}',
                                  icon_url=ctx.author.avatar_url)
+
                 if len(ctx.attachments) > 0:  # Checks if there are attachments
                     for file in ctx.attachments:
                         for ext in pic_ext:

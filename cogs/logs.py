@@ -174,8 +174,10 @@ class Plop(commands.Cog):
                     for file in ctx.attachments:
                         for ext in pic_ext:
                             if file.filename.endswith(ext):
+                                embed.set_image(url=file.url)
                                 print(
                                     f"This message has an Image called: {file.filename}")
+
                 embed.set_footer(text=f'{ctx.author.id}')
                 await chanel.send(embed=embed)
             except:

@@ -400,9 +400,12 @@ class Divers(commands.Cog):
         del roles[0]
 
         embed = discord.Embed(color=user.color)
+
         embed.set_author(
             name=f'Information de - {user}', icon_url=user.avatar_url)
+
         embed.set_thumbnail(url=user.avatar_url)
+
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
 
@@ -418,6 +421,7 @@ class Divers(commands.Cog):
 
         embed.add_field(name=f'Rôles {len(roles)} :', value=", ".join(
             [role.mention for role in roles]), inline=False)
+
         embed.add_field(name="Top role :",
                         value=user.top_role.mention, inline=False)
 

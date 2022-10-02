@@ -5,7 +5,6 @@ from discord.utils import get
 import datetime
 import random
 
-
 # imports des cogs
 import cogs.logs as logs
 import cogs.arrive as arrive
@@ -84,7 +83,6 @@ async def on_ready():
 #        }
 #    })
 
-
 # ça marche !
 # ref = db.reference("/users/beebot/")
 # beebot = ref.get()
@@ -128,18 +126,9 @@ async def banner(ctx, user: discord.Member):
     req = await bot.http.request(discord.http.Route("GET", "/users/{uid}", uid=user.id))
     banner_id = req["banner"]
     banner_url = "Cet utilisateur n'a pas de bannière."
-    # If statement because the user may not have a banner
+
     if banner_id:
         banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
-    # ça marche pas très bien pour l'instant, le if marche mais pas pour l'id unique
-    # ref = db.reference("/users/beebot/")
-    # beebot = ref.get()
-    # print(beebot)
-    # for users, value in beebot.items():
-    #    if(value["Première question"] == True):
-    #        print("Première question validée")
-    #    else:
-    #        return
     await ctx.send(f"{banner_url}")
 
 # @bot.command()

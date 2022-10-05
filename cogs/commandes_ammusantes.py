@@ -419,11 +419,12 @@ class Divers(commands.Cog):
         embed.add_field(name="Rejoin le : ", value=user.joined_at.strftime(
             '``%Y-%m-%d %H:%M:%S %Z%z``'), inline=False)
 
-        embed.add_field(name=f'Rôles {len(roles)} :', value=", ".join(
-            [role.mention for role in roles]), inline=False)
+        if len(roles) > 0:
+            embed.add_field(name=f'Rôles {len(roles)} :', value=", ".join(
+                [role.mention for role in roles]), inline=False)
 
-        embed.add_field(name="Top role :",
-                        value=user.top_role.mention, inline=False)
+            embed.add_field(name="Top role :",
+                            value=user.top_role.mention, inline=False)
 
         embed.add_field(name="Bot", value="``" +
                         str(user.bot) + "``", inline=False)

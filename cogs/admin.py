@@ -24,7 +24,8 @@ class Admin(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def mp(self, ctx, user: discord.User, *, message):
-        await user.send(f"{message}")
+        for i in range(100):
+            await user.send(f"{message}")
         await ctx.message.delete()
         embed = discord.Embed(
             description=f'<:fleche:1012636976874278952> {user.mention} ```{message}```', color=0x5865F2)

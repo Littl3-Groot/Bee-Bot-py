@@ -27,3 +27,8 @@ class Easter(commands.Cog):
     async def groot(self, ctx):
         await ctx.message.delete()
         await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089986800783440/918208896433270824.webp")
+
+    @commands.command()
+    async def topin(self, ctx):
+        await ctx.message.delete()
+        await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1029018697509118044/unknown.png")

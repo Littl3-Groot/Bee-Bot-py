@@ -17,7 +17,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         serveur = message.guild
-        channel = self.bot.get_channel()
+        channel = self.bot.get_channel(765150007095328790)
 
         if message.author == self.bot.user:
             return

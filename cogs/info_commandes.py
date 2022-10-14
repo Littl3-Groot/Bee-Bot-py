@@ -13,7 +13,7 @@ class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @cog_ext.cog_slash(name="infocommandes", guild_ids=[970708155610837024], description="Donne plus d'information sur la commande que vous avez chosie.", options=[
+    @cog_ext.cog_slash(name="infocommandes", guild_ids=[970708155610837024, 753278912011698247], description="Donne plus d'information sur la commande que vous avez chosie.", options=[
         # ptet factoriser ça
         create_option(
             name="nomcommande",

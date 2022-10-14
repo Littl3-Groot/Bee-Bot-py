@@ -17,7 +17,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         serveur = message.guild
-        channel = self.bot.get_channel(972922901781164102, 765150007095328790)
+        channel = self.bot.get_channel(765150007095328790)
 
         if message.author == self.bot.user:
             return
@@ -43,7 +43,7 @@ class Plop(commands.Cog):
             return
 
         serveur = before.guild
-        channel = self.bot.get_channel(972922901781164102, 765150007095328790)
+        channel = self.bot.get_channel(765150007095328790)
         embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel.mention}**',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xFF9F40)
 

@@ -17,7 +17,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         serveur = message.guild
-        channel = self.bot.get_channel(765150007095328790)
+        channel = self.bot.get_channel()
 
         if message.author == self.bot.user:
             return
@@ -60,7 +60,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
         serveur = before.guild
-        channel = self.bot.get_channel(972922901781164102)
+        channel = self.bot.get_channel(765150008256888832)
 
         if len(before.roles) > len(after.roles):
             role = next(
@@ -101,7 +101,7 @@ class Plop(commands.Cog):
     # LOGS MEMBERS PHOTO DE PROFIL
     @commands.Cog.listener()
     async def on_user_update(self, before, after):
-        channel = self.bot.get_channel(972922901781164102)
+        channel = self.bot.get_channel(765150008256888832)
 
         if before.avatar_url != after.avatar_url:
             embed = discord.Embed(description=f':writing_hand: **{before.mention} a mis à jour sa photo de profil !**',
@@ -116,7 +116,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel):
         serveur = channel.guild
-        chanel = self.bot.get_channel(972922901781164102)
+        chanel = self.bot.get_channel(765150008844222484)
 
         embed = discord.Embed(
             description=f'🏡 **Salon supprimé : **``{channel.name}``', timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xD00000)
@@ -130,7 +130,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel):
         serveur = channel.guild
-        chanel = self.bot.get_channel(972922901781164102)
+        chanel = self.bot.get_channel(765150008844222484)
 
         embed = discord.Embed(description=f'🏡 **Salon créé : **``{channel.name}``',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0x40B21A)
@@ -144,7 +144,7 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_channel_update(self, before, after):
         serveur = before.guild
-        chanel = self.bot.get_channel(972922901781164102)
+        chanel = self.bot.get_channel(765150008844222484)
 
         if before.name != after.name:
             embed = discord.Embed(

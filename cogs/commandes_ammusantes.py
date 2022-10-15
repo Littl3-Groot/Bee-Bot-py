@@ -193,7 +193,7 @@ class Divers(commands.Cog):
                         str(serveurOwner) + ">", inline=True)
 
         if ctx.guild.banner:
-            a = ctx.guild.banner_url
+            a = str(ctx.guild.banner_url)
             a.replace('webp', 'gif')
             embed.set_image(url=a)
 

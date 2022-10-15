@@ -194,8 +194,7 @@ class Divers(commands.Cog):
 
         if ctx.guild.banner:
             a = str(ctx.guild.banner_url)
-            a.replace('webp', 'gif')
-            print(a)
+            print(a.replace('webp', 'gif'))
             embed.set_image(url=a)
 
         embed.add_field(name="💎 Nombre de boost:",

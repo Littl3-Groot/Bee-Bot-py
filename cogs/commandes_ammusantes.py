@@ -162,7 +162,7 @@ class Divers(commands.Cog):
         embed = discord.Embed(color=0x5865f2)
         embed.set_author(name=serverName, icon_url=serverIcon)
         embed.set_thumbnail(url=serverIcon)
-        embed.add_field(name="👥┃Membres : ", value="``" +
+        embed.add_field(name="👥 Membres: ", value="``" +
                         str(numberOfPerson) + "``", inline=False)
 
         levels = ['Niveau 0', 'Niveau 1', 'Niveau 2', 'Niveau 3']
@@ -175,21 +175,21 @@ class Divers(commands.Cog):
         else:
             i = 0
 
-        embed.add_field(name="💬 Textuelles :", value="``" +
+        embed.add_field(name="💬 Textuelles:", value="``" +
                         str(numberOfTextChannels) + "``", inline=True)
 
-        embed.add_field(name="🔊 Vocaux :", value="``" +
+        embed.add_field(name="🔊 Vocaux:", value="``" +
                         str(numberOfVoiceChannels) + "``", inline=True)
-        embed.add_field(name="📂 Catégories :",
+        embed.add_field(name="📂 Catégories:",
                         value=f"``{len(serveur.categories)}``", inline=True)
 
-        embed.add_field(name="📅 Créé le : ", value="``" +
+        embed.add_field(name="📅 Créé le: ", value="``" +
                         str(date_creation) + "``", inline=True)
 
-        embed.add_field(name="🆔 ID serveur :", value="``" +
+        embed.add_field(name="🆔 ID serveur:", value="``" +
                         str(serverId) + "``", inline=True)
 
-        embed.add_field(name="👑 Propriétaire :", value="<@" +
+        embed.add_field(name="👑 Propriétaire:", value="<@" +
                         str(serveurOwner) + ">", inline=True)
 
         if ctx.guild.banner:

@@ -193,8 +193,9 @@ class Divers(commands.Cog):
                         str(serveurOwner) + ">", inline=True)
 
         if ctx.guild.banner:
-            print(len(ctx.guild.banner_url))
-            embed.set_image(url=ctx.guild.banner_url)
+            a = ctx.guild.banner_url
+            a.replace('webp', 'gif')
+            embed.set_image(url=a)
 
         embed.add_field(name="💎 Nombre de boost:",
                         value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)

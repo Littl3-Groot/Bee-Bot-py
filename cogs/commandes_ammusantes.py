@@ -175,27 +175,27 @@ class Divers(commands.Cog):
         else:
             i = 0
 
-        embed.add_field(name="💬┃Textuelles :", value="``" +
+        embed.add_field(name="💬 Textuelles :", value="``" +
                         str(numberOfTextChannels) + "``", inline=True)
 
-        embed.add_field(name="🔊┃ Vocaux :", value="``" +
+        embed.add_field(name="🔊 Vocaux :", value="``" +
                         str(numberOfVoiceChannels) + "``", inline=True)
-        embed.add_field(name="📂┃Catégories :",
+        embed.add_field(name="📂 Catégories :",
                         value=f"``{len(serveur.categories)}``", inline=True)
 
-        embed.add_field(name="📅┃Créé le : ", value="``" +
+        embed.add_field(name="📅 Créé le : ", value="``" +
                         str(date_creation) + "``", inline=True)
 
-        embed.add_field(name="🆔┃ID serveur :", value="``" +
+        embed.add_field(name="🆔 ID serveur :", value="``" +
                         str(serverId) + "``", inline=True)
 
-        embed.add_field(name="👑┃Propriétaire :", value="<@" +
+        embed.add_field(name="👑 Propriétaire :", value="<@" +
                         str(serveurOwner) + ">", inline=True)
 
         if ctx.guild.banner:
             embed.set_image(url=ctx.guild.banner_url)
 
-        embed.add_field(name="💎┃Nombre de boost:",
+        embed.add_field(name="💎 Nombre de boost:",
                         value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)
 
         #embed_emotes = discord.Embed(color=0x5865f2)

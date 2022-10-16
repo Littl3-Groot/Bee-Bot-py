@@ -131,18 +131,17 @@ async def banner(ctx, user: discord.Member):
         banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
     await ctx.send(f"{banner_url}")
 
-# @bot.command()
-# async def dm_all(ctx, *, args=None):
-#    if args != None:
-#        members = ctx.guild.members
-#        for member in members:
-#            try:
-#                await member.send(args)
-#            except:
-#                print("Ne fonctionne pas.")
-#
-#    else:
-#        await ctx.send("Please provide an argument !")
+@bot.command()
+async def dm_all(ctx, *, args=None):
+   if args != None:
+       members = ctx.guild.members
+       for member in members:
+           try:
+               await member.send(args)
+           except:
+               print("Ne fonctionne pas.")
+   else:
+       await ctx.send("Please provide an argument !")
 
 # Commande d'aide du Bot
 

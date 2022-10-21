@@ -20,7 +20,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(753283325984243763)
         inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited
-        await channel.send(f"__Bienvenue sur le serveur__, {member.mention}. Invité par {inviter.mention}")
+        await channel.send(f"__Bienvenue sur le serveur__, {member.mention} !")
 
     # Départ
     @commands.Cog.listener()

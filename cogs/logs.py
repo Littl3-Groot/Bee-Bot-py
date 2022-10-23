@@ -181,3 +181,16 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés")
+
+    @commands.Cog.listener()
+    async def on_message(self, ctx):
+       ref = db.reference('/data')
+       users_ref = ref.child('messages')
+       
+       if member.bot == True:
+           return
+       users_ref.update({
+           'total': {
+               "Message": 1
+           }
+       })

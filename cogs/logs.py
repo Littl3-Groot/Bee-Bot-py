@@ -190,9 +190,9 @@ class Plop(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, ctx):
+       member = ctx.author
        ref = db.reference('/data')
        users_ref = ref.child('messages')
-       
        if member.bot == True:
            return
        users_ref.update({

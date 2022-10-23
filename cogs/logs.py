@@ -186,20 +186,7 @@ class Plop(commands.Cog):
                 embed.set_footer(text=f'{ctx.author.id}')
                 await chanel.send(embed=embed)
             except:
-                await ctx.send("Les mp de l'utilisateur sont fermés")
-
-    @commands.Cog.listener()
-    async def on_message(self, ctx):
-       member = ctx.author
-       ref = db.reference('data/messages/total')
-       total_message = ref.get()
-       for message in total_message.values():
-            if member.bot == True:
-                return
-            else:
-                total_message[message] = message + 1
-                print(total_message[message])
-                
+                await ctx.send("Les mp de l'utilisateur sont fermés")        
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

@@ -191,17 +191,14 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, ctx):
        member = ctx.author
-       ref = db.reference('https://bee-bot-c47de-default-rtdb.europe-west1.firebasedatabase.app/data/messages/total')
+       ref = db.reference('data/messages/total')
        total_message = ref.get()
        for message in total_message.values():
             if member.bot == True:
                 return
             else:
-                total_messages.update({
-                    'total': {
-                        "Message": message+1
-                    }
-                })
+                total_message[message] = message + 1
+                
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

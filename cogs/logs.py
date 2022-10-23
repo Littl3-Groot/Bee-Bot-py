@@ -2,6 +2,17 @@ import discord
 from discord.ext import commands
 import datetime
 
+from config import *
+
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
+cred = credentials.Certificate(firebase_config)
+databaseApp = firebase_admin.initialize_app(cred, {
+    'databaseURL': DatabaseUrl
+})
+
 bot = commands.Bot(command_prefix="!",)
 
 

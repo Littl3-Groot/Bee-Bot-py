@@ -191,12 +191,22 @@ class Plop(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, ctx):
        member = ctx.author
-       ref = db.reference('/data')
-       users_ref = ref.child('messages')
-       if member.bot == True:
-           return
-       users_ref.update({
-           'total': {
-               "Message": 1
-           }
-       })
+       ref = db.reference('https://bee-bot-c47de-default-rtdb.europe-west1.firebasedatabase.app/data/messages/total')
+       total_message = ref.get()
+       for message in total_message.values():
+            if member.bot == True:
+                return
+            else:
+                total_messages.update({
+                    'total': {
+                        "Message": message+1
+                    }
+                })
+                
+    # ça marche !
+# ref = db.reference("/users/beebot/")
+# beebot = ref.get()
+# print(beebot)
+# for users, value in beebot.items():
+#    if(value["Première question"] == True):
+#        print("Première question validée")

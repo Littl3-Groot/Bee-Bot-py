@@ -93,8 +93,6 @@ async def on_ready():
 
 
 # Commande qui affiche le temps de réponse du bot (ping)
-
-
 @slash.slash(name="ping", guild_ids=[970708155610837024, 753278912011698247], description="Affiche le temps de réponse du bot.")
 async def ping(ctx):
     """Donne le temps de réponse du bot et l'envoie dans un Embed"""
@@ -113,8 +111,6 @@ async def ping(ctx):
     await ctx.reply(embed=embed)
 
 # Commande qui affiche la bannière de l'utilisateur choisit
-
-
 @slash.slash(name="banner", guild_ids=[970708155610837024, 753278912011698247], description="Affiche la bannière de l'utilisateur choisit.", options=[
     create_option(name="user",
                   description="L'utilisateur dont tu veux voir la bannière.", option_type=6, required=True),
@@ -130,22 +126,7 @@ async def banner(ctx, user: discord.Member):
     if banner_id:
         banner_url = f"https://cdn.discordapp.com/banners/{user.id}/{banner_id}.gif?size=1024"
     await ctx.send(f"{banner_url}")
-
-# @bot.command()
-# async def dm_all(ctx, *, args=None):
-#    if args != None:
-#        members = ctx.guild.members
-#        for member in members:
-#            try:
-#                await member.send(args)
-#            except:
-#                print("Ne fonctionne pas.")
-#
-#    else:
-#        await ctx.send("Please provide an argument !")
-
-# Commande d'aide du Bot
-
+    
 
 @slash.slash(name="help", guild_ids=[970708155610837024, 753278912011698247], description="Envoie la commande d'aide.")
 async def help(ctx):

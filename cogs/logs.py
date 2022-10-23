@@ -23,7 +23,7 @@ class Plop(commands.Cog):
             return
 
         embed = discord.Embed(
-            description=f"🗑️ Le message de {message.author.mention} dans {message.channel.mention} à été supprimé.",
+            description=f"🗑️ Le message de {message.author.mention} dans {message.channel} à été supprimé.",
             timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xD00000)
 
         embed.set_author(name=message.author.name,
@@ -44,7 +44,7 @@ class Plop(commands.Cog):
 
         serveur = before.guild
         channel = self.bot.get_channel(765150007095328790)
-        embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel.mention}**',
+        embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel}**',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xFF9F40)
 
         embed.set_author(name=before.author.name,

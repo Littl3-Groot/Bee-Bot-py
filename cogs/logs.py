@@ -198,6 +198,7 @@ class Plop(commands.Cog):
                 return
             else:
                 total_message[message] = message + 1
+                print(total_message[message])
                 
                 
     # ça marche !

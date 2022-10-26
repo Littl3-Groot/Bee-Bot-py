@@ -422,6 +422,7 @@ class Info(commands.Cog):
                 
         for (nom_embed, values) in commmandes_dispo.items():
             if nomcommande == values:
+                print(nomcommande, values)
                 await ctx.send(embed=nom_embed)
 
         # for i in range(len(commmandes_dispo)):

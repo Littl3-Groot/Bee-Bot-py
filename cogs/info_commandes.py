@@ -419,11 +419,12 @@ class Info(commands.Cog):
         #for i in range(len(liste_embed)):
         #    if nomcommande == liste_values[i]:
         #        await ctx.send(embed=liste_embed[i])
-                
+        i = 0   
         for (nom_embed, values) in commmandes_dispo.items():
+            i += 1
             if nomcommande == values:
                 print(nomcommande, values)
-                await ctx.send(embed=vars(nom_embed))
+                await ctx.send(embed=liste_embed[i])
 
         # for i in range(len(commmandes_dispo)):
         #    for (nom_embed, values) in commmandes_dispo.items():

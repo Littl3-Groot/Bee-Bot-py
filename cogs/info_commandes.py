@@ -416,9 +416,13 @@ class Info(commands.Cog):
                         "17", "18", "19", "20", "21", "22", "23", "24",
                         "25", "26", "27", "28", "29", "30"]
 
-        for i in range(len(liste_embed)):
-            if nomcommande == liste_values[i]:
-                await ctx.send(embed=liste_embed[i])
+        #for i in range(len(liste_embed)):
+        #    if nomcommande == liste_values[i]:
+        #        await ctx.send(embed=liste_embed[i])
+                
+        for (nom_embed, values) in commmandes_dispo.items():
+            if nomcommande == values:
+                await ctx.send(embed=nom_embed)
 
         # for i in range(len(commmandes_dispo)):
         #    for (nom_embed, values) in commmandes_dispo.items():

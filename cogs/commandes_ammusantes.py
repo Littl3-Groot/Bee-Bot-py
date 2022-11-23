@@ -16,8 +16,6 @@ characters = list(string.ascii_letters + string.digits +
 
 
 # Toutes les fonctions nécessaire au bon fonctionnement du Bot
-
-
 def generate_random_password(longueur):
     """Génère un mot de passe aléatoire d'une longueur choisit par l'utilisateur."""
     random.shuffle(characters)
@@ -137,6 +135,7 @@ def setup(bot):
 
 
 class Divers(commands.Cog):
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -468,7 +467,7 @@ class Divers(commands.Cog):
         await ctx.send(embed=embed)
 
     @cog_ext.cog_slash(name="don", guild_ids=[970708155610837024, 753278912011698247],
-                       description="Affiche le lien pour faire des dons à Denver.")
+                       description="Affiche le lien pour faire des dons à Beerus.")
     async def don(self, ctx):
         """Renvoie le lien pour faire des dons"""
         embed = discord.Embed(color=0xffd700)

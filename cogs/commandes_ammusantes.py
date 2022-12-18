@@ -588,7 +588,7 @@ class Divers(commands.Cog):
     ])
     async def amour(self, ctx, user):
         """Envoi de l'amour à l'utilisateur choisit."""
-        await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! ❤️")
+        await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! <:beelove:1051253178424885338>")
 
     @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024, 753278912011698247], description="Affiche les membres du Staff.")
     async def staff(self, ctx):

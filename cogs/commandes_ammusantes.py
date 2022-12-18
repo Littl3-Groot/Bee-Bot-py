@@ -526,10 +526,10 @@ class Divers(commands.Cog):
                    "🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩"
                    ]
         i = 0
-        message = await ctx.send(f"14NC3M3N7 DU H4CK <:DanoPeur:989100230840553517> :\n {hacking[i]}")
+        message = await ctx.send(f"14NC3M3N7 DU H4CK <:beedead:1051253317323464704> :\n {hacking[i]}")
 
         for item in hacking:
-            await message.edit(content=f"14NC3M3N7 DU H4CK <:DanoPeur:989100230840553517> :\n {item}")
+            await message.edit(content=f"14NC3M3N7 DU H4CK <:beedead:1051253317323464704> :\n {item}")
             await asyncio.sleep(0.6)
 
         await message.edit(

@@ -18,7 +18,7 @@ def setup(bot):
 class Plop(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.channel_m = bot.get_channel(765150007095328790)
+        channel_m = bot.get_channel(765150007095328790)
 
     # LOGS MESSAGES
     @commands.Cog.listener()

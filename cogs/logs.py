@@ -193,7 +193,8 @@ class Plop(commands.Cog):
             dico = ref.get()
             print(dico)
             for title, value in dico.items():
-                dico[value] = dico.get(value) + 1  
+                print(dico.get(value))
+                #dico[value] = dico.get(value) + 1  
             ref.update({
                 'Message': dico[value]
             })     

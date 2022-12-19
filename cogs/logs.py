@@ -190,11 +190,10 @@ class Plop(commands.Cog):
         else: 
             # ça marche !
             ref = db.reference("/data/messages/total")
-            beebot = ref.get()
+            dico = ref.get()
             print(beebot)
-            # for users, value in beebot.items():
-            #    if(value["Première question"] == True):
-            #        print("Première question validée")        
+            for title, value in dico.items():
+                dico[value] = dico.get(value) + 1       
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

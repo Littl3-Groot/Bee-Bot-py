@@ -16,18 +16,15 @@ def setup(bot):
 
 
 class Plop(commands.Cog):
-
     def __init__(self, bot):
         self.bot = bot
-        self.channel_message = self.bot.get_channel(765150007095328790)
-        self.channel_member = self.bot.get_channel(765150008256888832)
-        self.channel_guild_channel = self.bot.get_channel(765150008844222484)
-        self.channel_dm_private = self.bot.get_channel(1015554264938070037)
+        channel_m = bot.get_channel(765150007095328790)
 
     # LOGS MESSAGES
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         serveur = message.guild
+        
 
         if message.author == self.bot.user:
             return
@@ -41,7 +38,7 @@ class Plop(commands.Cog):
         embed.add_field(
             name="Message :", value=f'```{message.content}```', inline=False)
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
-        await self.channel_message.send(embed=embed)
+        await channel_m.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
@@ -53,6 +50,7 @@ class Plop(commands.Cog):
             return
 
         serveur = before.guild
+        channel = self.bot.get_channel(765150007095328790)
         embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel}**',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xFF9F40)
 
@@ -63,12 +61,13 @@ class Plop(commands.Cog):
         embed.add_field(
             name="Après :", value=f' ```{after.content}```', inline=False)
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
-        await  self.channel_message.send(embed=embed)
+        await channel.send(embed=embed)
 
     # LOGS MEMBERS
     @commands.Cog.listener()
     async def on_member_update(self, before, after):
         serveur = before.guild
+        channel = self.bot.get_channel(765150008256888832)
 
         if len(before.roles) > len(after.roles):
             role = next(
@@ -104,11 +103,12 @@ class Plop(commands.Cog):
                          icon_url=before.avatar_url)
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
 
-        await self.channel_member.send(embed=embed)
+        await channel.send(embed=embed)
 
     # LOGS MEMBERS PHOTO DE PROFIL
     @commands.Cog.listener()
     async def on_user_update(self, before, after):
+        channel = self.bot.get_channel(765150008256888832)
 
         if before.avatar_url != after.avatar_url:
             embed = discord.Embed(description=f':writing_hand: **{before.mention} a mis à jour sa photo de profil !**',
@@ -117,12 +117,13 @@ class Plop(commands.Cog):
             embed.set_thumbnail(url=before.avatar_url)
             embed.set_image(url=after.avatar_url)
 
-            await self.channel_member.send(embed=embed)
+            await channel.send(embed=embed)
 
     # LOGS SERVEUR
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel):
         serveur = channel.guild
+        chanel = self.bot.get_channel(765150008844222484)
 
         embed = discord.Embed(
             description=f'🏡 **Salon supprimé : **``{channel.name}``', timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xD00000)
@@ -131,11 +132,12 @@ class Plop(commands.Cog):
                          icon_url=serveur.icon_url)
         embed.set_footer(text=f'{serveur.name}')
 
-        await self.channel_guild_channel.send(embed=embed)
+        await chanel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel):
         serveur = channel.guild
+        chanel = self.bot.get_channel(765150008844222484)
 
         embed = discord.Embed(description=f'🏡 **Salon créé : **``{channel.name}``',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0x40B21A)
@@ -144,11 +146,12 @@ class Plop(commands.Cog):
                          icon_url=serveur.icon_url)
         embed.set_footer(text=f'{serveur.name}')
 
-        await self.channel_guild_channel.send(embed=embed)
+        await chanel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_guild_channel_update(self, before, after):
         serveur = before.guild
+        chanel = self.bot.get_channel(765150008844222484)
 
         if before.name != after.name:
             embed = discord.Embed(
@@ -162,10 +165,11 @@ class Plop(commands.Cog):
                              icon_url=serveur.icon_url)
             embed.set_footer(text=f'{serveur.name}')
 
-            await self.channel_guild_channel.send(embed=embed)
+            await chanel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message(self, ctx):
+        chanel = self.bot.get_channel(1015554264938070037)
         pic_ext = ['.jpg', '.png', '.jpeg']
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:
@@ -181,7 +185,7 @@ class Plop(commands.Cog):
                                 embed.set_image(url=file.url)
 
                 embed.set_footer(text=f'{ctx.author.id}')
-                await self.channel_dm_private.send(embed=embed)
+                await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés")        
                 

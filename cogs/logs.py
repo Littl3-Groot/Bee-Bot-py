@@ -189,7 +189,7 @@ class Plop(commands.Cog):
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
         else: 
             # ça marche !
-            ref = db.reference("/data/messages/total")
+            ref = db.reference("/data/messages/total/Message")
             dico = ref.get()
             print(dico)
             for title, value in dico.items():

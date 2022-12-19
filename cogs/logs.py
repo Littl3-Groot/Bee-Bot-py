@@ -191,9 +191,12 @@ class Plop(commands.Cog):
             # ça marche !
             ref = db.reference("/data/messages/total")
             dico = ref.get()
-            print(beebot)
+            print(dico)
             for title, value in dico.items():
-                dico[value] = dico.get(value) + 1       
+                dico[value] = dico.get(value) + 1  
+            ref.update({
+                'Message': dico[value]
+            })     
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")
@@ -202,3 +205,17 @@ class Plop(commands.Cog):
 # for users, value in beebot.items():
 #    if(value["Première question"] == True):
 #        print("Première question validée")
+
+# @bot.event
+# async def on_message(ctx):
+#    user = ctx.author.id
+#    member = ctx.author
+#    ref = db.reference('/users')
+#    users_ref = ref.child('messages')
+#    if member.bot == True:
+#        return
+#    users_ref.update({
+#        user: {
+#            "Message": str(ctx.content)
+#        }
+#    })

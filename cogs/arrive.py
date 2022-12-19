@@ -10,26 +10,27 @@ def setup(bot):
 
 
 class Arriver(commands.Cog):
+
     def __init__(self, bot):
         self.bot = bot
         self.tracker = DiscordUtils.InviteTracker(bot)
+        self.chanel_arriver = self.bot.get_channel(753283325984243763)
+        self.channel_depard = self.bot.get_channel(972922901781164102)
 
     # Arrivé
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = self.bot.get_channel(753283325984243763)
         inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited
-        await channel.send(f"__Bienvenue sur le serveur__, {member.mention} !")
+        await self.chanel_arriver.send(f"__Bienvenue sur le serveur__, {member.mention} !")
 
     # Départ
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        channel = self.bot.get_channel(972922901781164102)
         # inviter is the member who invited
         embed = discord.Embed(
             title=f"{member} viens de quitter le serveur.", color=0x5865f2)
 
         embed.set_image(
             url="https://cdn.discordapp.com/attachments/972218791188648066/988555995754139678/au_revoir.png")
-        await channel.send(embed=embed)
+        await self.channel_depard.send(embed=embed)

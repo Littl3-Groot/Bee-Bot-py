@@ -59,8 +59,6 @@ async def changestatus():
     await bot.change_presence(activity=game)
 
 # Affiche dans la console et dans un salon quand le bot est en ligne
-
-
 @bot.event
 async def on_ready():
     print("je suis en ligne !")

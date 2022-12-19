@@ -192,6 +192,7 @@ class Plop(commands.Cog):
             ref = db.reference("/data/messages/total/Message")
             dico = ref.get()
             dico += 1 
+            print(dico)
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

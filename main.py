@@ -95,7 +95,7 @@ async def on_ready():
 async def ping(ctx):
     """Donne le temps de réponse du bot et l'envoie dans un Embed"""
     user = ctx.author.id
-    embed = discord.Embed(title="Pong ! 🏓", description=f'**⌛ Temps prout :** {round(bot.latency * 1000)}ms ',
+    embed = discord.Embed(title="Pong ! 🏓", description=f'**⌛ Temps :** {round(bot.latency * 1000)}ms ',
                           color=0x5865F2)
     embed.set_footer(text="demandé par : " +
                           f'{ctx.author.name}', icon_url=ctx.author.avatar_url)

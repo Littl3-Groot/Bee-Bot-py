@@ -18,13 +18,12 @@ def setup(bot):
 class Plop(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.channel_m = bot.get_channel(765150007095328790)
 
     # LOGS MESSAGES
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         serveur = message.guild
-        
+        channel = self.bot.get_channel(765150007095328790)
 
         if message.author == self.bot.user:
             return
@@ -38,7 +37,7 @@ class Plop(commands.Cog):
         embed.add_field(
             name="Message :", value=f'```{message.content}```', inline=False)
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
-        await self.channel_m.send(embed=embed)
+        await channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):

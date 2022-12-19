@@ -187,15 +187,15 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
-        else: 
+        #else: 
             # ça marche !
-            ref = db.reference("/data/messages/total/Message")
-            dico = ref.get()
-            dico += 1 
-            print(dico)
-            ref.update({
-                'Message': dico
-            })
+            #ref = db.reference("/data/messages/total/Message")
+            #dico = ref.get()
+            #dico += 1 
+            #print(dico)
+            #ref.update({
+            #    'Message': dico
+            #})
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

@@ -186,7 +186,15 @@ class Plop(commands.Cog):
                 embed.set_footer(text=f'{ctx.author.id}')
                 await chanel.send(embed=embed)
             except:
-                await ctx.send("Les mp de l'utilisateur sont fermés")        
+                await ctx.send("Les mp de l'utilisateur sont fermés") 
+        else: 
+            # ça marche !
+            ref = db.reference("/data/messages/total")
+            beebot = ref.get()
+            print(beebot)
+            # for users, value in beebot.items():
+            #    if(value["Première question"] == True):
+            #        print("Première question validée")        
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

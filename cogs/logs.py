@@ -195,9 +195,9 @@ class Plop(commands.Cog):
             for title, value in dico.items():
                 print(dico.get(value))
                 #dico[value] = dico.get(value) + 1  
-            ref.update({
-                'Message': dico[value]
-            })     
+            #ref.update({
+            #    'Message': dico[value]
+            #})     
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

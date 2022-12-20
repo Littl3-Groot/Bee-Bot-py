@@ -63,7 +63,6 @@ async def changestatus():
 async def on_ready():
     print("je suis en ligne !")
     chanel = bot.get_channel(979821289365704704)
-    # await chanel.send("je suis en ligne !")
     changestatus.start()
 
 

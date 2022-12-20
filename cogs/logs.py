@@ -187,34 +187,3 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
-        else: 
-            # ça marche !
-            ref = db.reference("/data/messages/total")
-            dico = ref.get()
-            dico += 1 
-            print(dico)
-            ref.update({
-                'nb_message': dico
-            })
-                
-    # ça marche !
-# ref = db.reference("/users/beebot/")
-# beebot = ref.get()
-# print(beebot)
-# for users, value in beebot.items():
-#    if(value["Première question"] == True):
-#        print("Première question validée")
-
-# @bot.event
-# async def on_message(ctx):
-#    user = ctx.author.id
-#    member = ctx.author
-#    ref = db.reference('/users')
-#    users_ref = ref.child('messages')
-#    if member.bot == True:
-#        return
-#    users_ref.update({
-#        user: {
-#            "Message": str(ctx.content)
-#        }
-#    })

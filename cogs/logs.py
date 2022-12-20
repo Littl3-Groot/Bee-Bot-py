@@ -189,13 +189,17 @@ class Plop(commands.Cog):
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
         #else: 
             # ça marche !
-            #ref = db.reference("/data/messages/total/Message")
-            #dico = ref.get()
-            #dico += 1 
-            #print(dico)
-            #ref.update({
-            #    'Message': dico
-            #})
+            ref = db.reference("/data/messages")
+            dico = ref.get()
+            total_ref = ref.child('total')
+            dico += 1 
+            print(dico)
+            total_ref.update({
+                "Total": dico
+            })
+            ref.update({
+                'Message': dico
+            })
                 
     # ça marche !
 # ref = db.reference("/users/beebot/")

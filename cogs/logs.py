@@ -187,7 +187,7 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
-        #else: 
+        else: 
             # ça marche !
             ref = db.reference("/data/messages")
             dico = ref.get()

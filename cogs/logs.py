@@ -187,18 +187,14 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
-        else: 
+        #else: 
             # ça marche !
-            ref = db.reference("/data/messages")
+            ref = db.reference("/data/messages/total")
             dico = ref.get()
-            total_ref = ref.child('total')
-            print(total_ref)
+            dico += 1 
             print(dico)
-            total_ref.update({
-                "Total": dico
-            })
             ref.update({
-                'Message': dico
+                'nb_message': dico
             })
                 
     # ça marche !

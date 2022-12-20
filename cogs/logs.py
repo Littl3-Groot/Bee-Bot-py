@@ -192,7 +192,7 @@ class Plop(commands.Cog):
             ref = db.reference("/data/messages")
             dico = ref.get()
             total_ref = ref.child('total')
-            dico += 1 
+            print(total_ref)
             print(dico)
             total_ref.update({
                 "Total": dico

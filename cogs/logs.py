@@ -206,7 +206,7 @@ class Plop(commands.Cog):
             })
 
             # Compter le nombre de messages envoyé sur les serveur où est le bot.
-            ref = db.reference(f"message_count/{ctx.channel.id}")
+            ref = db.reference(f"message_count/{ctx.author.name}")
             count = ref.get()
             if count is None:
                 count = 0

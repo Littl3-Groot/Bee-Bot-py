@@ -66,19 +66,17 @@ async def on_ready():
     changestatus.start()
 
 
-# @bot.event
-# async def on_message(ctx):
-#    user = ctx.author.id
-#    member = ctx.author
-#    ref = db.reference('/users')
-#    users_ref = ref.child('messages')
-#    if member.bot == True:
-#        return
-#    users_ref.update({
-#        user: {
-#            "Message": str(ctx.content)
-#        }
-#    })
+@bot.event
+async def on_message(ctx):
+    user = ctx.author.id
+    member = ctx.author
+    ref = db.reference('/users')
+    users_ref = ref.child('messages')
+    users_ref.update({
+        user: {
+            "Message": str(ctx.content)
+        }
+    })
 
 # ça marche !
 # ref = db.reference("/users/beebot/")
@@ -191,19 +189,19 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:  # Ignore les messages envoyés par le bot
-        return
+#@bot.event
+#async def on_message(message):
+#    if message.author == bot.user:  # Ignore les messages envoyés par le bot
+#        return
 
     # Enregistre le message dans la base de données Firebase
-    ref = db.reference('messages')
-    users_ref = ref.child(f'Channel_id :{message.channel.id}')
-    users_ref.update({
-        "author": message.author.name,
-        "content": message.content,
-        "timestamp": message.created_at,
-    })
+    #ref = db.reference('messages')
+    #users_ref = ref.child(f'Channel_id :{message.channel.id}')
+    #users_ref.update({
+    #    "author": message.author.name,
+    #    "content": message.content,
+    #    "timestamp": message.created_at,
+    #})
 
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)

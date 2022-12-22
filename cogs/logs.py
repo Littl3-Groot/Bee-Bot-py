@@ -204,3 +204,9 @@ class Plop(commands.Cog):
                 "content": str(ctx.content),
                 "timestamp": str(ctx.created_at),
             })
+
+            ref = db.reference(f"message_count/{message.channel.id}")
+            count = ref.get()
+            if count is None:
+                count = 0
+            ref.set(count + 1)

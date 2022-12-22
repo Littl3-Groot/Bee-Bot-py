@@ -197,13 +197,13 @@ async def on_message(message):
         return
 
     # Enregistre le message dans la base de données Firebase
-    db.reference(f"messages/{message.channel.id}").push(
-        {
-            "author": message.author.name,
-            "content": message.content,
-            "timestamp": message.created_at,
-        }
-    )
+    ref = db.reference('messages')
+    users_ref = ref.child(message.channel.id)
+    users_ref.update({
+        "author": message.author.name,
+        "content": message.content,
+        "timestamp": message.created_at,
+    })
 
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)

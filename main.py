@@ -191,7 +191,7 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
-@client.event
+@bot.event
 async def on_message(message):
     if message.author == client.user:  # Ignore les messages envoyés par le bot
         return

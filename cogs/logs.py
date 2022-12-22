@@ -170,6 +170,9 @@ class Plop(commands.Cog):
     async def on_message(self, ctx):
         chanel = self.bot.get_channel(1015554264938070037)
         pic_ext = ['.jpg', '.png', '.jpeg']
+        if ctx.author == self.bot.user:  # Ignore les messages envoyés par le bot
+            return
+
         if ctx.channel.type == discord.ChannelType.private and ctx.author != self.bot.user:
             try:
                 embed = discord.Embed(
@@ -187,3 +190,13 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
+
+        else:
+                    # Enregistre le message dans la base de données Firebase
+            db.reference(f"messages/{message.channel.id}").push(
+                {
+                    "author": message.author.name,
+                    "content": message.content,
+                    "timestamp": message.created_at,
+                }
+            )

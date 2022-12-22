@@ -74,7 +74,9 @@ async def on_message(ctx):
     users_ref = ref.child('messages')
     users_ref.update({
         user: {
-            "Message": str(ctx.content)
+            "content": str(ctx.content),
+            "author": ctx.author.name,
+            "timestamp": ctx.created_at,
         }
     })
 

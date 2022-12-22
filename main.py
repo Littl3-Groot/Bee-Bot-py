@@ -193,7 +193,8 @@ async def help(ctx):
 
 @bot.event
 async def on_message(message):
-    if message.author == bot.user:  # Ignore les messages envoyés par le bot
+    member = message.author
+    if member.bot == True:
         return
 
     # Enregistre le message dans la base de données Firebase

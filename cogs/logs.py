@@ -198,13 +198,14 @@ class Plop(commands.Cog):
 
             # Enregistre le message dans la base de données Firebase
             ref = db.reference('messages')
-            users_ref = ref.child(f'Channel_id :{ctx.channel.id}')
+            users_ref = ref.child(f'Author :{ctx.author.name}')
             users_ref.update({
-                "author": str(ctx.author.name),
+                "channel_id": str(ctx.channel.id),
                 "content": str(ctx.content),
                 "timestamp": str(ctx.created_at),
             })
 
+            # Compter le nombre de messages envoyé sur les serveur où est le bot.
             ref = db.reference(f"message_count/{ctx.channel.id}")
             count = ref.get()
             if count is None:

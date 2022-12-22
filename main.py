@@ -198,7 +198,7 @@ async def on_message(message):
 
     # Enregistre le message dans la base de données Firebase
     ref = db.reference('messages')
-    users_ref = ref.child(message.channel.id)
+    users_ref = ref.child(f'Channel_id :{message.channel.id}')
     users_ref.update({
         "author": message.author.name,
         "content": message.content,

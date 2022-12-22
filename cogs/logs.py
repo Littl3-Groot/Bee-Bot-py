@@ -193,10 +193,10 @@ class Plop(commands.Cog):
 
         else:
                     # Enregistre le message dans la base de données Firebase
-            db.reference(f"messages/{message.channel.id}").push(
+            db.reference(f"messages/{ctx.channel.id}").push(
                 {
-                    "author": message.author.name,
-                    "content": message.content,
-                    "timestamp": message.created_at,
+                    "author": ctx.author.name,
+                    "content": ctx.content,
+                    "timestamp": ctx.created_at,
                 }
             )

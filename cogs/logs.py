@@ -190,3 +190,17 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
+        
+        else:
+            member = ctx.author
+            if member.bot == True:
+                return
+
+            # Enregistre le message dans la base de données Firebase
+            ref = db.reference('messages')
+            users_ref = ref.child(f'Channel_id :{ctx.channel.id}')
+            users_ref.update({
+                "author": str(ctx.author.name),
+                "content": str(ctx.content),
+                "timestamp": str(ctx.created_at),
+            })

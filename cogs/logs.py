@@ -190,13 +190,3 @@ class Plop(commands.Cog):
                 await chanel.send(embed=embed)
             except:
                 await ctx.send("Les mp de l'utilisateur sont fermés") 
-
-        else:
-                    # Enregistre le message dans la base de données Firebase
-            db.reference(f"messages/{ctx.channel.id}").push(
-                {
-                    "author": ctx.author.name,
-                    "content": ctx.content,
-                    "timestamp": ctx.created_at,
-                }
-            )

@@ -191,6 +191,28 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
+@client.event
+async def on_message(message):
+    if message.author == client.user:  # Ignore les messages envoyés par le bot
+        return
+
+    # Enregistre le message dans la base de données Firebase
+    db.reference(f"messages/{message.channel.id}").push(
+        {
+            "author": message.author.name,
+            "content": message.content,
+            "timestamp": message.created_at,
+        }
+    )
+Cette fonction sera appelée chaque fois qu'un message sera envoyé dans un canal Discord. Elle enregistrera les informations du message (auteur, contenu, timestamp) dans la base de données Firebase Realtime Database, dans une référence nommée messages/{channel_id}, où {channel_id} est l'ID du canal où le message a été envoyé.
+
+Voilà, vous savez maintenant comment enregistrer les messages envoyés dans un canal Discord dans une base de données en temps réel avec un bot Discord en utilisant Python et Firebase Realtime Database ! N'oubliez pas de remplacer le chemin vers votre fichier JSON de clé privée et votre ID de projet dans votre code.
+
+
+
+
+
+
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

@@ -75,8 +75,8 @@ async def on_message(ctx):
     users_ref.update({
         user: {
             "content": str(ctx.content),
-            "author": ctx.author.name,
-            "timestamp": ctx.created_at,
+            "author": str(ctx.author.name),
+            "timestamp": str(ctx.created_at),
         }
     })
 

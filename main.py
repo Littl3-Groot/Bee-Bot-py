@@ -191,6 +191,14 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
+@client.command()
+async def register(ctx, email, password):
+    try:
+        user = auth.create_user(email=email, password=password)
+        await ctx.send(f'Your account has been created! You can now login with your email and password.')
+    except Exception as e:
+        await ctx.send(f'Error: {e}')
+
 #@bot.event
 #async def on_message(message):
 #    member = message.author

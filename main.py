@@ -177,8 +177,8 @@ async def on_voice_state_update(member, before, after):
         # Enregistre la date de début de connexion dans la base de données Firebase
         db.reference(f"voice_sessions/{member.id}").set(
             {
-                "start_time": after.channel.guild.me.joined_at,
-                "channel_id": after.channel.id,
+                "start_time": str(after.channel.guild.me.joined_at),
+                "channel_id": str(after.channel.id),
             }
         )
     elif before.channel is not None and after.channel is None:

@@ -169,6 +169,33 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
+@bot.event
+async def on_message(message):
+    # Ignorez les messages envoyés par le bot lui-même
+    if message.author == client.user:
+        return
+
+    # Vérifiez si le message commence par le préfixe de commande
+    if message.content.startswith('!level'):
+        # Obtenez le nom d'utilisateur de l'expéditeur du message
+        username = message.author.name
+
+        # Obtenez le document de l'utilisateur dans la base de données Firestore
+        user_ref = db.collection('users').document(username)
+        user_doc = await user_ref.get()
+
+        # Si le document de l'utilisateur n'existe pas, créez-le avec un niveau de 1
+        if not user_doc.exists:
+            await user_ref.set({'level': 1})
+            level = 1
+        else:
+            # Sinon, obtenez le niveau de l'utilisateur à partir du document
+            level = user_doc.to_dict()['level']
+
+        # Envoyez un message avec le niveau de l'utilisateur
+        await message.channel.send(f'{username} is level {level}')
+
+
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

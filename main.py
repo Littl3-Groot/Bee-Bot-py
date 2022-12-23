@@ -172,8 +172,8 @@ async def help(ctx):
 @bot.event
 async def on_message(message):
     # Ignorez les messages envoyés par le bot lui-même
-    if message.author == client.user:
-        return
+     if member.bot == True:
+                return
 
     # Vérifiez si le message commence par le préfixe de commande
     if message.content.startswith('!level'):

@@ -188,6 +188,8 @@ async def on_voice_state_update(member, before, after):
         if session is None:
             # L'utilisateur n'a pas de session en cours
             return
+    print(before)
+    print(after)
 
         # Calcule la durée de la session en minutes
         duration = (after.channel.guild.me.joined_at - session["start_time"]).total_seconds() / 60

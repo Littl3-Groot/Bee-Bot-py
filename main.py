@@ -171,9 +171,6 @@ async def help(ctx):
 
 @bot.event
 async def on_message(message):
-    # Ignorez les messages envoyés par le bot lui-même
-    if member.bot == True:
-        return
 
     # Vérifiez si le message commence par le préfixe de commande
     if message.content.startswith('!level'):
@@ -194,8 +191,6 @@ async def on_message(message):
 
         # Envoyez un message avec le niveau de l'utilisateur
         await message.channel.send(f'{username} is level {level}')
-
-
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

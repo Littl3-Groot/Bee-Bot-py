@@ -192,43 +192,6 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
-@bot.command()
-async def register(ctx, email, password):
-    try:
-        user = auth.create_user(email=email, password=password)
-        await ctx.send(f'Your account has been created! You can now login with your email and password.')
-    except Exception as e:
-        await ctx.send(f'Error: {e}')
-
-@bot.command()
-async def login(ctx, email, password):
-    try:
-        user = auth.get_user_by_email(email)
-        if user is None:
-            raise ValueError("No user with that email address was found.")
-        if auth.verify_password(user.uid, password):
-            await ctx.send(f'Welcome, {user.email}! You are now logged in.')
-        else:
-            raise ValueError("Incorrect password.")
-    except Exception as e:
-        await ctx.send(f'Error: {e}')
-
-#@bot.event
-#async def on_message(message):
-#    member = message.author
-#    if member.bot == True:
-#        return
-#
-#    # Enregistre le message dans la base de données Firebase
-#    ref = db.reference('messages')
-#    users_ref = ref.child(f'Channel_id :{message.channel.id}')
-#    users_ref.update({
-#        "author": str(message.author.name),
-#        "content": str(message.content),
-#        "timestamp": str(message.created_at),
-#    })
-
-
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))
 bot.add_cog(arrive.Arriver(bot))

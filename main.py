@@ -28,6 +28,7 @@ from config import *
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+from firebase_admin import auth
 
 cred = credentials.Certificate(firebase_config)
 databaseApp = firebase_admin.initialize_app(cred, {

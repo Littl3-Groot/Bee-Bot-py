@@ -199,7 +199,7 @@ async def register(ctx, identifiant, password):
     except Exception as e:
         await ctx.send(f'Error: {e}')
 
-@client.command()
+@bot.command()
 async def login(ctx, identifiant, password):
     try:
         user = auth.get_user_by_email(identifiant)

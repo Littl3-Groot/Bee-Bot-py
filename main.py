@@ -169,33 +169,6 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
-@bot.event
-async def on_voice_state_update(member, before, after):
-    # Vérifie si l'utilisateur vient de se connecter ou de se déconnecter d'un canal vocal
-    if before.channel is None and after.channel is not None:
-        # L'utilisateur vient de se connecter à un canal vocal
-        # Enregistre la date de début de connexion dans la base de données Firebase
-        db.reference(f"voice_sessions/{member.id}").set(
-            {
-                "start_time": str(after.channel.guild.me.joined_at),
-                "channel_id": str(after.channel.id),
-            }
-        )
-    elif before.channel is not None and after.channel is None:
-        # L'utilisateur vient de se déconnecter d'un canal vocal
-        # Récupère les informations de la session en cours depuis la base de données Firebase
-        session = db.reference(f"voice_sessions/{member.id}").get()
-        if session is None:
-            # L'utilisateur n'a pas de session en cours
-            return
-
-        # Calcule la durée de la session en minutes
-        duration = (after.channel.guild.me.joined_at - session["start_time"]).total_seconds() / 60
-        # Ajoute la durée de la session au compteur de temps passé en vocal de l'utilisateur
-        db.reference(f"voice_time/{member.id}").transaction(lambda x: x + duration if x is not None else duration)
-        # Supprime les informations de la session en cours de la base de données
-        db.reference(f"voice_sessions/{member.id}").delete()
-            
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

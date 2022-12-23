@@ -193,21 +193,21 @@ async def help(ctx):
             await ctx.send("Erreur !")
 
 @bot.command()
-async def register(ctx, identifiant, password):
+async def register(ctx, email, password):
     try:
-        user = auth.create_user(identifiant=identifiant, password=password)
-        await ctx.send(f'Your account has been created! You can now login with your identifiant and password.')
+        user = auth.create_user(email=email, password=password)
+        await ctx.send(f'Your account has been created! You can now login with your email and password.')
     except Exception as e:
         await ctx.send(f'Error: {e}')
 
 @bot.command()
-async def login(ctx, identifiant, password):
+async def login(ctx, email, password):
     try:
-        user = auth.get_user_by_email(identifiant)
+        user = auth.get_user_by_email(email)
         if user is None:
-            raise ValueError("No user with that identifiant address was found.")
+            raise ValueError("No user with that email address was found.")
         if auth.verify_password(user.uid, password):
-            await ctx.send(f'Welcome, {user.identifiant}! You are now logged in.')
+            await ctx.send(f'Welcome, {user.email}! You are now logged in.')
         else:
             raise ValueError("Incorrect password.")
     except Exception as e:

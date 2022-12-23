@@ -67,29 +67,6 @@ async def on_ready():
     changestatus.start()
 
 
-# @bot.event
-# async def on_message(ctx):
-#    user = ctx.author.id
-#    member = ctx.author
-#    ref = db.reference('/users')
-#    users_ref = ref.child('messages')
-#    if member.bot == True:
-#        return
-#    users_ref.update({
-#        user: {
-#            "Message": str(ctx.content)
-#        }
-#    })
-
-# ça marche !
-# ref = db.reference("/users/beebot/")
-# beebot = ref.get()
-# print(beebot)
-# for users, value in beebot.items():
-#    if(value["Première question"] == True):
-#        print("Première question validée")
-
-
 # Commande qui affiche le temps de réponse du bot (ping)
 @slash.slash(name="ping", guild_ids=[970708155610837024, 753278912011698247], description="Affiche le temps de réponse du bot.")
 async def ping(ctx):
@@ -191,6 +168,8 @@ async def help(ctx):
                 await choice_ctx.edit_origin(content=" ", embed=embedFun)
         except:
             await ctx.send("Erreur !")
+
+            
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

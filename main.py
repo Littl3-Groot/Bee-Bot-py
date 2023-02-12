@@ -5,7 +5,7 @@ from discord.utils import get
 import datetime
 import random
 
-# imports des cogs
+# imports des cogs (j'aime le couscous)
 import cogs.logs as logs
 import cogs.arrive as arrive
 import cogs.admin as admin

@@ -30,6 +30,9 @@ from firebase_admin import credentials, firestore
 from firebase_admin import db
 from firebase_admin import auth
 
+#pour la commande ChetGPT
+import openai
+
 cred = credentials.Certificate(firebase_config)
 databaseApp = firebase_admin.initialize_app(cred, {
     'databaseURL': DatabaseUrl
@@ -47,6 +50,8 @@ intents.guilds = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
+
+openai.api_key = "sk-...as20"
 
 # Liste des statuts du bot
 status = ["/help", "conquérir les humains 🔥", "V1", "Bonne année !"]
@@ -66,7 +71,6 @@ async def on_ready():
     chanel = bot.get_channel(979821289365704704)
     changestatus.start()
 
-
 # Commande qui affiche le temps de réponse du bot (ping)
 @slash.slash(name="ping", guild_ids=[970708155610837024, 753278912011698247], description="Affiche le temps de réponse du bot.")
 async def ping(ctx):
@@ -84,6 +88,23 @@ async def ping(ctx):
         }
     })
     await ctx.reply(embed=embed)
+
+@slash.slash(name='ChatGPT', guild_ids=[970708155610837024, 753278912011698247], description='Ask a question and ChatGPT will answer',options=[
+    create_option(name="question",
+                  description="Ask a question and ChatGPT will answer.", option_type=3, required=True),
+])
+async def chatgpt(ctx, *, question: str):
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt='Q: ' + question + '\nA: ',
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    ).get("choices")[0].text
+
+    await ctx.send(response)
+
 
 # Commande qui affiche la bannière de l'utilisateur choisit
 @slash.slash(name="banner", guild_ids=[970708155610837024, 753278912011698247], description="Affiche la bannière de l'utilisateur choisit.", options=[

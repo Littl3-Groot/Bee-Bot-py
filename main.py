@@ -51,7 +51,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
 
-openai.api_key = "sk-...as20"
+openai.api_key = "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"
 
 # Liste des statuts du bot
 status = ["/help", "conquérir les humains 🔥", "V1", "Bonne année !"]

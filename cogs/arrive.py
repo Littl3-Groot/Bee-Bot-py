@@ -23,7 +23,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(1021051176147501096)
 
         #image quand une personne rejoin le serveur.
-        background = Editor("soir.png")
+        background = Editor("nuit.jpg")
         profile_image = await load_image_async(str(member.avatar_url))
 
         profile = Editor(profile_image).resize((200, 200)).circle_image()
@@ -33,8 +33,8 @@ class Arriver(commands.Cog):
         background.paste(profile, (400, 90))
         background.ellipse((400, 90), 200, 200, outline ="white", stroke_width=5)
 
-        background.text((500, 360), f"BIENVENUE", color="white", font=poppins, align="center")
-        background.text((500, 425), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
+        background.text((500, 345), f"BIENVENUE", color="white", font=poppins, align="center")
+        background.text((500, 410), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
         file = File(fp=background.image_bytes, filename="pic1.jpg")
         await channel.send(file=file)

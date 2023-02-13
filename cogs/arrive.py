@@ -29,7 +29,7 @@ class Arriver(commands.Cog):
         poppins_small = Font.poppins(size= 20, variant="light")
 
         background.paste(profile, (325, 90))
-        background.ellipse((325, 90), 150, 150, outline ="white", stroke_wigth=5)
+        background.ellipse((325, 90), 150, 150, outline ="white", stroke_width=5)
 
         background.text((400, 260), f"BIENVENUE TO {member.guild.name}", color="white", font=poppins, align="center")
         background.text((400, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")

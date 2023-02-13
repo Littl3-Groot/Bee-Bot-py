@@ -20,7 +20,7 @@ class Arriver(commands.Cog):
     # Arrivé
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = self.bot.get_channel(1021051176147501096)
+        channel = self.bot.get_channel(753283325984243763)
 
         #image quand une personne rejoin le serveur.
         background = Editor("image_arrive.jpg")

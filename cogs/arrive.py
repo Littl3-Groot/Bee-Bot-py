@@ -50,13 +50,12 @@ class Arriver(commands.Cog):
 
         #inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited
-        #await channel.send(f"__**Bienvenue à toi**__ {member.mention}  sur le serveur de Im Beerus ! <:beeyop:1051253222477668514>")
+        await channel.send(f"__**Bienvenue à toi**__ {member.mention}  sur le serveur de Im Beerus ! <:beeyop:1051253222477668514>")
 
     # Départ
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(972922901781164102)
-        # inviter is the member who invited
         embed = discord.Embed(
             title=f"{member} viens de quitter le serveur.", color=0x5865f2)
 

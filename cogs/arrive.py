@@ -32,10 +32,10 @@ class Arriver(commands.Cog):
         background.paste(profile, (325, 90))
         background.ellipse((325, 90), 150, 150, outline ="white", stroke_width=5)
 
-        background.text((400, 260), f"BIENVENUE TO {member.guild.name}", color="white", font=poppins, align="center")
+        background.text((400, 260), f"BIENVENUE", color="white", font=poppins, align="center")
         background.text((400, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
-        file = File(fp=background.image_bytes, filename="pic1.jpg")
+        file = File(fp=background.image_bytes, filename="soir.png")
         await channel.send(file=file)
         #inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited

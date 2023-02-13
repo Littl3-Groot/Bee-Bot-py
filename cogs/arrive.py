@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import File
 import DiscordUtils
 
-from easy_pil import Editor, load_image_async, Font, File
+from easy_pil import Editor, load_image_async, Font
 
 bot = commands.Bot(command_prefix="!")
 

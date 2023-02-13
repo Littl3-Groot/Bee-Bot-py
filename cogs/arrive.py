@@ -25,12 +25,12 @@ class Arriver(commands.Cog):
         background = Editor("soir.png")
         profile_image = await load_image_async(str(member.avatar_url))
 
-        profile = Editor(profile_image).resize((150, 150)).circle_image()
+        profile = Editor(profile_image).resize((200, 200)).circle_image()
         poppins = Font.poppins(size= 50, variant="bold")
         poppins_small = Font.poppins(size= 20, variant="light")
 
-        background.paste(profile, (500, 90))
-        background.ellipse((500, 90), 150, 150, outline ="white", stroke_width=5)
+        background.paste(profile, (425, 90))
+        background.ellipse((425, 90), 150, 150, outline ="white", stroke_width=5)
 
         background.text((500, 260), f"BIENVENUE", color="white", font=poppins, align="center")
         background.text((500, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")

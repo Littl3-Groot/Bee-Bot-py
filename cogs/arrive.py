@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import DiscordUtils
 
+from easy_pil import Editor, load_image_async, Font
+
 bot = commands.Bot(command_prefix="!")
 
 
@@ -18,9 +20,25 @@ class Arriver(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         channel = self.bot.get_channel(753283325984243763)
-        inviter = await self.tracker.fetch_inviter(member)
+
+        background = Editor("C:\Users\lelia_8az9nwc\Source\Repos\Bee-Bot-py\images\nuit.jpg")
+        profile_image ) await load_image_async(str(avatar.url))
+
+        profile = Editor(profile_image).resize((150, 150)).circle_image()
+        poppins = Font.poppins(size= 50, variant="bold")
+        poppins_small = Font.poppins(size= 20, variant="light")
+
+        background.paste(profile, (325, 90))
+        background.ellipse((325, 90), 150, 150, outline ="white", stroke_wigth=5)
+
+        background.text((400, 260), f"BIENVENUE TO {member.guild.name}", color="white", font=poppins, align="center")
+        background.text((400, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
+       
+        file = File(fp=background.image_bytes, filename="pic1.jpg")
+        await channel.send(file=file)
+        #inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited
-        await channel.send(f"__**Bienvenue à toi**__ {member.mention}  sur le serveur de Im Beerus ! <:beeyop:1051253222477668514>")
+        #await channel.send(f"__**Bienvenue à toi**__ {member.mention}  sur le serveur de Im Beerus ! <:beeyop:1051253222477668514>")
 
     # Départ
     @commands.Cog.listener()

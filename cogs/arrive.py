@@ -21,7 +21,7 @@ class Arriver(commands.Cog):
     async def on_member_join(self, member):
         channel = self.bot.get_channel(753283325984243763)
 
-        background = Editor("C:\Users\lelia_8az9nwc\Source\Repos\Bee-Bot-py\images\pic3.jpg")
+        background = Editor("pic3.jpg")
         profile_image = await load_image_async(str(avatar.url))
 
         profile = Editor(profile_image).resize((150, 150)).circle_image()

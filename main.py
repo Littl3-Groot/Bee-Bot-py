@@ -50,7 +50,7 @@ bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
 
 # Liste des statuts du bot
-status = ["/help", "conquérir les humains 🔥", "V1", "Bonne année !"]
+status = ["/help", "conquérir les humains 🔥", "V1"]
 
 # Change le statut du bot toute les 5 secondes
 

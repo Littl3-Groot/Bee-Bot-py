@@ -30,11 +30,11 @@ class Arriver(commands.Cog):
         poppins = Font.poppins(size= 50, variant="bold")
         poppins_small = Font.poppins(size= 20, variant="light")
 
-        background.paste(profile, (425, 90))
-        background.ellipse((425, 90), 200, 200, outline ="white", stroke_width=5)
+        background.paste(profile, (400, 90))
+        background.ellipse((400, 90), 200, 200, outline ="white", stroke_width=5)
 
-        background.text((500, 260), f"BIENVENUE", color="white", font=poppins, align="center")
-        background.text((500, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
+        background.text((500, 360), f"BIENVENUE", color="white", font=poppins, align="center")
+        background.text((500, 425), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
         file = File(fp=background.image_bytes, filename="pic1.jpg")
         await channel.send(file=file)

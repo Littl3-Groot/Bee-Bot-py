@@ -22,7 +22,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(753283325984243763)
 
         background = Editor("pic3.jpg")
-        profile_image = await load_image_async(str(avatar.url))
+        profile_image = await load_image_async(str(member.avatar_url))
 
         profile = Editor(profile_image).resize((150, 150)).circle_image()
         poppins = Font.poppins(size= 50, variant="bold")

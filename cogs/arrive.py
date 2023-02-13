@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
+from discord import File
 import DiscordUtils
 
-from easy_pil import Editor, load_image_async, Font
+from easy_pil import Editor, load_image_async, Font, File
 
 bot = commands.Bot(command_prefix="!")
 

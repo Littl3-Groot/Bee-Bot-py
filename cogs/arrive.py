@@ -23,7 +23,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(1021051176147501096)
 
         #image quand une personne rejoin le serveur.
-        background = Editor("nui.jpg")
+        background = Editor("nuit.jpg")
         profile_image = await load_image_async(str(member.avatar_url))
 
         profile = Editor(profile_image).resize((200, 200)).circle_image()

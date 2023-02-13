@@ -22,7 +22,7 @@ class Arriver(commands.Cog):
     async def on_member_join(self, member):
         channel = self.bot.get_channel(753283325984243763)
 
-        background = Editor("pic3.jpg")
+        background = Editor("soir.png")
         profile_image = await load_image_async(str(member.avatar_url))
 
         profile = Editor(profile_image).resize((150, 150)).circle_image()
@@ -35,7 +35,7 @@ class Arriver(commands.Cog):
         background.text((400, 260), f"BIENVENUE", color="white", font=poppins, align="center")
         background.text((400, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
-        file = File(fp=background.image_bytes, filename="soir.png")
+        file = File(fp=background.image_bytes, filename="pic1.jpg")
         await channel.send(file=file)
         #inviter = await self.tracker.fetch_inviter(member)
         # inviter is the member who invited

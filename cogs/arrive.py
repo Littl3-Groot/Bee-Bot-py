@@ -20,8 +20,9 @@ class Arriver(commands.Cog):
     # Arrivé
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = self.bot.get_channel(753283325984243763)
+        channel = self.bot.get_channel(1021051176147501096)
 
+        #image quand une personne rejoin le serveur.
         background = Editor("soir.png")
         profile_image = await load_image_async(str(member.avatar_url))
 
@@ -30,7 +31,7 @@ class Arriver(commands.Cog):
         poppins_small = Font.poppins(size= 20, variant="light")
 
         background.paste(profile, (425, 90))
-        background.ellipse((425, 90), 150, 150, outline ="white", stroke_width=5)
+        background.ellipse((425, 90), 200, 200, outline ="white", stroke_width=5)
 
         background.text((500, 260), f"BIENVENUE", color="white", font=poppins, align="center")
         background.text((500, 325), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")

@@ -325,41 +325,6 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-        # roulette pas FINI
-        # @cog_ext.cog_slash(name="roulette", guild_ids=[970708155610837024], description="Lance un roulette russe.")
-        # async def roulette(self, ctx):
-        """Lance une roulette"""
-
-    #    await ctx.send("La roulette commencera dans 10 secondes. Envoyer \"moi\" dans ce salon pour y participer !")
-
-    #    joueurs = []
-
-    #    def checkRoulette(message):
-    #        return message.channel == ctx.message.channel and message.author not in joueurs and message.content == 'moi'
-
-    #    try:
-    #        while True:
-    #            participation = await self.bot.wait_for("message", timeout=10, check=checkRoulette)
-    #            joueurs.append(participation.author)
-    #            await ctx.send(
-    #                f"**{participation.author.mention}** participe à la roulette russe ! Le tirage commence dans 10 secondes.")
-    #    except:
-    #        print("démarrage du tirage")
-
-    #    malus = ["ban", "kick", "mute", "soft ban", "role personnel", "gage"]
-
-    #    message = await ctx.send("Le tirage commence dans 3 secondes !")
-    #    await asyncio.sleep(1)
-    #    await message.edit(content="Le tirage commence dans 2 secondes !")
-    #    await asyncio.sleep(1)
-    #    await message.edit(content="Le tirage commence dans 1 seconde !")
-    #    await asyncio.sleep(1)
-    #    loser = random.choice(joueurs)
-    #    prix = random.choice(malus)
-    #    await message.edit(content=f"La personne qui a gagner un {prix} est ...")
-    #    await asyncio.sleep(2)
-    #    await message.edit(content=f"La personne qui a gagné un {prix} est {loser.mention}")
-
     @cog_ext.cog_slash(name="mdp", guild_ids=[970708155610837024, 753278912011698247],
                        description="Donne un mot de passe sécurisé au hasard.", options=[
         create_option(name="longueur",

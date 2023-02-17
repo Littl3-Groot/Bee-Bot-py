@@ -43,7 +43,7 @@ class Arriver(commands.Cog):
 
         #Placement des textes, couleur, font, et alignement
         background.text((485, 345), f"BIENVENUE", color="white", font=poppins, align="center")
-        background.text((500, 410), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
+        background.text((500, 405), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
         file = File(fp=background.image_bytes, filename="pic1.jpg")
         await channel.send(file=file)
@@ -66,7 +66,7 @@ class Arriver(commands.Cog):
         #Resize la pdp en un cercle 200px par 200px
         profile = Editor(profile_image).resize((200, 200)).circle_image()
         
-        #Ajouts des 
+        #Ajouts des fonts
         poppins = Font.poppins(size= 50, variant="bold")
         poppins_small = Font.poppins(size= 20, variant="light")
         
@@ -78,7 +78,7 @@ class Arriver(commands.Cog):
 
         #Placement des textes, couleur, font, et alignement
         background.text((485, 345), f"À BIENTÔT", color="white", font=poppins, align="center")
-        background.text((500, 410), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
+        background.text((500, 405), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
         file = File(fp=background.image_bytes, filename="pic1.jpg")
         await channel.send(file=file)

@@ -77,7 +77,7 @@ class Arriver(commands.Cog):
         background.ellipse((400, 90), 200, 200, outline ="white", stroke_width=5)
 
         #Placement des textes, couleur, font, et alignement
-        background.text((485, 345), f"AU REVOIR", color="white", font=poppins, align="center")
+        background.text((485, 345), f"À BIENTÔT", color="white", font=poppins, align="center")
         background.text((500, 410), f"{member.name}#{member.discriminator}", color="white", font=poppins, align="center")
        
         file = File(fp=background.image_bytes, filename="pic1.jpg")

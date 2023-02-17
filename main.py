@@ -76,13 +76,6 @@ async def ping(ctx):
                           color=0x5865F2)
     embed.set_footer(text="demandé par : " +
                           f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
-    ref = db.reference('/users')
-    beebot_ref = ref.child('beebot')
-    beebot_ref.update({
-        user: {
-            "Première question": True
-        }
-    })
     await ctx.reply(embed=embed)
 
 # Commande qui affiche la bannière de l'utilisateur choisit

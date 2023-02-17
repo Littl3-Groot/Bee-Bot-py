@@ -56,15 +56,14 @@ status = ["/help", "conquérir les humains 🔥", "V1"]
 
 
 @tasks.loop(seconds=60)
-async def changestatus():
+async def changestatus(): #update le statut du bot toutes les 60 secondes
     game = discord.Game(random.choice(status))
     await bot.change_presence(activity=game)
 
-# Affiche dans la console et dans un salon quand le bot est en ligne
+# Affiche dans la console quand le bot est en ligne
 @bot.event
 async def on_ready():
     print("je suis en ligne !")
-    chanel = bot.get_channel(979821289365704704)
     changestatus.start()
 
 

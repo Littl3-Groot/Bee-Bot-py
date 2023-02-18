@@ -9,7 +9,7 @@ import random
 import cogs.logs as logs
 import cogs.arrive as arrive
 import cogs.admin as admin
-import cogs.commandes_ammusantes as commandes_ammusantes
+import cogs.commandes as commandes
 import cogs.info_commandes as info_commandes
 import cogs.easter_egg as easter_egg
 import cogs.errors as errors
@@ -165,7 +165,7 @@ async def help(ctx):
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))
 bot.add_cog(arrive.Arriver(bot))
-bot.add_cog(commandes_ammusantes.Divers(bot))
+bot.add_cog(commandes.Divers(bot))
 bot.add_cog(admin.Admin(bot))
 bot.add_cog(info_commandes.Info(bot))
 bot.add_cog(easter_egg.Easter(bot))

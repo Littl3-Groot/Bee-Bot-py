@@ -210,9 +210,8 @@ class Plop(commands.Cog):
             })
 
             levels = Levels()
-            levels.add_experience(str(ctx.author.id), random.randint(1, 10))
+            levels.add_experience(str(ctx.author.id), 10)
     
-
             # Compter le nombre de messages envoyé sur les serveur où est le bot. #Ajout 22/12/2022
             ref = db.reference(f"message_count/{ctx.author.name}")
             count = ref.get()

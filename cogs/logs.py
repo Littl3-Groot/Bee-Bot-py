@@ -8,7 +8,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
-from level.py import *
+from cogs.level import *
 
 
 

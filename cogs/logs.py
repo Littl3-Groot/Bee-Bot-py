@@ -221,4 +221,4 @@ class Plop(commands.Cog):
             ref.set(count + 1)
 
             # Laisser le bot gérer les commandes
-    await bot.process_commands(message)
+        await bot.process_commands(message)

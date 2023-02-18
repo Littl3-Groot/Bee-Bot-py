@@ -23,19 +23,21 @@ class Levels:
             self.db.child('users').child(user_id).child('level').set(current_level)
 
     def get_level(self, user_id):
-        # Récupérer le niveau de l'utilisateur depuis la base de données Firebase
-        level = self.db.child('users').child(user_id).child('level').get()
-        
-        # Si l'utilisateur n'a pas encore de niveau, initialiser à 0
-        if level is None:
-            level = {
-                'level': 0,
-                'experience': 0,
-                'next_level': self.calculate_next_level(0)
-            }
-            self.db.child('users').child(user_id).child('level').set(level)
+        # Récupérer les données de l'utilisateur dans la base de données Firebase
+        user_ref = self.root.child('users').child(user_id)
+        user_data = user_ref.get()
 
-        return level
+        # Vérifier si l'utilisateur existe dans la base de données Firebase
+        if user_data is not None:
+            # Mettre à jour l'expérience de l'utilisateur
+            user_ref.update({
+                'experience': user_data['experience'] + exp
+            })
+        else:
+            # Créer un nouvel utilisateur avec l'expérience donnée
+            user_ref.set({
+                'experience': exp
+            })
 
     def calculate_next_level(self, level):
         # Calculer le nombre d'expérience nécessaire pour atteindre le prochain niveau

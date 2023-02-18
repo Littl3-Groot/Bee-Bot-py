@@ -219,6 +219,3 @@ class Plop(commands.Cog):
             if count is None:
                 count = 0
             ref.set(count + 1)
-
-            # Laisser le bot gérer les commandes
-        await bot.process_commands(ctx)

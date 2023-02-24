@@ -59,6 +59,9 @@ status = ["/help", "conquérir les humains 🔥", "V1"]
 async def changestatus(): #update le statut du bot toutes les 60 secondes
     game = discord.Game(random.choice(status))
     await bot.change_presence(activity=game)
+    while True:
+        await wait_until_midnight()
+        await send_stats()
 
 # Affiche dans la console quand le bot est en ligne
 @bot.event
@@ -161,6 +164,40 @@ async def help(ctx):
                 await choice_ctx.edit_origin(content=" ", embed=embedFun)
         except:
             await ctx.send("Erreur !")
+
+
+ref = db.reference('')
+
+# ID du canal Discord sur lequel envoyer le message
+channel_id = 972922901781164102
+
+# Fonction pour récupérer les statistiques et envoyer le message
+async def send_stats():
+    # Récupération de la date actuelle
+    today = datetime.datetime.now().strftime('%Y-%m-%d')
+    
+    # Récupération du nombre d'utilisateurs ayant parlé dans la journée
+    users_ref = ref.child('messages').child(today).child('users')
+    nb_users = users_ref.get() and len(users_ref.get()) or 0
+    
+    # Récupération du nombre d'utilisateurs connectés dans la journée
+    online_ref = ref.child('presence').child(today)
+    nb_online_users = online_ref.get() and len(online_ref.get()) or 0
+    
+    # Construction du message à envoyer
+    message = f"Aujourd'hui ({today}), {nb_users} utilisateurs ont parlé et {nb_online_users} étaient en ligne."
+    
+    # Envoi du message sur le canal Discord
+    channel = client.get_channel(channel_id)
+    await channel.send(message)
+
+# Fonction pour attendre jusqu'à minuit avant d'envoyer les statistiques
+async def wait_until_midnight():
+    now = datetime.datetime.now()
+    midnight = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
+    time_to_wait = (midnight - now).total_seconds()
+    await asyncio.sleep(time_to_wait)
+
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

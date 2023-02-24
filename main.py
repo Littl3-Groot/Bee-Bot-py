@@ -129,8 +129,7 @@ async def changestatus(): #update le statut du bot toutes les 60 secondes
 async def on_ready():
     print("je suis en ligne !")
     changestatus.start()
-    #while True:
-        #await send_stats()
+    await send_stats()
 
 
 # Commande qui affiche le temps de réponse du bot (ping)

@@ -130,7 +130,6 @@ async def on_ready():
     print("je suis en ligne !")
     changestatus.start()
     while True:
-        await wait_until_midnight()
         await send_stats()
 
 

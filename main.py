@@ -59,15 +59,15 @@ status = ["/help", "conquérir les humains 🔥", "V1"]
 async def changestatus(): #update le statut du bot toutes les 60 secondes
     game = discord.Game(random.choice(status))
     await bot.change_presence(activity=game)
-    while True:
-        await wait_until_midnight()
-        await send_stats()
 
 # Affiche dans la console quand le bot est en ligne
 @bot.event
 async def on_ready():
     print("je suis en ligne !")
     changestatus.start()
+    while True:
+        #await wait_until_midnight()
+        await send_stats()
 
 
 # Commande qui affiche le temps de réponse du bot (ping)
@@ -194,7 +194,7 @@ async def send_stats():
 # Fonction pour attendre jusqu'à minuit avant d'envoyer les statistiques
 async def wait_until_midnight():
     now = datetime.datetime.now()
-    midnight = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
+    midnight = now.replace(hour=00, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
     time_to_wait = (midnight - now).total_seconds()
     await asyncio.sleep(time_to_wait)
 

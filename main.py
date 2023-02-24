@@ -188,7 +188,7 @@ async def send_stats():
     message = f"Aujourd'hui ({today}), {nb_users} utilisateurs ont parlé et {nb_online_users} étaient en ligne."
     
     # Envoi du message sur le canal Discord
-    channel = client.get_channel(channel_id)
+    channel = bot.get_channel(channel_id)
     await channel.send(message)
 
 # Fonction pour attendre jusqu'à minuit avant d'envoyer les statistiques

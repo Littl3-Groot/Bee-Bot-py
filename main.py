@@ -194,7 +194,7 @@ async def send_stats():
 # Fonction pour attendre jusqu'à minuit avant d'envoyer les statistiques
 async def wait_until_midnight():
     now = datetime.datetime.now()
-    midnight = now.replace(hour=22, minute=26, second=0, microsecond=0) + datetime.timedelta(days=1)
+    midnight = now.replace(hour=22, minute=49, second=0, microsecond=0) + datetime.timedelta(days=1)
     time_to_wait = (midnight - now).total_seconds()
     await asyncio.sleep(time_to_wait)
 

@@ -91,7 +91,7 @@ async def on_message(message):
     today = datetime.datetime.now().strftime('%Y-%m-%d')
     
     # Récupération de la référence aux messages de l'utilisateur pour aujourd'hui
-    user_ref = ref.child('messages').child(today).child('users').child(message.author.id)
+    user_ref = ref.child('messages').child(today).child('users').child(str(message.author.id))
     
     # Incrémentation du nombre de messages envoyés par l'utilisateur aujourd'hui
     user_ref.set(user_ref.get() or 0 + 1)

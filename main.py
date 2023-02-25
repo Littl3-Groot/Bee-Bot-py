@@ -53,72 +53,6 @@ slash = SlashCommand(bot, sync_commands=True)
 status = ["/help", "conquérir les humains 🔥", "V1"]
 
 # Change le statut du bot toute les 5 secondes
-
-
-#---------------------------------------------------------------------------------
-server_id = 753278912011698247
-
-
-# Fonction pour mettre à jour les données de présence
-async def update_presence(member, online):
-    # Récupération de la date actuelle
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
-    
-    # Récupération de la référence à la présence de l'utilisateur pour aujourd'hui
-    online_ref = ref.child('presence').child(today)
-    
-    # Récupération de la liste des utilisateurs connectés aujourd'hui
-    online_users = online_ref.get() or []
-    
-    if online:
-        # Si l'utilisateur s'est connecté, on l'ajoute à la liste des utilisateurs connectés
-        online_users.append(member.id)
-    else:
-        # Si l'utilisateur s'est déconnecté, on le retire de la liste des utilisateurs connectés
-        online_users = [uid for uid in online_users if uid != member.id]
-    
-    # Mise à jour de la liste des utilisateurs connectés
-    online_ref.set(online_users)
-
-# Événement appelé lorsqu'un utilisateur envoie un message
-@bot.event
-async def on_message(message):
-    # Si le message a été envoyé par un bot, on ne fait rien
-    if message.author.bot:
-        return
-    
-    # Récupération de la date actuelle
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
-    
-    # Récupération de la référence aux messages de l'utilisateur pour aujourd'hui
-    user_ref = ref.child('messages').child(today).child('users').child(str(message.author.id))
-    
-    # Incrémentation du nombre de messages envoyés par l'utilisateur aujourd'hui
-    user_ref.set(user_ref.get() or 0 + 1)
-
-# Événement appelé lorsqu'un utilisateur se connecte au serveur
-@bot.event
-async def on_member_join(member):
-    # Si l'utilisateur a rejoint un autre serveur, on ne fait rien
-    if member.guild.id != server_id:
-        return
-    
-    # Mise à jour de la présence de l'utilisateur (connecté)
-    await update_presence(member, True)
-
-# Événement appelé lorsqu'un utilisateur se déconnecte du serveur
-@bot.event
-async def on_member_remove(member):
-    # Si l'utilisateur a quitté un autre serveur, on ne fait rien
-    if member.guild.id != server_id:
-        return
-    
-    # Mise à jour de la présence de l'utilisateur (déconnecté)
-    await update_presence(member, False)
-
-#---------------------------------------------------------------------------------
-
-
 @tasks.loop(seconds=60)
 async def changestatus(): #update le statut du bot toutes les 60 secondes
     game = discord.Game(random.choice(status))
@@ -129,7 +63,6 @@ async def changestatus(): #update le statut du bot toutes les 60 secondes
 async def on_ready():
     print("je suis en ligne !")
     changestatus.start()
-    await send_stats()
 
 
 # Commande qui affiche le temps de réponse du bot (ping)
@@ -226,40 +159,6 @@ async def help(ctx):
                 await choice_ctx.edit_origin(content=" ", embed=embedFun)
         except:
             await ctx.send("Erreur !")
-
-
-ref = db.reference('')
-
-# ID du canal Discord sur lequel envoyer le message
-channel_id = 972922901781164102
-
-# Fonction pour récupérer les statistiques et envoyer le message
-async def send_stats():
-    # Récupération de la date actuelle
-    today = datetime.datetime.now().strftime('%Y-%m-%d')
-    
-    # Récupération du nombre d'utilisateurs ayant parlé dans la journée
-    users_ref = ref.child('messages').child(today).child('users')
-    nb_users = users_ref.get() and len(users_ref.get()) or 0
-    
-    # Récupération du nombre d'utilisateurs connectés dans la journée
-    online_ref = ref.child('presence').child(today)
-    nb_online_users = online_ref.get() and len(online_ref.get()) or 0
-    
-    # Construction du message à envoyer
-    message = f"Aujourd'hui ({today}), {nb_users} utilisateurs ont parlé et {nb_online_users} étaient en ligne."
-    
-    # Envoi du message sur le canal Discord
-    channel = bot.get_channel(channel_id)
-    await channel.send(message)
-
-# Fonction pour attendre jusqu'à minuit avant d'envoyer les statistiques
-async def wait_until_midnight():
-    now = datetime.datetime.now()
-    midnight = now.replace(hour=00, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
-    time_to_wait = (midnight - now).total_seconds()
-    await asyncio.sleep(time_to_wait)
-
 
 # Ajout de tous les cogs (autres fichiers Python, contenant des commandes, logs ...)
 bot.add_cog(logs.Plop(bot))

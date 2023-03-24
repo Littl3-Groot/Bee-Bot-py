@@ -8,27 +8,25 @@ from discord_slash import cog_ext
 bot = commands.Bot(command_prefix="!")
 slash = SlashCommand(bot, sync_commands=True)
 
-
+# Class pour les Easter_Eggs.
 class Easter(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
+    
+    # Easter_Eggs de Beerus
     @commands.command()
     async def beerus(self, ctx):
         await ctx.message.delete()
         await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089421941284864/948987331296260136.webp")
 
+    # Easter_Eggs de Little_Poney
     @commands.command()
     async def poney(self, ctx):
         await ctx.message.delete()
         await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089986461040700/919272396085669909.webp")
 
+    # Easter_Eggs de Groot
     @commands.command()
     async def groot(self, ctx):
         await ctx.message.delete()
         await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1013089986800783440/918208896433270824.webp")
-
-    @commands.command()
-    async def topin(self, ctx):
-        await ctx.message.delete()
-        await ctx.send("https://cdn.discordapp.com/attachments/972163356913958942/1029018697509118044/unknown.png")

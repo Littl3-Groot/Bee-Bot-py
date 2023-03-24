@@ -12,7 +12,7 @@ class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # SAY
+    # Commande SAY
     @commands.command()
     @commands.has_permissions(manage_messages=True)
     async def say(self, ctx, *, message):
@@ -20,7 +20,7 @@ class Admin(commands.Cog):
         await ctx.message.delete()
         await ctx.send(message.format(message))
 
-    # DM
+    # Commande DM
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def mp(self, ctx, user: discord.User, *, message):
@@ -32,13 +32,13 @@ class Admin(commands.Cog):
                          icon_url="https://cdn.discordapp.com/avatars/970707845249130587/9c4130ae252db8fdb9a8b3d9e1d9863f.webp?size=1024")
         await ctx.send(embed=embed)
 
-    # CLEAR
+    # Commande CLEAR
     @commands.command()
     @ commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, nombre: int):
         await ctx.channel.purge(limit=nombre + 1)
 
-    # KICK
+    # Commande KICK
     @ commands.command()
     @ commands.has_permissions(kick_members=True)
     async def kick(self, ctx, user: discord.User, *, reason="Aucune raison fournie"):
@@ -46,7 +46,7 @@ class Admin(commands.Cog):
         await ctx.guild.kick(user, reason=reason)
         await ctx.send(f'{user} à été kick du serveur.')
 
-    # BAN
+    # Commande BAN
     @ commands.command()
     @ commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user: discord.User, *, reason="Aucune raison fournie"):
@@ -54,7 +54,7 @@ class Admin(commands.Cog):
         await ctx.guild.ban(user, reason=reason)
         await ctx.send(f'{user} à été ban du serveur. <:DanoCBAN:989100225174052904>')
 
-    # UNBAN
+    # Commande UNBAN
     @ commands.command()
     @ commands.has_permissions(ban_members=True)
     async def unban(self, ctx, user, *reason):
@@ -69,7 +69,7 @@ class Admin(commands.Cog):
                 return
         await ctx.send(f"l'utilisateur {user} n'est pas banni.")
 
-    # WARN
+    # Commande WARN
     @ commands.command()
     @ commands.has_permissions(kick_members=True)
     async def warn(self, ctx, user: discord.User, *, reason="Aucune raison fournie."):

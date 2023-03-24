@@ -351,15 +351,6 @@ class Divers(commands.Cog):
         await message.edit(
             content=f"jE sUiS jUsTe Un BoT pAs Un HaCkEuR ! tU eS mécHaNt à vOuLoIr HaCkEr cE PaUVRe {user.mention}")
 
-    # @cog_ext.cog_slash(name="planning", guild_ids=[970708155610837024], description="Affiche le planning des lives de Danver.")
-    # async def planning(self, ctx):
-    #    """Renvoie le planing des streams"""
-    #    embed = discord.Embed(
-    #        color=0xa06cd5, title="Planing des lives de Danver !")
-    #    embed.set_image(
-    #        url="https://cdn.discordapp.com/attachments/972163356913958942/985803183270006814/PLANNING.png")
-    #    await ctx.send(embed=embed)
-
     @cog_ext.cog_slash(name="streamer", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche les informations concernant Im Beerus.")
     async def streamer(self, ctx):

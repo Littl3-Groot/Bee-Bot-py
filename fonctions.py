@@ -8,7 +8,7 @@ characters = list(string.ascii_letters + string.digits +
 
 
 # Toutes les fonctions nécessaire au bon fonctionnement du Bot
-def generate_random_password(longueur):
+def generate_random_password(longueur : int) -> str:
     """Génère un mot de passe aléatoire d'une longueur choisit par l'utilisateur."""
     random.shuffle(characters)
 
@@ -26,13 +26,13 @@ def generate_random_password(longueur):
     return password
 
 
-def test_bissextile(annee):
+def test_bissextile(annee : int) -> bool:
     """Retourne True (vrai) si l'année correspond à une année bissextile. Sinon elle retourne False (faux)"""
     annee = annee % 4 == 0 and annee % 100 != 0 or annee % 400 == 0
     return annee
 
 
-def somme_entier(nombre):
+def somme_entier(nombre : int) -> int:
     """Retourne la somme des n premiers entiers"""
     somme = 0
     total = 0
@@ -43,7 +43,7 @@ def somme_entier(nombre):
     return total
 
 
-def vieillisement(prix, annee, pourcentage):
+def vieillisement(prix : float, annee: int, pourcentage : int) -> int:
     """Retourne le nombre d'années où le prix aura diminué de moitié"""
 
     pourcentage_de_vieillisement = 1 - pourcentage / 100
@@ -56,7 +56,7 @@ def vieillisement(prix, annee, pourcentage):
     return annee
 
 
-def compare(mot1, mot2):
+def compare(mot1 : str, mot2 : str) -> str:
     """Retourne l'ordre du mot1 par rapport à mot2 dans le dico"""
     resultat = "au même niveau que"
     i = 0
@@ -74,7 +74,7 @@ def compare(mot1, mot2):
     return resultat
 
 
-def decversbin(valeurdecimal):
+def decversbin(valeurdecimal : int) -> int:
     """Traduit une valeur decimal en une valeur binaire """
     valeurbinaire = 0
     ord = 0
@@ -87,7 +87,7 @@ def decversbin(valeurdecimal):
     return valeurbinaire
 
 
-def binversdec(binaire):
+def binversdec(binaire : int) -> int:
     """Traduit une valeur binaire en une valeur decimal"""
     binaire = str(binaire)
     n = len(binaire)
@@ -104,7 +104,7 @@ conversion_table = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4',
                     13: 'D', 14: 'E', 15: 'F'}
 
 
-def decimalToHexadecimal(valeurdecimal):
+def decimalToHexadecimal(valeurdecimal : int) -> str:
     """Traduit une valeur decimal en une valeur hexadecimal"""
     valeurhexadecimal = ''
     while valeurdecimal > 0:
@@ -115,7 +115,7 @@ def decimalToHexadecimal(valeurdecimal):
     return valeurhexadecimal
 
 
-def euroToFrancs(valeurEuro):
+def euroToFrancs(valeurEuro : float) -> float:
     """Convertis des euros en Francs français"""
     valeurFrancs = valeurEuro * 6.5596
     valeurFrancs = round(valeurFrancs, 2)

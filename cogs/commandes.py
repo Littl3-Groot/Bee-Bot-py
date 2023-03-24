@@ -23,7 +23,7 @@ class Divers(commands.Cog):
         self.bot = bot
 
     @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024, 753278912011698247],
-                       description="Permet de voir les information du serveur")
+                   description="Permet de voir les information du serveur")
     async def serveur(self, ctx):
         """Affiche les informations du serveur"""
 
@@ -36,55 +36,28 @@ class Divers(commands.Cog):
         serverId = serveur.id
         serveurOwner = serveur.owner_id
         date_creation = serveur.created_at.strftime('%Y-%m-%d %H:%M:%S %Z%z')
-        all_emotes = list(ctx.guild.emojis)
-        emojis = ''.join(
-            [str(i) for i in all_emotes])
+        all_emotes = [str(emoji) for emoji in ctx.guild.emojis]
+        emojis = '\n'.join(all_emotes)
         boost = ctx.guild.premium_subscription_count
 
         embed = discord.Embed(color=0x5865f2)
         embed.set_author(name=serverName, icon_url=serverIcon)
         embed.set_thumbnail(url=serverIcon)
-        embed.add_field(name="👥 Membres: ", value="``" +
-                        str(numberOfPerson) + "``", inline=False)
-
-        levels = ['Niveau 0', 'Niveau 1', 'Niveau 2', 'Niveau 3']
-        if 0 < boost <= 2:
-            i = 1
-        elif 2 < boost <= 13:
-            i = 2
-        elif 13 < boost <= 1000:
-            i = 3
-        else:
-            i = 0
-
-        embed.add_field(name="💬 Textuelles:", value="``" +
-                        str(numberOfTextChannels) + "``", inline=True)
-
-        embed.add_field(name="🔊 Vocaux:", value="``" +
-                        str(numberOfVoiceChannels) + "``", inline=True)
-        embed.add_field(name="📂 Catégories:",
-                        value=f"``{len(serveur.categories)}``", inline=True)
-
-        embed.add_field(name="📅 Créé le: ", value="``" +
-                        str(date_creation) + "``", inline=True)
-
-        embed.add_field(name="🆔 ID serveur:", value="``" +
-                        str(serverId) + "``", inline=True)
-
-        embed.add_field(name="👑 Propriétaire:", value="<@" +
-                        str(serveurOwner) + ">", inline=True)
-
+        embed.add_field(name="👥 Membres: ", value=f"``{numberOfPerson}``", inline=False)
+        embed.add_field(name="💬 Textuelles:", value=f"``{numberOfTextChannels}``", inline=True)
+        embed.add_field(name="🔊 Vocaux:", value=f"``{numberOfVoiceChannels}``", inline=True)
+        embed.add_field(name="📂 Catégories:", value=f"``{len(serveur.categories)}``", inline=True)
+        embed.add_field(name="📅 Créé le: ", value=f"``{date_creation}``", inline=True)
+        embed.add_field(name="🆔 ID serveur:", value=f"``{serverId}``", inline=True)
+        embed.add_field(name="👑 Propriétaire:", value=f"<@{serveurOwner}>", inline=True)
         if ctx.guild.banner:
-            a = str(ctx.guild.banner_url)
-            #b = a.replace('webp', 'gif')
-            embed.set_image(url=a)
-
-        embed.add_field(name="💎 Nombre de boost:",
-                        value=f"``{str(boost)}" + "`` " f'{levels[i]}', inline=False)
-
-        embed.set_footer(text="demandé par : " +
-                              f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
+            embed.set_image(url=str(ctx.guild.banner_url))
+        levels = ['Niveau 0', 'Niveau 1', 'Niveau 2', 'Niveau 3']
+        i = min(3, max(0, (boost - 1) // 12))
+        embed.add_field(name="💎 Nombre de boost:", value=f"``{boost}`` {levels[i]}", inline=False)
+        embed.set_footer(text=f"demandé par : {ctx.author.name}", icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
+
 
     @cog_ext.cog_slash(name="seuil", guild_ids=[970708155610837024, 753278912011698247],
                        description="Permet de savoir en quel année le prix de votre objet aura chutter de moitié.",

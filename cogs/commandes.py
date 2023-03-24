@@ -53,8 +53,9 @@ class Divers(commands.Cog):
         if ctx.guild.banner:
             embed.set_image(url=str(ctx.guild.banner_url))
         levels = ['Niveau 0', 'Niveau 1', 'Niveau 2', 'Niveau 3']
-        i = min(3, max(0, (boost - 1) // 12))
+        i = min(3, boost // 30)
         embed.add_field(name="💎 Nombre de boost:", value=f"``{boost}`` {levels[i]}", inline=False)
+
         embed.set_footer(text=f"demandé par : {ctx.author.name}", icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 

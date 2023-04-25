@@ -25,6 +25,7 @@ class Plop(commands.Cog):
     async def on_message_delete(self, message):
         serveur = message.guild
         channel = self.bot.get_channel(765150007095328790)
+        channel2 = self.bot.get_channel(1100460006920441977)
 
         if message.author == self.bot.user:
             return
@@ -39,6 +40,7 @@ class Plop(commands.Cog):
             name="Message :", value=f'```{message.content}```', inline=False)
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
         await channel.send(embed=embed)
+        await channel2.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
@@ -51,6 +53,7 @@ class Plop(commands.Cog):
 
         serveur = before.guild
         channel = self.bot.get_channel(765150007095328790)
+        channel2 = self.bot.get_channel(1100460006920441977)
         embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel}**',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xFF9F40)
 
@@ -62,6 +65,7 @@ class Plop(commands.Cog):
             name="Après :", value=f' ```{after.content}```', inline=False)
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
         await channel.send(embed=embed)
+        await channel2.send(embed=embed)
 
     # LOGS MEMBERS
     @commands.Cog.listener()

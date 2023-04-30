@@ -77,7 +77,7 @@ async def ping(ctx):
     await ctx.reply(embed=embed)
 
 @slash.slash(name="test", guild_ids=[970708155610837024, 753278912011698247], description="Affiche le temps de réponse du bot.")
-async def admin(ctx):
+async def test(ctx):
     member = ctx.author
     guild = ctx.guild
     role = discord.utils.get(guild.roles, name="Administrateur")

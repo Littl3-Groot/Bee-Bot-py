@@ -36,7 +36,6 @@ commandes = {
     "ping": "30"
 }
 
-
 class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

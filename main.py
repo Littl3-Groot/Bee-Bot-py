@@ -162,13 +162,9 @@ async def help(ctx):
         except:
             await ctx.send("Erreur !")
 
-bot.add_cog(logs.Plop(bot))
-bot.add_cog(arrive.Arriver(bot))
-bot.add_cog(commandes.Divers(bot))
-bot.add_cog(admin.Admin(bot))
-bot.add_cog(info_commandes.Info(bot))
-bot.add_cog(easter_egg.Easter(bot))
-bot.add_cog(errors.ErrorCog(bot))
+cogs = [logs.Plop, arrive.Arriver, commandes.Divers, admin.Admin, info_commandes.Info, easter_egg.Easter, errors.ErrorCog]
 
+for cog in cogs:
+    bot.add_cog(cog(bot)
 
 bot.run(TOKEN)

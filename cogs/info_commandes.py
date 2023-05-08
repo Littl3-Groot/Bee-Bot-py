@@ -8,6 +8,34 @@ from discord_slash import cog_ext
 bot = commands.Bot(command_prefix="!")
 slash = SlashCommand(bot, sync_commands=True)
 
+commandes = {
+    "seuil": "6",
+    "francs": "7",
+    "bisextille": "8",
+    "dico": "9",
+    "decimal": "10",
+    "binaire": "11",
+    "hexa": "12",
+    "roulette": "13",
+    "mdp": "14",
+    "pdp": "15",
+    "userinfo": "16",
+    "serveur": "17",
+    "help": "18",
+    "youtube": "19",
+    "twitch": "20",
+    "don": "21",
+    "dé": "22",
+    "hack": "23",
+    "planning": "24",
+    "streammer": "25",
+    "remerciements": "26",
+    "amour": "27",
+    "infocommandes": "28",
+    "banner": "29",
+    "ping": "30"
+}
+
 
 class Info(commands.Cog):
     def __init__(self, bot):
@@ -16,114 +44,13 @@ class Info(commands.Cog):
     @cog_ext.cog_slash(name="infocommandes", guild_ids=[970708155610837024, 753278912011698247], description="Donne plus d'information sur la commande que vous avez chosie.", options=[
         # ptet factoriser ça
         create_option(
-            name="nomcommande",
-            description="Le nom de la commande dont vous voulez avoir plus d'informations.",
-            option_type=3,
-            required=True,
-            choices=[
-                create_choice(
-                    name="seuil",
-                    value="6"
-                ),
-                create_choice(
-                    name="francs",
-                    value="7"
-                ),
-                create_choice(
-                    name="bisextille",
-                    value="8"
-                ),
-                create_choice(
-                    name="dico",
-                    value="9"
-                ),
-                create_choice(
-                    name="decimal",
-                    value="10"
-                ),
-                create_choice(
-                    name="binaire",
-                    value="11"
-                ),
-                create_choice(
-                    name="hexa",
-                    value="12"
-                ),
-                create_choice(
-                    name="roulette",
-                    value="13"
-                ),
-                create_choice(
-                    name="mdp",
-                    value="14"
-                ),
-                create_choice(
-                    name="pdp",
-                    value="15"
-                ),
-                create_choice(
-                    name="userinfo",
-                    value="16"
-                ),
-                create_choice(
-                    name="serveur",
-                    value="17"
-                ),
-                create_choice(
-                    name="help",
-                    value="18"
-                ),
-                create_choice(
-                    name="youtube",
-                    value="19"
-                ),
-                create_choice(
-                    name="twitch",
-                    value="20"
-                ),
-                create_choice(
-                    name="don",
-                    value="21"
-                ),
-                create_choice(
-                    name="dé",
-                    value="22"
-                ),
-                create_choice(
-                    name="hack",
-                    value="23"
-                ),
-                create_choice(
-                    name="planning",
-                    value="24"
-                ),
-                create_choice(
-                    name="streammer",
-                    value="25"
-                ),
-                create_choice(
-                    name="remerciements",
-                    value="26"
-                ),
-                create_choice(
-                    name="amour",
-                    value="27"
-                ),
-                create_choice(
-                    name="infocommandes",
-                    value="28"
-                ),
-                create_choice(
-                    name="banner",
-                    value="29"
-                ),
-                create_choice(
-                    name="ping",
-                    value="30"
-                ),
-            ]
-        ),
-    ])
+        name="nomcommande",
+        description="Le nom de la commande dont vous voulez avoir plus d'informations.",
+        option_type=3,
+        required=True,
+        choices=[create_choice(name=nom, value=valeur) for nom, valeur in commandes.items()]
+    )])
+
     async def infocommandes(self, ctx, nomcommande):
         """Envoie des informations sur la commande choisie"""
         embedkick = discord.Embed(title="Commande Kick :",

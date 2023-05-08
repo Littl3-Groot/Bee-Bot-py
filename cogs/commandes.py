@@ -254,7 +254,7 @@ class Divers(commands.Cog):
                       description="L'utilisateur dont tu veux voir la photo de profil.", option_type=6,
                       required=True),
     ])
-    async def pdp(self, ctx, member: discord.Member):
+    async def pdp(self, ctx, member: discord.User):
         """Renvoie la photo de profil de l'utilisateur choisit."""
         await ctx.send(f'{ctx.author.mention} : Voici la photo de profil de **{member.name}** :\n {member.avatar_url}')
 

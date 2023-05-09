@@ -168,6 +168,6 @@ bot.add_cog(commandes.Divers(bot))
 bot.add_cog(admin.Admin(bot))
 bot.add_cog(info_commandes.Info(bot))
 bot.add_cog(easter_egg.Easter(bot))
-bot.add_cog(errors.ErrorCog(bot)
+bot.add_cog(errors.ErrorCog(bot))
 
 bot.run(TOKEN)

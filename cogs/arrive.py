@@ -7,6 +7,10 @@ from easy_pil import Editor, load_image_async, Font
 
 bot = commands.Bot(command_prefix="!")
 
+import os
+
+
+
 
 def setup(bot):
     bot.add_cog(Arriver(bot))
@@ -20,10 +24,13 @@ class Arriver(commands.Cog):
     # Image d'Arrivé
     @commands.Cog.listener()
     async def on_member_join(self, member):
+
         channel = self.bot.get_channel(753283325984243763)
 
         # Background de l'image_arrive
-        background = Editor("images\image_arrive.jpg")
+        image_path = os.path.join('images', 'image_arrive.jpg')
+
+        background = Editor(image_path)
 
         # Stocke la pdp du membre
         profile_image = await load_image_async(str(member.avatar_url))
@@ -56,7 +63,8 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(972922901781164102)
 
         # Background de l'image_arrive
-        background = Editor("images\image_depart.jpg")
+        image_path = os.path.join('images', 'image_depart.jpg')
+        background = Editor(image_path)
 
         # Stocke la pdp du membre
         profile_image = await load_image_async(str(member.avatar_url))

@@ -23,7 +23,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(753283325984243763)
 
         # Background de l'image_arrive
-        background = Editor("image_arrive.jpg")
+        background = Editor("\images\image_arrive.jpg")
 
         # Stocke la pdp du membre
         profile_image = await load_image_async(str(member.avatar_url))
@@ -56,7 +56,7 @@ class Arriver(commands.Cog):
         channel = self.bot.get_channel(972922901781164102)
 
         # Background de l'image_arrive
-        background = Editor("image_depart.jpg")
+        background = Editor("\images\image_depart.jpg")
 
         # Stocke la pdp du membre
         profile_image = await load_image_async(str(member.avatar_url))

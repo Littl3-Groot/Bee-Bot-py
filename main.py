@@ -25,6 +25,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
+token = os.environ.get('TOKEN')
 
 intents = discord.Intents.default()
 intents.members = True
@@ -156,4 +157,4 @@ bot.add_cog(info_commandes.Info(bot))
 bot.add_cog(easter_egg.Easter(bot))
 bot.add_cog(errors.ErrorCog(bot))
 
-bot.run(TOKEN)
+bot.run(token)

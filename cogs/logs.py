@@ -2,13 +2,6 @@ import discord
 from discord.ext import commands
 import datetime
 
-from config import *
-
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db
-
-
 bot = commands.Bot(command_prefix="!",)
 
 
@@ -200,20 +193,3 @@ class Plop(commands.Cog):
             member = ctx.author
             if member.bot == True:
                 return
-
-            # Enregistre le message dans la base de données Firebase
-            ref = db.reference('messages')
-            users_ref = ref.child(f'Author :{ctx.author.name}')
-            users_ref.update({
-                "channel_id": str(ctx.channel.id),
-                "content": str(ctx.content),
-                "timestamp": str(ctx.created_at),
-            })
-
-    
-            # Compter le nombre de messages envoyé sur les serveur où est le bot. #Ajout 22/12/2022
-            ref = db.reference(f"message_count/{ctx.author.name}")
-            count = ref.get()
-            if count is None:
-                count = 0
-            ref.set(count + 1)

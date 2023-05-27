@@ -21,10 +21,6 @@ from discord_slash.utils.manage_components import *
 import asyncio
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
-TOKEN = os.getenv("TOKEN")
 token = os.environ.get('TOKEN')
 
 intents = discord.Intents.default()

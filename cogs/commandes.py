@@ -86,6 +86,7 @@ class Divers(commands.Cog):
                                          description="La valeur en euro que vous voulez convetir.", option_type=4,
                                          required=True),
     ])
+
     async def francs(self, ctx, valeureuro: int):
         """Récupère une valeur en euro, appelle la fonction qui convertis en Francs et l'envoie dans un salon sous forme d'Embed."""
         valeurFrancs = euroToFrancs(valeureuro)

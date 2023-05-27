@@ -37,17 +37,24 @@ class Plop(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
-
         if before.author == self.bot.user:
             return
 
         if before.channel.type == discord.ChannelType.private:
             return
 
+        # Vérifier si le message contient des pièces jointes
+        if after.attachments:
+            # Parcourir les pièces jointes pour vérifier l'extension du fichier
+            for attachment in after.attachments:
+                if attachment.filename.lower().endswith('.gif'):
+                    # Ignorer les messages avec des fichiers GIF
+                    return
+
         serveur = before.guild
         channel = self.bot.get_channel(765150007095328790)
         channel2 = self.bot.get_channel(1100460006920441977)
-        embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} à été modifié dans le salon {before.channel}**',
+        embed = discord.Embed(description=f'✏️ **[Message]({before.jump_url}) envoyé par {before.author.mention} a été modifié dans le salon {before.channel}**',
                               timestamp=datetime.datetime.now(datetime.timezone.utc), color=0xFF9F40)
 
         embed.set_author(name=before.author.name,
@@ -59,6 +66,7 @@ class Plop(commands.Cog):
         embed.set_footer(text=f'{serveur.name}', icon_url=serveur.icon_url)
         await channel.send(embed=embed)
         await channel2.send(embed=embed)
+
 
     # LOGS MEMBERS
     @commands.Cog.listener()

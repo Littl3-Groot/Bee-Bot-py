@@ -52,7 +52,7 @@ class Admin(commands.Cog):
     async def ban(self, ctx, user: discord.User, *, reason="Aucune raison fournie"):
         reason = " ".join(reason)
         await ctx.guild.ban(user, reason=reason)
-        await ctx.send(f'{user} à été ban du serveur. <:DanoCBAN:989100225174052904>')
+        await ctx.send(f'{user} à été ban du serveur.')
 
     # Commande UNBAN
     @ commands.command()

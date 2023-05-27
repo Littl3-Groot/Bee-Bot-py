@@ -9,9 +9,6 @@ bot = commands.Bot(command_prefix="!")
 
 import os
 
-
-
-
 def setup(bot):
     bot.add_cog(Arriver(bot))
 

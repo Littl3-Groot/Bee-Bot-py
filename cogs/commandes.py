@@ -22,6 +22,7 @@ class Divers(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    #COMMANDE Serveur
     @cog_ext.cog_slash(name="serveur", guild_ids=[970708155610837024, 753278912011698247],
                    description="Permet de voir les information du serveur")
     async def serveur(self, ctx):
@@ -59,7 +60,7 @@ class Divers(commands.Cog):
         embed.set_footer(text=f"demandé par : {ctx.author.name}", icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
-
+    #COMMANDE Seuil
     @cog_ext.cog_slash(name="seuil", guild_ids=[970708155610837024, 753278912011698247],
                        description="Permet de savoir en quel année le prix de votre objet aura chutter de moitié.",
                        options=[
@@ -80,6 +81,7 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
+    #COMMANDE Francs
     @cog_ext.cog_slash(name="francs", guild_ids=[970708155610837024, 753278912011698247], description="Convertir des Euros en Francs.",
                        options=[
                            create_option(name="valeureuro",
@@ -101,6 +103,8 @@ class Divers(commands.Cog):
         create_option(name="annee",
                       description="L'année que vous voulez vérifer", option_type=4, required=True),
     ])
+    
+    #COMMANDE Bissextile
     async def bissextile(self, ctx, annee: int):
         """Récupère l'année choisit par l'utilisateur et envoie dans un salon sous forme d'Embed si elle est Bisextille ou non """
         if test_bissextile(annee):
@@ -112,6 +116,7 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
+    #COMMANDE Dico
     @cog_ext.cog_slash(name="dico", guild_ids=[970708155610837024, 753278912011698247],
                        description="Donne l'ordre des mots dans le dictionaire.", options=[
         create_option(name="mot1",
@@ -132,6 +137,7 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
+    #COMMANDE Decimal
     @cog_ext.cog_slash(name="decimal", guild_ids=[970708155610837024, 753278912011698247],
                        description="Converti un nombre binaire en decimal.", options=[
         create_option(name="valeurbinaire",
@@ -148,7 +154,8 @@ class Divers(commands.Cog):
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
-
+    
+    #COMMANDE Binaire
     @cog_ext.cog_slash(name="binaire", guild_ids=[970708155610837024, 753278912011698247],
                        description="Converti un nombre decimal en binaire.", options=[
         create_option(name="valeurdecimal",
@@ -166,6 +173,7 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
+    #COMMANDE Hexa
     @cog_ext.cog_slash(name="hexa", guild_ids=[970708155610837024, 753278912011698247],
                        description="Converti un nombre decimal en hexadecimal.", options=[
         create_option(name="valeurdecimal",
@@ -182,7 +190,8 @@ class Divers(commands.Cog):
         embed.set_footer(text="demandé par : " +
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
-
+    
+    #COMMANDE Mdp
     @cog_ext.cog_slash(name="mdp", guild_ids=[970708155610837024, 753278912011698247],
                        description="Donne un mot de passe sécurisé au hasard.", options=[
         create_option(name="longueur",
@@ -206,6 +215,7 @@ class Divers(commands.Cog):
                 "Vos mp sont fermés, je ne peux pas vous envoyer de messages. Ouvrez-les puis retentez. [ici pour savoir comment faire](https://tinyurl.com/2eucd2cr)",
                 hidden=True)
 
+    #COMMANDE Userinfo
     @cog_ext.cog_slash(name="userinfo", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche les informations d'un utilisateur choisit.", options=[
         create_option(name="user",
@@ -249,6 +259,7 @@ class Divers(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    #COMMANDE Pdp
     @cog_ext.cog_slash(name="pdp", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche la photo de profil d'un utilisateur choisit.", options=[
         create_option(name="member",
@@ -258,7 +269,8 @@ class Divers(commands.Cog):
     async def pdp(self, ctx, member: discord.User):
         """Renvoie la photo de profil de l'utilisateur choisit."""
         await ctx.send(f'{ctx.author.mention} : Voici la photo de profil de **{member.name}** :\n {member.avatar_url}')
-
+    
+    #COMMANDE Youtube
     @cog_ext.cog_slash(name="youtube", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche le lien de la chaîne YouTube d'im Beerus.")
     async def youtube(self, ctx):
@@ -271,6 +283,7 @@ class Divers(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    #COMMANDE Twitch
     @cog_ext.cog_slash(name="twitch", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche le lien de la chaine Twitch d'im Beerus.")
     async def twitch(self, ctx):
@@ -283,6 +296,7 @@ class Divers(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    #COMMANDE Don
     @cog_ext.cog_slash(name="don", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche le lien pour faire des dons à Beerus.")
     async def don(self, ctx):
@@ -295,6 +309,7 @@ class Divers(commands.Cog):
 
         await ctx.send(embed=embed)
 
+    #COMMANDE Dé
     @cog_ext.cog_slash(name="dé", guild_ids=[970708155610837024, 753278912011698247], description="Lance un dé", options=[
         create_option(
             name="tricher",
@@ -325,6 +340,7 @@ class Divers(commands.Cog):
             num = 4
         await ctx.send(f"**{num}** 🎲!")
 
+    #COMMANDE Hack
     @cog_ext.cog_slash(name="hack", guild_ids=[970708155610837024, 753278912011698247],
                        description="Lance un hack sur l'utilisateur choisit.", options=[
         create_option(name="user",
@@ -352,6 +368,7 @@ class Divers(commands.Cog):
         await message.edit(
             content=f"jE sUiS jUsTe Un BoT pAs Un HaCkEuR ! tU eS mécHaNt à vOuLoIr HaCkEr cE PaUVRe {user.mention}")
 
+    #COMMANDE Streamer
     @cog_ext.cog_slash(name="streamer", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche les informations concernant Im Beerus.")
     async def streamer(self, ctx):
@@ -371,6 +388,7 @@ class Divers(commands.Cog):
                               f'{ctx.author.name}', icon_url=ctx.author.avatar_url)
         await ctx.reply(embed=embed)
 
+    #COMMANDE Remerciments
     @cog_ext.cog_slash(name="remerciements", guild_ids=[970708155610837024, 753278912011698247],
                        description="Affiche les remerciements et les credits.")
     async def remerciements(self, ctx):
@@ -389,6 +407,7 @@ class Divers(commands.Cog):
                          icon_url='https://images-ext-2.discordapp.net/external/-lgvQlDkxHESfYb2GaSj_R1-OF1tIftUjbE8O5Be-5k/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/339451806709055489/a_29c854cacd0437ac5091a1793447cbfe.gif')
         await ctx.reply(embed=embed)
 
+    #COMMANDE Amour
     @cog_ext.cog_slash(name="amour", guild_ids=[970708155610837024, 753278912011698247],
                        description="Envoie de l'amour à l'utilisateur choisit.", options=[
         create_option(name="user",
@@ -398,6 +417,7 @@ class Divers(commands.Cog):
         """Envoi de l'amour à l'utilisateur choisit."""
         await ctx.send(f"{user.mention}, **{ctx.author}** vous envoie de l'amour ! <:beelove:1051253178424885338>")
 
+    #COMMANDE Staff
     @cog_ext.cog_slash(name="staff", guild_ids=[970708155610837024, 753278912011698247], description="Affiche les membres du Staff.")
     async def staff(self, ctx):
         """Renvoie la liste du staff"""

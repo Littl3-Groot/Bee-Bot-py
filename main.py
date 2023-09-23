@@ -35,7 +35,7 @@ slash = SlashCommand(bot, sync_commands=True)
 # Liste des statuts du bot
 status = ["/help", "l'Université", "Infomaniak !"]
 
-# Change le statut du bot toute les 5 secondes
+# Change le statut du bot toute les 60 secondes
 @tasks.loop(seconds=60)
 async def changestatus(): #update le statut du bot toutes les 60 secondes
     game = discord.Game(random.choice(status))

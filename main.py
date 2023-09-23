@@ -33,7 +33,7 @@ bot.remove_command("help")
 slash = SlashCommand(bot, sync_commands=True)
 
 # Liste des statuts du bot
-status = ["/help", "Parcoursup !", "passer son Bac !"]
+status = ["/help", "l'Université", "Infomaniak !"]
 
 # Change le statut du bot toute les 5 secondes
 @tasks.loop(seconds=60)

@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\cogs"
   ],
+  "SelectedNode": "\\cogs\\commandes.py",
   "PreviewInSolutionExplorer": false
 }

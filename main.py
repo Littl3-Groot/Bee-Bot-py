@@ -14,7 +14,7 @@ import cogs.info_commandes as info_commandes
 import cogs.easter_egg as easter_egg
 import cogs.errors as errors
 
-from     import SlashCommand
+from discord_slash import SlashCommand
 from discord_slash.utils.manage_commands import create_option
 from discord_slash.utils.manage_components import *
 

@@ -43,13 +43,8 @@ class Plop(commands.Cog):
         if before.channel.type == discord.ChannelType.private:
             return
 
-        # Vérifier si le message contient des pièces jointes
-        if after.attachments:
-            # Parcourir les pièces jointes pour vérifier l'extension du fichier
-            for attachment in after.attachments:
-                if attachment.filename.lower().endswith('.gif'):
-                    # Ignorer les messages avec des fichiers GIF
-                    return
+        if "gif" in after:
+                return
 
         serveur = before.guild
         channel = self.bot.get_channel(765150007095328790)

@@ -43,7 +43,7 @@ class Plop(commands.Cog):
         if before.channel.type == discord.ChannelType.private:
             return
 
-        if "gif" in after:
+        if "gif" in after.content:
                 return
 
         serveur = before.guild
